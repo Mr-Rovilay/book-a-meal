@@ -60,7 +60,7 @@ const Navbar = () => {
         <div className="flex items-center gap-3 md:gap-6 ml-auto">
           <button
             className="md:hidden bg-grey w-12 h-12 rounded-full flex items-center justify-center text-dark-grey"
-            onClick={() => setSearchBox((currentVal) => !currentVal)}
+            onClick={() => setSearchBox(!searchBox)}
           >
             <i className="fi fi-rr-search text-xl"></i>
           </button>
