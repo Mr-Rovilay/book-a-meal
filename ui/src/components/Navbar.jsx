@@ -24,9 +24,9 @@ const Navbar = () => {
   const [searchBox, setSearchBox] = useState(false);
   return (
     <>
-      <nav className="navbar flex items-center justify-between">
+      <nav className="navbar flex items-center justify-between py-4 sm:py-3">
         <Link to="/" className="flex-none w-10">
-          <h5 className="text-primary font-semibold text-2xl"> Meal</h5>
+          <h5 className="text-green font-semibold text-2xl"> Meal</h5>
         </Link>
 
         <div
@@ -45,11 +45,16 @@ const Navbar = () => {
 
         {/* navlinks */}
 
-        <div className="navigation text-xl">
-          <ul className="menu flex items-center gap-[2.7rem] text-xl">
+        <div className=" ">
+          <ul className="menu flex items-center gap-10 text-xl">
             {navLinks.map((link, index) => (
               <li key={index}>
-                <NavLink to={link.path}>{link.display}</NavLink>
+                <NavLink
+                  to={link.path}
+                  className="hidden sm:inline-block hover:text-green font-semibold text-xl"
+                >
+                  {link.display}
+                </NavLink>
               </li>
             ))}
           </ul>

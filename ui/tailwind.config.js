@@ -12,6 +12,7 @@ export default {
       twitter: "#1DA1F2",
       purple: "#8B46FF",
       primary: "#f13a01",
+      green: "#21d4b9",
     },
 
     fontSize: {

@@ -8,7 +8,7 @@ const UserAuthForm = ({ type }) => {
     <AnimationWrapper keyValue={type}>
       <section className="h-cover flex items-center justify-center">
         <form action="" className="w-[80%] max-w-[400px]">
-          <h1 className="text-4xl font-gelasio capitalize text-center mb-24 text-primary">
+          <h1 className="text-4xl font-gelasio capitalize text-center mb-24 text-green">
             {type == "sign-in" ? "Welcome Back" : "Join Us Today"}
           </h1>
           {type != "sign-in" ? (
@@ -23,7 +23,7 @@ const UserAuthForm = ({ type }) => {
           )}
           <InputBox
             name={"email"}
-            type={"text"}
+            type={"email"}
             placeholder={"Email"}
             icon={"fi-rr-envelope"}
           />
@@ -66,7 +66,7 @@ const UserAuthForm = ({ type }) => {
               Already a Member ? {""}
               <Link
                 to={"/signin"}
-                className="underline text-black text-xl ml-1"
+                className="underline decoration-primary text-black text-xl ml-1"
               >
                 Sign in here
               </Link>
