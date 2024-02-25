@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, Outlet, NavLink } from "react-router-dom";
+import HamburgerMenu from "./HamburgerMenu";
 
 const navLinks = [
   {
@@ -22,9 +23,15 @@ const navLinks = [
 
 const Navbar = () => {
   const [searchBox, setSearchBox] = useState(false);
+  const [showMobileMenu, setShowMobileMenu] = useState(false);
+
   return (
     <>
-      <nav className="navbar flex items-center justify-between">
+      <HamburgerMenu
+        show={showMobileMenu}
+        onClose={() => setShowMobileMenu(false)}
+      />
+      <nav className="navbar relative flex items-center justify-between">
         <Link to="/" className="flex-none w-10">
           <h5 className="text-green font-semibold text-2xl"> Meal</h5>
         </Link>
@@ -79,6 +86,14 @@ const Navbar = () => {
           </>
 
           {/* mobile menu */}
+          <>
+            <button
+              className="md:hidden bg-grey w-12 h-12 rounded-full flex items-center justify-center text-dark-grey"
+              onClick={() => setShowMobileMenu(true)}
+            >
+              <i className="fi fi-br-menu-burger"></i>
+            </button>
+          </>
         </div>
       </nav>
       <Outlet />
