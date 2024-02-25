@@ -55,9 +55,9 @@ const UserAuthForm = ({ type }) => {
               Don't have an account?
               <Link
                 to={"/signup"}
-                className="underline text-black text-xl ml-1"
+                className="underline decoration-black text-black text-xl ml-1"
               >
-                Join us Today
+                Create Account Here
               </Link>
             </p>
           ) : (
@@ -66,7 +66,7 @@ const UserAuthForm = ({ type }) => {
               Already a Member ? {""}
               <Link
                 to={"/signin"}
-                className="underline decoration-primary text-black text-xl ml-1"
+                className="underline decoration-black text-black text-xl ml-1"
               >
                 Sign in here
               </Link>

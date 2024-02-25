@@ -39,7 +39,7 @@
   }
 
   .navbar {
-    @apply z-10 sticky top-0 flex items-center gap-12 w-full px-[5vw] py-5 h-[80px] border-b border-grey bg-white;
+    @apply z-10 sticky top-0 flex items-center gap-12 w-auto px-[5vw] py-5 h-[80px] border-b border-grey bg-white;
   }
 
   .h-cover {
@@ -50,12 +50,12 @@
     @apply block mx-auto;
   }
 
-  .btn-dark {
+  .btn-green {
     @apply whitespace-nowrap bg-green text-white rounded-full py-3 px-6 text-xl capitalize hover:bg-opacity-80;
   }
 
   .btn-light {
-    @apply btn-dark bg-grey text-black;
+    @apply btn-green bg-grey text-black;
   }
 
   .input-box {
