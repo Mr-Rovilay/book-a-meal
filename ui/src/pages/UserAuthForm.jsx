@@ -33,7 +33,7 @@ const UserAuthForm = ({ type }) => {
             placeholder={"Password"}
             icon={"fi-rr-password"}
           />
-          <button className="btn-dark center mt-14" type="submit">
+          <button className="btn-green center mt-14" type="submit">
             {type.replace("-", " ")}
           </button>
 

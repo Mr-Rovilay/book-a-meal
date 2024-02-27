@@ -4,13 +4,13 @@ const HamburgerMenu = ({ show, onClose }) => {
   return (
     <div
       className={
-        "fixed sm:hidden bg-white w-full h-full z-50 " +
+        "fixed sm:hidden bg-grey  w-full h-[60%] z-50 " +
         (show ? "show" : "hide")
       }
     >
       <div className="flex justify-between items-center w-full px-6 py-6">
-        <Link to="/" className="flex-none w-10">
-          <h5 className="text-green font-semibold text-2xl"> Meal</h5>
+        <Link to="/" className="flex-none">
+          <h5 className="text-green font-semibold text-2xl">Meal</h5>
         </Link>
 
         <button
@@ -19,6 +19,42 @@ const HamburgerMenu = ({ show, onClose }) => {
         >
           <i className="fi fi-rr-cross"></i>
         </button>
+      </div>
+      <div className="">
+        <ul className="flex space-y-1 md:flex-row flex-col md:items-center md:gap-[4vw] cursor-pointer">
+          <li className="py-7 pl-6">
+            <a
+              className="text-xl font-gelasio capitalize text-center mb-24 text-green "
+              href="#"
+            >
+              Menu
+            </a>
+          </li>
+          <li className="py-7 pl-6">
+            <a
+              className="text-2xl font-gelasio capitalize text-center mb-24 text-green"
+              href="#"
+            >
+              About
+            </a>
+          </li>
+          <li className="py-7 pl-6">
+            <a
+              className="text-xl font-gelasio capitalize text-center mb-24 text-green"
+              href="#"
+            >
+              Contact
+            </a>
+          </li>
+          <li className="py-7 pl-6">
+            <a
+              className="text-2xl font-gelasio capitalize text-center mb-24 text-green"
+              href="#"
+            >
+              Categories
+            </a>
+          </li>
+        </ul>
       </div>
     </div>
   );

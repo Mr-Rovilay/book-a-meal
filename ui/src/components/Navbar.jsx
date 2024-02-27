@@ -32,7 +32,7 @@ const Navbar = () => {
         onClose={() => setShowMobileMenu(false)}
       />
       <nav className="navbar relative flex items-center justify-between">
-        <Link to="/" className="flex-none w-10">
+        <Link to="/" className="flex-none">
           <h5 className="text-green font-semibold text-2xl"> Meal</h5>
         </Link>
 
@@ -67,11 +67,18 @@ const Navbar = () => {
               />
               <i className="fi fi-br-search absolute right-[10%] md:pointer-events-none md:left-5 top-1/2 -translate-y-1/2 text-xl text-dark-grey"></i>
             </div>
+
+            <div className="md:hidden flex items-center justify-center ">
+              <Link className="btn-green py-2" to={"/signin"}>
+                Sign in
+              </Link>
+            </div>
+
             <button
-              className="md:hidden bg-grey w-12 h-12 rounded-full flex items-center justify-center text-dark-grey"
+              className="md:hidden w-12 h-12 rounded-full flex items-center justify-center text-dark-grey"
               onClick={() => setSearchBox(!searchBox)}
             >
-              <i className="fi fi-rr-search text-xl"></i>
+              <i className="fi fi-rr-search text-xl "></i>
             </button>
           </>
 
