@@ -1,12 +1,33 @@
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+
+const menuItemVariants = {
+  hidden: {
+    opacity: 0,
+    x: 100,
+  },
+  visible: {
+    opacity: 1,
+    x: 0,
+  },
+};
+
+const underlineVariants = {
+  hover: {
+    borderBottom: "2px solid #00FF00",
+  },
+};
 
 const HamburgerMenu = ({ show, onClose }) => {
   return (
-    <div
+    <motion.div
       className={
-        "fixed sm:hidden bg-grey  w-full h-[60%] z-50 " +
+        "fixed sm:hidden bg-white w-full h-[100%] z-50 " +
         (show ? "show" : "hide")
       }
+      initial={{ opacity: 0 }}
+      animate={{ opacity: show ? 1 : 0 }}
+      transition={{ duration: 0.3 }}
     >
       <div className="flex justify-between items-center w-full px-6 py-6">
         <Link to="/" className="flex-none">
@@ -20,43 +41,56 @@ const HamburgerMenu = ({ show, onClose }) => {
           <i className="fi fi-rr-cross"></i>
         </button>
       </div>
-      <div className="">
+      <motion.div
+        className=""
+        initial="hidden"
+        animate={show ? "visible" : "hidden"}
+        transition={{ staggerChildren: 0.1 }}
+      >
         <ul className="flex space-y-1 md:flex-row flex-col md:items-center md:gap-[4vw] cursor-pointer">
-          <li className="py-7 pl-6">
-            <a
+          <motion.li
+            variants={menuItemVariants}
+            whileHover="hover"
+            className="py-7 pl-6"
+            initial="hidden"
+            animate={show ? "visible" : "hidden"}
+          >
+            <motion.a
+              variants={underlineVariants}
               className="text-xl font-gelasio capitalize text-center mb-24 text-green "
               href="#"
             >
               Menu
-            </a>
-          </li>
-          <li className="py-7 pl-6">
+            </motion.a>
+          </motion.li>
+
+          <motion.li variants={menuItemVariants} className="py-7 pl-6">
             <a
               className="text-2xl font-gelasio capitalize text-center mb-24 text-green"
               href="#"
             >
               About
             </a>
-          </li>
-          <li className="py-7 pl-6">
+          </motion.li>
+          <motion.li variants={menuItemVariants} className="py-7 pl-6">
             <a
               className="text-xl font-gelasio capitalize text-center mb-24 text-green"
               href="#"
             >
               Contact
             </a>
-          </li>
-          <li className="py-7 pl-6">
+          </motion.li>
+          <motion.li variants={menuItemVariants} className="py-7 pl-6">
             <a
               className="text-2xl font-gelasio capitalize text-center mb-24 text-green"
               href="#"
             >
-              Categories
+              Category
             </a>
-          </li>
+          </motion.li>
         </ul>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 };
 
