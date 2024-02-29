@@ -29,6 +29,7 @@ export default {
       fontFamily: {
         inter: ["'Inter'", "sans-serif"],
         gelasio: ["'Gelasio'", "serif"],
+        cursive: ["Ephesis", "cursive"],
       },
     },
   },

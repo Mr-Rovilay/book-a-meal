@@ -35,7 +35,7 @@ const Navbar = () => {
         show={showMobileMenu}
         onClose={() => setShowMobileMenu(false)}
       />
-      <nav className="navbar relative flex items-center justify-between">
+      <nav className="navbar flex items-center justify-between">
         <Link to="/" className="flex-none">
           <h5 className="text-green font-semibold text-2xl"> Meal</h5>
         </Link>
