@@ -45,10 +45,7 @@ const Navbar = () => {
         <ul className="hidden sm:flex gap-10 text-xl">
           {navLinks.map((link, index) => (
             <li key={index}>
-              <NavLink
-                to={link.path}
-                className="hover:text-green font-semibold text-xl"
-              >
+              <NavLink to={link.path} className="hover:text-green text-xl">
                 {link.display}
               </NavLink>
             </li>
