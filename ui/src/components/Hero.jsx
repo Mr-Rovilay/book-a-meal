@@ -1,41 +1,44 @@
 import AnimationWrapper from "../common/AnimationWrapper";
 import Egusi from "../imgs/slazzer-edit-image.png";
 import Button from "../shared/Button";
+import About from "./About";
 
-const HeroSection = () => {
+import Menu from "./Menu";
+
+const Hero = () => {
   return (
     <AnimationWrapper>
-      <section className="h-screen">
-        <div className="container py-16 sm:py-0">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 place-items-center min-h-[600px]">
-            <div className="text-container space-y-5 text-dark-grey sm:text-center">
-              <h1 className="text-5xl">
-                <span className="font-cursive text-green text-5xl">
-                  Delightful
-                </span>{" "}
-                Dining Experience{" "}
-                <span className="font-cursive text-green text-5xl">Awaits</span>{" "}
-                You
-              </h1>
-              <p className="lg:pr-64 ">
-                Indulge in exquisite flavors brought straight to your table.
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              </p>
+      <AnimationWrapper>
+        <section className="bg-grey flex flex-col-reverse sm:flex-row items-center justify-between py-12">
+          <div className="text-container space-y-5 text-dark-grey sm:text-center">
+            <h1 data-aos="fade-up" className="text-5xl">
+              <span className="font-cursive text-green text-5xl">
+                Delightful
+              </span>{" "}
+              Dining Experience{" "}
+              <span className="font-cursive text-green text-5xl">Awaits</span>{" "}
+              You
+            </h1>
+            <p data-aos="fade-up" data-aos-delay="300" className="lg:pr-64 ">
+              Indulge in exquisite flavors brought straight to your table. Lorem
+              ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
+              tempor incididunt ut labore et dolore magna aliqua.
+            </p>
+            <div className="" data-aos="fade-up" data-aos-delay="500">
               <Button />
             </div>
-            <div className="image-container relative">
-              <img
-                className="w-full sm:scale-125 sm:translate-y-16"
-                src={Egusi}
-                alt="Delicious Dish"
-              />
-            </div>
           </div>
-        </div>
-      </section>
+          <div className="ml-3 relative">
+            <img className="rounded-md mb-8" src={Egusi} alt="Delicious Dish" />
+          </div>
+        </section>
+        <Menu />
+        <About />
+      </AnimationWrapper>
+      <Menu />
+      <About />
     </AnimationWrapper>
   );
 };
 
-export default HeroSection;
+export default Hero;

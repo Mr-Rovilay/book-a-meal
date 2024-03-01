@@ -8,16 +8,8 @@ const navLinks = [
     display: "Home",
   },
   {
-    path: "/menupage",
+    path: "/menu",
     display: "Menu",
-  },
-  {
-    path: "/aboutpage",
-    display: "About",
-  },
-  {
-    path: "/contactpage",
-    display: "Contact",
   },
   {
     path: "/contactpage",
@@ -87,9 +79,6 @@ const Navbar = () => {
           <>
             <Link className="btn-green py-2 hidden sm:block" to={"/signin"}>
               Sign in
-            </Link>
-            <Link className="btn-light py-2 hidden sm:block" to={"/signup"}>
-              Sign up
             </Link>
           </>
 
