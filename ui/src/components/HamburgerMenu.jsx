@@ -58,7 +58,7 @@ const HamburgerMenu = ({ show, onClose }) => {
             <motion.a
               variants={underlineVariants}
               className="text-xl font-gelasio capitalize text-center mb-24 text-green "
-              href="#"
+              href="/menu"
             >
               Menu
             </motion.a>

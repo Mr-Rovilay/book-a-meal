@@ -12,7 +12,7 @@ const navLinks = [
     display: "Menu",
   },
   {
-    path: "/contactpage",
+    path: "/contegory",
     display: "Category",
   },
 ];
