@@ -12,7 +12,7 @@ const navLinks = [
     display: "Menu",
   },
   {
-    path: "/contegory",
+    path: "/category",
     display: "Category",
   },
 ];
