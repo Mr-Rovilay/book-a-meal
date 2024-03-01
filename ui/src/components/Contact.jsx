@@ -1,7 +1,7 @@
 const Contact = () => {
   return (
     <div className="container mx-auto py-8 w-2/4 text-center items-start justify-center">
-      <h1 className="text-3xl font-bold mb-4">Contact Us</h1>
+      <h1 className="font-cursive text-green text-5xl">Contact Us</h1>
       <p className="text-lg mb-4">We'd love to hear from you!</p>
       <form className="w-[100%]">
         <div className="mb-4">

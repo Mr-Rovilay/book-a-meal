@@ -2,9 +2,7 @@ const AboutUs = () => {
   return (
     <section className="py-12 bg-grey">
       <div className="container mx-auto text-center">
-        <h2 className="text-green text-3xl md:text-4xl font-bold text-gray-800 mb-6">
-          About Us
-        </h2>
+        <h2 className="font-cursive text-green text-5xl">About Us</h2>
         <p className="text-xl text-gray-700 leading-relaxed">
           Welcome to Mr Rovilay Meals, where culinary excellence meets
           exceptional service. We are passionate about providing our customers

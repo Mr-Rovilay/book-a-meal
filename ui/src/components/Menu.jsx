@@ -6,8 +6,8 @@ const Menu = () => {
   return (
     <section className="">
       <div className="text-center mb-9">
-        <h3 className="uppercase text-grey-500 font-semibold mb-9">Discover</h3>
-        <h2 className="text-green font-bold text-4xl">Our Menu</h2>
+        <h3 className="uppercase font-cursive text-green text-5xl">Discover</h3>
+        <h2 className="font-cursive text-green text-5xl">Our Menu</h2>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         <div className="bg-grey p-4 rounded-lg text-center group hover:bg-white hover:shadow-md hover:shadow-black/25 transition-all">
