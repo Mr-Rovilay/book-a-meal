@@ -2,7 +2,6 @@ import AnimationWrapper from "../common/AnimationWrapper";
 import Egusi from "../imgs/slazzer-edit-image.png";
 import Button from "../shared/Button";
 import About from "./About";
-import Contact from "./Contact";
 
 import Menu from "./Menu";
 
@@ -31,7 +30,6 @@ const Hero = () => {
       </section>
       <Menu />
       <About />
-      <Contact />
     </AnimationWrapper>
   );
 };
