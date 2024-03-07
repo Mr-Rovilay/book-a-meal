@@ -10,16 +10,19 @@ import {
   FaTwitter,
 } from "react-icons/fa";
 import { Link, Outlet } from "react-router-dom";
+import { FaPhoneAlt } from "react-icons/fa";
+import CartIcon from "./CartIcon";
 
 const Navbar = () => {
   const [dropDown, setDropDown] = useState(false);
+  const user = false;
 
   const showDropDown = () => {
     setDropDown(!dropDown);
   };
   return (
     <>
-      <nav className="w-full h-24 flex flex-col justify-center items-center fixed z-20 bg-white">
+      <nav className="w-full h-24 flex flex-col justify-center items-center fixed z-20 bg-white border-b-2 border-b-green">
         <div className="container mx-auto lg:px-6">
           <div className="lg:w-full w-11/12 mx-auto h-full flex justify-between items-center">
             <div className="flex flex-col gap-y-4">
@@ -62,18 +65,23 @@ const Navbar = () => {
             </ul>
 
             <>
-              <div className="flex max-lg:hidden gap-x-4">
-                <Link
-                  className="rounded-full bg-[#f3f3f4] text-lg text-black border-none font-bold px-8 py-3 hover:bg-green"
-                  to={"/signin"}
-                >
-                  Sign in
-                </Link>
-                <Link
-                  className="rounded-full bg-green text-lg text-white border-none font-bold px-8 py-3 hover:bg-dark-green"
-                  to={"/signup"}
-                >
-                  Sign up
+              <div className="flex max-lg:hidden gap-x-4 items-center">
+                <div className="flex items-center gap-2 cursor-pointer bg-green px-2 rounded-md hover:bg-dark-green">
+                  <FaPhoneAlt />
+                  <span>+123</span>
+                </div>
+                {!user ? (
+                  <Link
+                    className="rounded-full bg-green text-lg text-white border-none font-bold px-8 py-3 hover:bg-dark-green"
+                    to={"/signin"}
+                  >
+                    Sign in
+                  </Link>
+                ) : (
+                  <Link>Orders</Link>
+                )}
+                <Link href="/cart">
+                  <CartIcon />
                 </Link>
               </div>
             </>
@@ -141,17 +149,23 @@ const Navbar = () => {
                   </li>
                 </ul>
                 <div className="flex flex-col justify-center items-center w-full gap-y-8 mt-4">
-                  <Link
-                    className="rounded-full bg-[#f3f3f4] hover:text-green text-2xl text-black border-none font-bold px-8 py-3 hoverBtn"
-                    to={"/signin"}
-                  >
-                    Sign in
-                  </Link>
-                  <Link
-                    className="rounded-full bg-green text-3xl text-white border-none font-bold px-8 py-3 hover:bg-dark-green"
-                    to={"/signup"}
-                  >
-                    Sign up
+                  {!user ? (
+                    <Link
+                      className="rounded-full bg-green text-3xl text-white border-none font-bold px-8 py-3 hover:bg-dark-green"
+                      to={"/signin"}
+                    >
+                      Sign in
+                    </Link>
+                  ) : (
+                    <Link
+                      className="rounded-full bg-green text-3xl text-white border-none font-bold px-8 py-3 hover:bg-dark-green"
+                      to={"/orders"}
+                    >
+                      Orders
+                    </Link>
+                  )}
+                  <Link href="/cart">
+                    <CartIcon />
                   </Link>
                   <div className="flex items-center justify-center gap-3 cursor-pointer text-white">
                     <FaFacebook className="text-4xl hover:scale-105 duration-300 hover:bg-green2" />
