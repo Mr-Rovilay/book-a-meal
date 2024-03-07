@@ -21,7 +21,7 @@ const Menu = () => {
               <h5 className="text-2xl md:text-3xl font-medium mt-3">
                 Egusi & Pounded Yam
               </h5>
-              <p className="text-dark-grey text-lg mt-3">
+              <p className="text-dark-grey text-2xl mt-3">
                 {" "}
                 Lorem ipsum dolor sit, amet consectetur adipisicing elit.
                 Adipisci provident facilis earum, eaque laborum excepturi
@@ -46,7 +46,7 @@ const Menu = () => {
               <h5 className="text-2xl md:text-3xl font-medium mt-3">
                 Egusi & Pounded Yam
               </h5>
-              <p className="text-dark-grey text-lg mt-3">
+              <p className="text-dark-grey text-2xl mt-3">
                 {" "}
                 Lorem ipsum dolor sit, amet consectetur adipisicing elit.
                 Adipisci provident facilis earum, eaque laborum excepturi
@@ -71,7 +71,7 @@ const Menu = () => {
               <h5 className="text-2xl md:text-3xl font-medium mt-3">
                 Egusi & Pounded Yam
               </h5>
-              <p className="text-dark-grey text-lg mt-3">
+              <p className="text-dark-grey text-2xl mt-3">
                 {" "}
                 Lorem ipsum dolor sit, amet consectetur adipisicing elit.
                 Adipisci provident facilis earum, eaque laborum excepturi
