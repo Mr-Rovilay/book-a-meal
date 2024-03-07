@@ -12,15 +12,17 @@ const Footer = ({ type }) => {
   return (
     <>
       <AnimationWrapper keyValue={type}>
-        <section className="bg-black">
+        <section className="bg-black py-6">
           <div className=" text-white py-6">
             <div className="container mx-auto">
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 px-6">
-                <div className="space-y-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 px-6 text-center">
+                <div className="space-y-6 ">
                   <h1 className="text-3xl font-bold text-green">Book Meal</h1>
-                  <p className="text-xl max-w-[300px]">
-                    © {year} Your Mr Rovilay Meals. All rights reserved.
-                  </p>
+                  <div className="flex items-center justify-center">
+                    <p className="text-xl max-w-[300px]">
+                      © {year} Your Mr Rovilay Meals. All rights reserved.
+                    </p>
+                  </div>
                 </div>
                 <div className="">
                   <h1 className="text-3xl font-bold text-green">Quick Links</h1>
@@ -73,7 +75,7 @@ const Footer = ({ type }) => {
                       14 akinola osan street isuti road egan
                     </p>
                   </div>
-                  <div className="flex items-center gap-3 cursor-pointer">
+                  <div className="flex items-center justify-center gap-3 cursor-pointer">
                     <FaFacebook className="text-3xl hover:scale-105 duration-300 hover:text-green" />
                     <FaInstagram className="text-3xl hover:scale-105 duration-30 hover:text-green" />
                     <FaTelegram className="text-3xl hover:scale-105 duration-30 hover:text-green" />
