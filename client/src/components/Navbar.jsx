@@ -44,12 +44,12 @@ const Navbar = () => {
               >
                 Home
               </a>
-              <a
-                href="#"
+              <Link
+                to="/menupage"
                 className="leading-normal no-underline text-black font-bold text-xl hover:text-dark-green"
               >
                 Menu
-              </a>
+              </Link>
               <a
                 href="#"
                 className="leading-normal no-underline text-black font-bold text-xl hover:text-dark-green"
@@ -57,7 +57,7 @@ const Navbar = () => {
                 Contact
               </a>
               <a
-                href="#"
+                href="/categorypage"
                 className="leading-normal no-underline text-black font-bold text-xl hover:text-dark-green"
               >
                 Category
