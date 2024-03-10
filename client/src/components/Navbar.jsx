@@ -37,31 +37,31 @@ const Navbar = () => {
                 </span>
               </div>
             </div>
-            <ul className="flex-1 flex justify-center items-center xl:gap-12 gap-x-4 max-lg:hidden">
+            <ul className="flex-1 flex justify-center items-center xl:gap-12 gap-x-4 max-lg:hidden cursor-pointer">
               <a
                 href="/"
                 className="leading-normal no-underline text-black font-bold text-xl hover:text-dark-green"
               >
                 Home
               </a>
-              <Link
-                to="/menupage"
+              <a
+                href="/menupage"
                 className="leading-normal no-underline text-black font-bold text-xl hover:text-dark-green"
               >
                 Menu
-              </Link>
+              </a>
               <a
                 href="#"
                 className="leading-normal no-underline text-black font-bold text-xl hover:text-dark-green"
               >
                 Contact
               </a>
-              <Link
-                to="/categorypage"
+              <a
+                href="/categorypage"
                 className="leading-normal no-underline text-black font-bold text-xl hover:text-dark-green"
               >
                 Category
-              </Link>
+              </a>
             </ul>
 
             <>
@@ -140,12 +140,12 @@ const Navbar = () => {
                   </li>
 
                   <li>
-                    <Link
-                      href="categorypage"
+                    <a
+                      href="/categorypage"
                       className="leading-normal no-underline  font-bold text-2xl hover:bg-dark-green"
                     >
                       Category
-                    </Link>
+                    </a>
                   </li>
                 </ul>
                 <div className="flex flex-col justify-center items-center w-full gap-y-8 mt-4">
