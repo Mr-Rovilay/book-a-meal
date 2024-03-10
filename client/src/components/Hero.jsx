@@ -18,7 +18,7 @@ const Hero = () => {
             </span>{" "}
             from <br /> the comfort of your home, office etc.
           </h1>
-          <p className="text-2xl  text-center leading-10 my-8 text-grey font-bold bg-primary">
+          <p className="text-2xl  text-center leading-10 my-8 text-grey font-bold ">
             Discover a world of culinary delight at your fingertips. Indulge in
             exquisite flavors, crafted with care and passion. Whether you're
             craving comfort food or seeking adventurous cuisines, our diverse
@@ -48,7 +48,7 @@ const Hero = () => {
           </div>
           <Link
             className="text-center text-white bg-green py-4 px-6 rounded-lg font-semibold mt-5 hover:bg-dark-green focus:scale-95 transition-all duration-200 ease-out"
-            to={"/signup"}
+            to={"#"}
           >
             Order Now
           </Link>
