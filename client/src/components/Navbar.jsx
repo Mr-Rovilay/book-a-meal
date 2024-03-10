@@ -29,7 +29,7 @@ const Navbar = () => {
               <div className="flex items-center gap-x-2">
                 <span className="flex items-center lg:text-5xl text-3xl">
                   <Link
-                    to="/"
+                    to={"/"}
                     className="rounded-full py-1 text-black  lg:text-2xl text-3xl outline-none border-none"
                   >
                     <h5 className="text-green font-semibold text-2xl">Meal</h5>
@@ -38,30 +38,30 @@ const Navbar = () => {
               </div>
             </div>
             <ul className="flex-1 flex justify-center items-center xl:gap-12 gap-x-4 max-lg:hidden cursor-pointer">
-              <a
-                href="/"
+              <Link
+                to={"/"}
                 className="leading-normal no-underline text-black font-bold text-xl hover:text-dark-green"
               >
                 Home
-              </a>
-              <a
-                href="/menupage"
+              </Link>
+              <Link
+                to={"/menupage"}
                 className="leading-normal no-underline text-black font-bold text-xl hover:text-dark-green"
               >
                 Menu
-              </a>
-              <a
-                href="#"
+              </Link>
+              <Link
+                to={"#"}
                 className="leading-normal no-underline text-black font-bold text-xl hover:text-dark-green"
               >
                 Contact
-              </a>
-              <a
-                href="/categorypage"
+              </Link>
+              <Link
+                to={"/categorypage"}
                 className="leading-normal no-underline text-black font-bold text-xl hover:text-dark-green"
               >
                 Category
-              </a>
+              </Link>
             </ul>
 
             <>
@@ -80,7 +80,7 @@ const Navbar = () => {
                 ) : (
                   <Link>Orders</Link>
                 )}
-                <Link href="/cart">
+                <Link to={"/cart"}>
                   <CartIcon />
                 </Link>
               </div>
@@ -113,39 +113,39 @@ const Navbar = () => {
               <div className="w-full h-[320px] flex flex-col items-baseline pt-14 gap-6 ">
                 <ul className="text-center p-0 flex flex-col justify-center w-full gap-y-8 text-black">
                   <li>
-                    <a
-                      href="/"
+                    <Link
+                      to={"/"}
                       className="leading-normal no-underline  font-bold text-2xl hover:bg-dark-green"
                     >
                       Home
-                    </a>
+                    </Link>
                   </li>
 
                   <li>
-                    <a
-                      href="/menupage"
+                    <Link
+                      to={"/menupage"}
                       className="leading-normal no-underline  font-bold text-2xl hover:bg-dark-green"
                     >
                       Menu
-                    </a>
+                    </Link>
                   </li>
 
                   <li>
-                    <a
-                      href="/contact"
+                    <Link
+                      to={"/contact"}
                       className="leading-normal no-underline  font-bold text-2xl hover:bg-dark-green"
                     >
                       Contact
-                    </a>
+                    </Link>
                   </li>
 
                   <li>
-                    <a
-                      href="/categorypage"
+                    <Link
+                      to={"/categorypage"}
                       className="leading-normal no-underline  font-bold text-2xl hover:bg-dark-green"
                     >
                       Category
-                    </a>
+                    </Link>
                   </li>
                 </ul>
                 <div className="flex flex-col justify-center items-center w-full gap-y-8 mt-4">
@@ -164,7 +164,7 @@ const Navbar = () => {
                       Orders
                     </Link>
                   )}
-                  <Link href="/cart" className="text-black">
+                  <Link to={"/cart"} className="text-black">
                     <CartIcon />
                   </Link>
                   <div className="flex items-center justify-center gap-3 cursor-pointer text-black">

@@ -12,8 +12,8 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Navbar />}>
           <Route index element={<HomePage />} />
-          <Route path="/menupage" index element={<MenuPage />} />
-          <Route path="/categorypage" index element={<CategoryPage />} />
+          <Route path="/menupage" element={<MenuPage />} />
+          <Route path="/categorypage" element={<CategoryPage />} />
           <Route path="/signin" element={<UserAuthForm type="sign-in" />} />
           <Route path="/signup" element={<UserAuthForm type="sign-up" />} />
         </Route>
