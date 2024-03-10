@@ -195,7 +195,7 @@ export const pizzas = [
     id: 1,
     title: "Sicilian",
     desc: "Ignite your taste buds with a fiery combination of spicy pepperoni, jalapeños, crushed red pepper flakes, and melted mozzarella cheese, delivering a kick with every bite.",
-    img: "../public/temporary/p1.png",
+    img: "../src/imgs/turkey1.jpeg",
     price: 24.9,
     options: [
       {
@@ -216,7 +216,7 @@ export const pizzas = [
     id: 2,
     title: "Medit Delight",
     desc: "Embark on a culinary journey with this Mediterranean-inspired creation, featuring zesty feta cheese, Kalamata olives, sun-dried tomatoes, and a sprinkle of oregano.",
-    img: "../public/temporary/p8.png",
+    img: "../src/imgs/p8.png",
     price: 32.9,
     options: [
       {
@@ -237,7 +237,7 @@ export const pizzas = [
     id: 3,
     title: "Bella Napoli",
     desc: "A classic Italian delight featuring a thin, crispy crust, tangy tomato sauce, fresh mozzarella, and a medley of aromatic herbs topped with lettuce, tomatoes, and a dollop of tangy mayo.",
-    img: "../public/temporary/p3.png",
+    img: "../src/imgs/turkey3.jpeg",
     price: 26.9,
     options: [
       {
@@ -258,7 +258,7 @@ export const pizzas = [
     id: 4,
     title: "Pesto Primavera",
     desc: "A classic Italian delight featuring a thin, crispy crust, tangy tomato sauce, fresh mozzarella, and a medley of aromatic herbs topped with lettuce, tomatoes, and a dollop of tangy mayo.",
-    img: "../public/temporary/p10.png",
+    img: "../src/imgs/p10.png",
     price: 28.9,
     options: [
       {
@@ -279,7 +279,7 @@ export const pizzas = [
     id: 5,
     title: "Veggie Supreme",
     desc: "A classic Italian delight featuring a thin, crispy crust, tangy tomato sauce, fresh mozzarella, and a medley of aromatic herbs topped with lettuce, tomatoes, and a dollop of tangy mayo.",
-    img: "../public/temporary/p11.png",
+    img: "../src/imgs/turkey.jpg",
     price: 24.9,
     options: [
       {
@@ -300,7 +300,7 @@ export const pizzas = [
     id: 6,
     title: "Cheese Fantasy",
     desc: "Experience pure cheesy bliss with a melty blend of mozzarella, cheddar, provolone, and Parmesan cheeses, creating a rich and indulgent pizza experience.",
-    img: "../public/temporary/p12.png",
+    img: "../src/imgs/p12.png",
     price: 22.9,
     options: [
       {
@@ -323,7 +323,7 @@ export const singleProduct = {
   id: 1,
   title: "Sicilian",
   desc: "Ignite your taste buds with a fiery combination of spicy pepperoni, jalapeños, crushed red pepper flakes, and melted mozzarella cheese, delivering a kick with every bite.",
-  img: "../public/temporary/p1.png",
+  img: "../src/imgs/turkey1.jpeg",
   price: 24.9,
   options: [
     {
@@ -347,7 +347,7 @@ export const menu = [
     slug: "pastas",
     title: "Italian Pastas",
     desc: "Savor the taste of perfection with our exquisite Italian handmade pasta menu.",
-    img: "../src/imgs/turkey.jpg",
+    img: "../src/imgs/m1.png",
     color: "",
   },
   {
@@ -355,7 +355,7 @@ export const menu = [
     slug: "burgers",
     title: "Juicy Burgers",
     desc: "Burger Bliss: Juicy patties, bold flavors, and gourmet toppings galore.",
-    img: "../src/imgs/turkey.jpg",
+    img: "../src/imgs/m2.png",
     color: "",
   },
   {
@@ -363,7 +363,7 @@ export const menu = [
     slug: "pizzas",
     title: "Cheesy Pizzas",
     desc: "Pizza Paradise: Irresistible slices, mouthwatering toppings, and cheesy perfection.",
-    img: "../src/imgs/turkey.jpg",
+    img: "../src/imgs/m3.png",
     color: "",
   },
 ];
