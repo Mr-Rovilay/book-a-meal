@@ -11,10 +11,11 @@ const CategoryPage = () => {
             to={`/product/${item.id}`}
             key={item.id}
           >
-            <div className="relative h-[80%] py-0">
-              <img src={item.img} alt="food" className="object-contain" />
-            </div>
-
+            {item.img && (
+              <div className="relative h-[80%] py-0">
+                <img src={item.img} alt="" className="object-contain" />
+              </div>
+            )}
             <div className="flex items-center justify-between font-bold">
               <h1 className="text-2xl uppercase p-2">{item.title}</h1>
               <h2 className="group-hover:hidden text-xl">N{item.price}</h2>
