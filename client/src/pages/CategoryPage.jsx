@@ -13,7 +13,7 @@ const CategoryPage = () => {
           >
             {item.img && (
               <div className="relative h-[80%] py-0">
-                <img src={item.img} alt="" fill="" className="object-contain" />
+                <img src={item.img} alt="food" className="object-contain" />
               </div>
             )}
             <div className="flex items-center justify-between font-bold">
