@@ -56,12 +56,12 @@ const Navbar = () => {
               >
                 Contact
               </a>
-              <a
-                href="/categorypage"
+              <Link
+                to="/categorypage"
                 className="leading-normal no-underline text-black font-bold text-xl hover:text-dark-green"
               >
                 Category
-              </a>
+              </Link>
             </ul>
 
             <>
@@ -140,12 +140,12 @@ const Navbar = () => {
                   </li>
 
                   <li>
-                    <a
+                    <Link
                       href="categorypage"
                       className="leading-normal no-underline  font-bold text-2xl hover:bg-dark-green"
                     >
                       Category
-                    </a>
+                    </Link>
                   </li>
                 </ul>
                 <div className="flex flex-col justify-center items-center w-full gap-y-8 mt-4">
