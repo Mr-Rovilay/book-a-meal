@@ -258,7 +258,7 @@ export const pizzas = [
     id: 4,
     title: "Pesto Primavera",
     desc: "A classic Italian delight featuring a thin, crispy crust, tangy tomato sauce, fresh mozzarella, and a medley of aromatic herbs topped with lettuce, tomatoes, and a dollop of tangy mayo.",
-    img: "../src/imgs/p10.png",
+    img: "../public/p1.png",
     price: 28.9,
     options: [
       {
@@ -279,7 +279,7 @@ export const pizzas = [
     id: 5,
     title: "Veggie Supreme",
     desc: "A classic Italian delight featuring a thin, crispy crust, tangy tomato sauce, fresh mozzarella, and a medley of aromatic herbs topped with lettuce, tomatoes, and a dollop of tangy mayo.",
-    img: "../src/imgs/p5.png",
+    img: "../public/p5.png",
     price: 24.9,
     options: [
       {
