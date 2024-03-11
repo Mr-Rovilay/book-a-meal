@@ -9,14 +9,13 @@ import CategoryPage from "./pages/CategoryPage";
 const App = () => {
   return (
     <>
+      <Navbar />
       <Routes>
-        <Route path="/" element={<Navbar />}>
-          <Route index element={<HomePage />} />
-          <Route path="/menupage" element={<MenuPage />} />
-          <Route path="/categorypage" element={<CategoryPage />} />
-          <Route path="/signin" element={<UserAuthForm type="sign-in" />} />
-          <Route path="/signup" element={<UserAuthForm type="sign-up" />} />
-        </Route>
+        <Route index element={<HomePage />} />
+        <Route path="/menupage" element={<MenuPage />} />
+        <Route path="/categorypage" element={<CategoryPage />} />
+        <Route path="/signin" element={<UserAuthForm type="sign-in" />} />
+        <Route path="/signup" element={<UserAuthForm type="sign-up" />} />
       </Routes>
       <Footer />
     </>

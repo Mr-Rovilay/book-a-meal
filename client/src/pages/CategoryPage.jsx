@@ -19,15 +19,14 @@ const CategoryPage = ({ type }) => {
               >
                 <Link to={item.slug}>
                   <div className="py-0 flex flex-col items-center text-center">
-                    {item.img && (
-                      <div className="rounded-xl overflow-hidden">
-                        <img
-                          src={item.img}
-                          alt={item.title}
-                          className="object-contain"
-                        />{" "}
-                      </div>
-                    )}
+                    <div className="rounded-xl overflow-hidden">
+                      <img
+                        src={item.img}
+                        alt={item.title}
+                        className="object-contain"
+                      />{" "}
+                    </div>
+
                     <div className="flex items-center justify-between gap-4 font-bold">
                       <h1 className="text-xl uppercase p-2">{item.title}</h1>
                       <h2 className="group-hover:hidden text-xl">
