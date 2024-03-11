@@ -34,10 +34,6 @@
     @apply bg-purple/30;
   }
 
-  img {
-    @apply w-full h-full object-cover;
-  }
-
   .h-cover {
     @apply min-h-[calc(100vh-80px)];
   }

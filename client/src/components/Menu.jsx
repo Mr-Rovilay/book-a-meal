@@ -1,4 +1,3 @@
-import turkey3 from "../imgs/turkey3.jpeg";
 import turkey1 from "../imgs/turkey1.jpeg";
 import turkey from "../imgs/turkey.jpg";
 import jollofRice from "../imgs/j-rice.jpeg";

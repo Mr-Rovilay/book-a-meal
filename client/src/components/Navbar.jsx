@@ -24,13 +24,13 @@ const Navbar = () => {
     <>
       <nav className="w-full h-24 flex flex-col justify-center items-center fixed z-20 bg-black  border-b-2 border-b-green">
         <div className="container lg:px-8">
-          <div className="lg:w-full w-11/12 mx-auto h-full flex justify-between items-center">
+          <div className="lg:w-full w-11/12 mx-auto h-full flex justify-between items-center px-7">
             <div className="flex flex-col gap-y-4">
               <div className="flex items-center gap-x-2">
                 <span className="flex items-center lg:text-5xl text-3xl">
                   <Link
                     to={"/"}
-                    className="rounded-full py-1 text-black lg:text-2xl text-3xl outline-none border-none"
+                    className="rounded-full py-1 lg:text-2xl text-3xl outline-none border-none"
                   >
                     <h5 className="text-green font-semibold text-2xl">Meal</h5>
                   </Link>
@@ -87,14 +87,14 @@ const Navbar = () => {
             </>
             {dropDown ? (
               <div
-                className="lg:hidden text-[22px] cursor-pointer text-black"
+                className="lg:hidden text-[22px] cursor-pointer text-white"
                 onClick={showDropDown}
               >
                 <MdClose className="text-3xl" />{" "}
               </div>
             ) : (
               <div
-                className="lg:hidden text-[22px] cursor-pointer text-black"
+                className="lg:hidden text-[22px] cursor-pointer text-white"
                 onClick={showDropDown}
               >
                 {" "}
