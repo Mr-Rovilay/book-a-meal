@@ -3,13 +3,13 @@ import CountDown from "./CountDown";
 
 const Offer = () => {
   return (
-    <section className="offer-section">
-      <div className="offer-content flex flex-col md:flex-row md:justify-between py-9">
+    <section className="offer-section bg-grey">
+      <div className="offer-content flex flex-col md:flex-row md:justify-between py-9 ">
         <div className="offer-text flex-1 flex flex-col justify-center items-center text-center gap-8 p-6">
-          <h1 className="offer-title uppercase text-green text-5xl font-bold xl:text-6xl">
+          <h1 className="offer-title uppercase text-dark-green text-4xl font-bold xl:text-5xl">
             Available Delicious Food On Discount
           </h1>
-          <p className="offer-description text-black text-2xl xl:text-xl">
+          <p className="offer-description text-dark-grey text-1xl xl:text-xl">
             Indulge in a culinary adventure with our delectable selection of
             discounted delicacies, handcrafted to tantalize your taste buds.
             Discover a world of flavors, where every bite tells a story of
@@ -22,7 +22,7 @@ const Offer = () => {
             our table
           </p>
           <CountDown />
-          <button className="offer-button text-white text-2xl bg-green p-4 py-3 rounded-lg font-semibold mt-4 hover:bg-dark-green focus:scale-95 transition-all duration-200 ease-out">
+          <button className="offer-button text-white text-xl bg-green p-4 py-3 rounded-lg font-semibold mt-4 hover:bg-dark-green focus:scale-95 transition-all duration-200 ease-out">
             Order Now
           </button>
         </div>

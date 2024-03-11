@@ -22,43 +22,43 @@ const Navbar = () => {
   };
   return (
     <>
-      <nav className="w-full h-24 flex flex-col justify-center items-center fixed z-20 bg-white border-b-2 border-b-green">
-        <div className="container  lg:px-8">
+      <nav className="w-full h-24 flex flex-col justify-center items-center fixed z-20 bg-black  border-b-2 border-b-green">
+        <div className="container lg:px-8">
           <div className="lg:w-full w-11/12 mx-auto h-full flex justify-between items-center">
             <div className="flex flex-col gap-y-4">
               <div className="flex items-center gap-x-2">
                 <span className="flex items-center lg:text-5xl text-3xl">
                   <Link
                     to={"/"}
-                    className="rounded-full py-1 text-black  lg:text-2xl text-3xl outline-none border-none"
+                    className="rounded-full py-1 text-black lg:text-2xl text-3xl outline-none border-none"
                   >
                     <h5 className="text-green font-semibold text-2xl">Meal</h5>
                   </Link>
                 </span>
               </div>
             </div>
-            <ul className="flex-1 flex justify-center items-center xl:gap-12 gap-x-4 max-lg:hidden cursor-pointer">
+            <ul className="flex-1 flex justify-center text-white items-center xl:gap-12 gap-x-4 max-lg:hidden cursor-pointer">
               <Link
                 to={"/"}
-                className="leading-normal no-underline text-black font-bold text-xl hover:text-dark-green"
+                className="leading-normal no-underline font-bold text-xl hover:text-dark-green"
               >
                 Home
               </Link>
               <Link
                 to={"/menupage"}
-                className="leading-normal no-underline text-black font-bold text-xl hover:text-dark-green"
+                className="leading-normal no-underline font-bold text-xl hover:text-dark-green"
               >
                 Menu
               </Link>
               <Link
                 to={"#"}
-                className="leading-normal no-underline text-black font-bold text-xl hover:text-dark-green"
+                className="leading-normal no-underline font-bold text-xl hover:text-dark-green"
               >
                 Contact
               </Link>
               <Link
                 to={"/categorypage"}
-                className="leading-normal no-underline text-black font-bold text-xl hover:text-dark-green"
+                className="leading-normal no-underline font-bold text-xl hover:text-dark-green"
               >
                 Category
               </Link>
@@ -75,7 +75,7 @@ const Navbar = () => {
                     className="rounded-full bg-green text-lg text-white border-none font-bold px-8 py-3 hover:bg-dark-green"
                     to={"/signin"}
                   >
-                    Sign in
+                    Sign In
                   </Link>
                 ) : (
                   <Link>Orders</Link>

@@ -32,7 +32,7 @@ const Footer = ({ type }) => {
                         <li className="">
                           <a
                             href="#"
-                            className="text-2xl hover:scale-105 duration-300 hover:text-green"
+                            className="text-xl hover:scale-105 duration-300 hover:text-green"
                           >
                             Home
                           </a>
@@ -40,7 +40,7 @@ const Footer = ({ type }) => {
                         <li className="">
                           <a
                             href="#"
-                            className="text-2xl hover:scale-105 duration-300 hover:text-green"
+                            className="text-xl hover:scale-105 duration-300 hover:text-green"
                           >
                             Menu
                           </a>
@@ -48,7 +48,7 @@ const Footer = ({ type }) => {
                         <li className="">
                           <a
                             href="#"
-                            className="text-2xl hover:scale-105 duration-300 hover:text-green"
+                            className="text-xl hover:scale-105 duration-300 hover:text-green"
                           >
                             Contact
                           </a>
@@ -56,7 +56,7 @@ const Footer = ({ type }) => {
                         <li className="">
                           <a
                             href="#"
-                            className="text-2xl hover:scale-105 duration-300 hover:text-green"
+                            className="text-xl hover:scale-105 duration-300 hover:text-green"
                           >
                             Category
                           </a>

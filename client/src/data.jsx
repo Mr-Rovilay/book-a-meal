@@ -195,7 +195,7 @@ export const pizzas = [
     id: 1,
     title: "Sicilian",
     desc: "Ignite your taste buds with a fiery combination of spicy pepperoni, jalapeños, crushed red pepper flakes, and melted mozzarella cheese, delivering a kick with every bite.",
-    img: "../../src/imgs/turkey1.jpeg",
+    img: "../src/imgs/p10.png",
     price: 24.9,
     options: [
       {
@@ -237,7 +237,7 @@ export const pizzas = [
     id: 3,
     title: "Bella Napoli",
     desc: "A classic Italian delight featuring a thin, crispy crust, tangy tomato sauce, fresh mozzarella, and a medley of aromatic herbs topped with lettuce, tomatoes, and a dollop of tangy mayo.",
-    img: "../src/imgs/turkey3.jpeg",
+    img: "../src/imgs/p5.png",
     price: 26.9,
     options: [
       {
@@ -279,7 +279,7 @@ export const pizzas = [
     id: 5,
     title: "Veggie Supreme",
     desc: "A classic Italian delight featuring a thin, crispy crust, tangy tomato sauce, fresh mozzarella, and a medley of aromatic herbs topped with lettuce, tomatoes, and a dollop of tangy mayo.",
-    img: "../src/imgs/turkey.jpg",
+    img: "../src/imgs/p5.png",
     price: 24.9,
     options: [
       {
@@ -323,7 +323,7 @@ export const singleProduct = {
   id: 1,
   title: "Sicilian",
   desc: "Ignite your taste buds with a fiery combination of spicy pepperoni, jalapeños, crushed red pepper flakes, and melted mozzarella cheese, delivering a kick with every bite.",
-  img: "../src/imgs/turkey1.jpeg",
+  img: "../src/imgs/p1.png",
   price: 24.9,
   options: [
     {
