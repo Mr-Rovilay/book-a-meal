@@ -45,7 +45,7 @@ export const pizzas = [
     id: 3,
     title: "Bella Napoli",
     desc: "A classic Italian delight featuring a thin, crispy crust, tangy tomato sauce, fresh mozzarella, and a medley of aromatic herbs topped with lettuce, tomatoes, and a dollop of tangy mayo.",
-    img: "../public/p5.png",
+    img: "../public/assets/p5.png",
     price: 26.9,
     options: [
       {
@@ -66,7 +66,7 @@ export const pizzas = [
     id: 4,
     title: "Pesto Primavera",
     desc: "A classic Italian delight featuring a thin, crispy crust, tangy tomato sauce, fresh mozzarella, and a medley of aromatic herbs topped with lettuce, tomatoes, and a dollop of tangy mayo.",
-    img: "../public/p5.png",
+    img: "../public/assets/p5.png",
     price: 28.9,
     options: [
       {
@@ -87,7 +87,7 @@ export const pizzas = [
     id: 5,
     title: "Veggie Supreme",
     desc: "A classic Italian delight featuring a thin, crispy crust, tangy tomato sauce, fresh mozzarella, and a medley of aromatic herbs topped with lettuce, tomatoes, and a dollop of tangy mayo.",
-    img: "../public/p5.png",
+    img: "../public/assets/p5.png",
     price: 24.9,
     options: [
       {
@@ -108,7 +108,7 @@ export const pizzas = [
     id: 6,
     title: "Cheese Fantasy",
     desc: "Experience pure cheesy bliss with a melty blend of mozzarella, cheddar, provolone, and Parmesan cheeses, creating a rich and indulgent pizza experience.",
-    img: "../public/p5.png",
+    img: "../public/assets/p5.png",
     price: 22.9,
     options: [
       {
@@ -133,7 +133,7 @@ export const menu = [
     slug: "pastas",
     title: "Italian Pastas",
     desc: "Savor the taste of perfection with our exquisite Italian handmade pasta menu.",
-    img: "../public/p5.png",
+    img: "../public/assets/p5.png",
     color: "",
   },
   {
@@ -141,7 +141,7 @@ export const menu = [
     slug: "burgers",
     title: "Juicy Burgers",
     desc: "Burger Bliss: Juicy patties, bold flavors, and gourmet toppings galore.",
-    img: "../public/p5.png",
+    img: "../public/assets/p5.png",
     color: "",
   },
   {
@@ -149,7 +149,7 @@ export const menu = [
     slug: "pizzas",
     title: "Cheesy Pizzas",
     desc: "Pizza Paradise: Irresistible slices, mouthwatering toppings, and cheesy perfection.",
-    img: "../public/p5.png",
+    img: "../public/assets/p5.png",
     color: "",
   },
 ];
