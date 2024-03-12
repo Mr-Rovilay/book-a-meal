@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { pizzas } from "../data";
 import AnimationWrapper from "../common/AnimationWrapper";
+import img from "../../public/assets/p5.png";
 
 const CategoryPage = ({ type }) => {
   return (
@@ -21,7 +22,7 @@ const CategoryPage = ({ type }) => {
                   <div className="py-0 flex flex-col items-center text-center">
                     <div className="rounded-xl overflow-hidden">
                       <img
-                        src={item.img}
+                        src={img}
                         alt={item.title}
                         className="object-contain"
                       />{" "}

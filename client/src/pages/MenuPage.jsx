@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { menu } from "../data";
 import AnimationWrapper from "../common/AnimationWrapper";
+import img from "../../public/assets/p5.png";
 
 const MenuPage = ({ type }) => {
   return (
