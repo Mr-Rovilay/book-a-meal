@@ -23,7 +23,7 @@ const MenuPage = ({ type }) => {
                       {item.title}
                     </h5>
                     <p className="text-dark-grey text-2xl mt-3">{item.desc}</p>
-                    <button className="text-center text-white text-1xl bg-green p-4 py-3 rounded-lg font-semibold mt-4 hover:bg-dark-green focus:scale-95 transition-all duration-200 ease-out">
+                    <button className="text-center text-white text-xl bg-green p-4 py-3 rounded-lg font-semibold mt-4 hover:bg-dark-green focus:scale-95 transition-all duration-200 ease-out">
                       Click here to Explore More
                     </button>
                   </div>

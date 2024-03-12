@@ -24,7 +24,7 @@ const Navbar = () => {
     <>
       <nav className="w-full h-24 flex flex-col justify-center items-center fixed z-20 bg-black  border-b-2 border-b-green">
         <div className="container lg:px-8">
-          <div className="lg:w-full w-11/12 mx-auto h-full flex justify-between items-center px-7">
+          <div className="lg:w-full w-10/11 mx-auto h-full flex justify-between items-center">
             <div className="flex flex-col gap-y-4">
               <div className="flex items-center gap-x-2">
                 <span className="flex items-center lg:text-5xl text-3xl">
