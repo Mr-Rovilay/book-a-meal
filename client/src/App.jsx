@@ -7,10 +7,12 @@ import MenuPage from "./pages/MenuPage";
 import CategoryPage from "./pages/CategoryPage";
 import SingleProductPage from "./pages/SingleProductPage";
 import CartPage from "./pages/CartPage";
+import ScrollToTop from "./components/ScrollToTop";
 
 const App = () => {
   return (
     <>
+      <ScrollToTop />
       <Navbar />
       <Routes>
         <Route index element={<HomePage />} />

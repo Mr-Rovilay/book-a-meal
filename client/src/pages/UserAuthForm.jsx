@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import InputBox from "../components/InputBox";
 import googleIcon from "../imgs/google.png";
-import facebook from "../../public/assets/facebook.png";
+import facebook from "/assets/facebook.png";
 import AnimationWrapper from "../common/AnimationWrapper";
 
 const UserAuthForm = ({ type }) => {

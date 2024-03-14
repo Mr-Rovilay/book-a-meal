@@ -126,7 +126,7 @@ const Navbar = () => {
 
                   <li>
                     <Link
-                      to={"/contact"}
+                      to={"#"}
                       className="leading-normal no-underline  font-bold text-2xl hover:bg-dark-green"
                     >
                       Contact
