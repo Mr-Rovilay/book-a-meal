@@ -6,7 +6,7 @@ const Menu = () => {
   return (
     <section className="">
       <div className="text-center mb-9">
-        <h3 className="uppercase text-dark-green text-4xl font-bold xl:text-5xl">
+        <h3 className="uppercase text-dark-green text-4xl font-extralight xl:text-5xl">
           Discover Our Menu
         </h3>
       </div>
@@ -20,7 +20,7 @@ const Menu = () => {
               <h5 className="text-2xl md:text-3xl font-medium mt-3">
                 Egusi & Pounded Yam
               </h5>
-              <p className="text-dark-grey text-xl mt-3">
+              <p className="text-dark-grey text-1xl mt-3">
                 {" "}
                 Lorem ipsum dolor sit, amet consectetur adipisicing elit.
                 Adipisci provident facilis earum, eaque laborum excepturi

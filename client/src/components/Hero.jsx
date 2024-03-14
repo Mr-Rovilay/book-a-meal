@@ -9,7 +9,7 @@ const Hero = () => {
       className="pt-24 bg-no-repeat bg-cover bg-center"
       style={{ backgroundImage: `url(${imgBg})` }}
     >
-      <section>
+      <section className="mt-12">
         <div className="flex flex-col items-center justify-center min-h-[60vh] py-16 px-6">
           <h1 className="xl:text-7xl lg:text-1xl sm:text-3xl text-2xl xl:leading-normal lg:leading-normal font-bold text-center capitalize">
             Book your{" "}
@@ -18,7 +18,7 @@ const Hero = () => {
             </span>{" "}
             from <br /> the comfort of your home, office etc.
           </h1>
-          <p className="text-2xl  text-center leading-10 my-8 text-grey font-bold ">
+          <p className="text-2xl text-center leading-10 my-8 text-black">
             Discover a world of culinary delight at your fingertips. Indulge in
             exquisite flavors, crafted with care and passion. Whether you're
             craving comfort food or seeking adventurous cuisines, our diverse

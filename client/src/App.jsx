@@ -6,6 +6,7 @@ import Footer from "./components/Footer";
 import MenuPage from "./pages/MenuPage";
 import CategoryPage from "./pages/CategoryPage";
 import SingleProductPage from "./pages/SingleProductPage";
+import CartPage from "./pages/CartPage";
 
 const App = () => {
   return (
@@ -14,8 +15,9 @@ const App = () => {
       <Routes>
         <Route index element={<HomePage />} />
         <Route path="/menupage" element={<MenuPage />} />
-        <Route path="/categorypage" element={<CategoryPage />} />
+        <Route path="/categorypage/:slug" element={<CategoryPage />} />
         <Route path="/product/:id" element={<SingleProductPage />} />
+        <Route path="/cartpage" element={<CartPage />} />
         <Route path="/signin" element={<UserAuthForm type="sign-in" />} />
         <Route path="/signup" element={<UserAuthForm type="sign-up" />} />
       </Routes>

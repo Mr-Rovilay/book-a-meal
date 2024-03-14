@@ -5,37 +5,31 @@ import AnimationWrapper from "../common/AnimationWrapper";
 const CategoryPage = ({ type }) => {
   return (
     <AnimationWrapper keyValue={type}>
-      <section className="h-cover pt-20 flex items-center justify-center container mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-9 py-28 ">
+      <section className="container mx-auto pt-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 my-16">
           {pizzas.map((item) => (
-            <div
-              key={item.id}
-              className="rounded-xl shadow-lg hover:bg-grey cursor-pointer"
-            >
-              <Link
-                to={`/product/${item.id}`}
-                className="flex flex-col justify-end group"
-              >
-                <div className="py-0 flex flex-col items-center text-center">
-                  <div className="rounded-xl overflow-hidden">
-                    <img
-                      src={item.img}
-                      alt={item.title}
-                      className="object-cover w-full h-94 md:h-72 lg:h-100"
-                    />
+            <div key={item.id} className="rounded-lg shadow-md overflow-hidden">
+              <Link to={`/product/${item.id}`} className="block">
+                <div className="relative flex items-center justify-center">
+                  <img
+                    src={item.img}
+                    alt={item.title}
+                    className="object-cover h-94 md:h-72"
+                  />
+                  <div className="absolute inset-0 bg-black bg-opacity-50 transition-opacity opacity-0 hover:opacity-100 flex items-center justify-center">
+                    <p className="text-white text-lg font-semibold">
+                      View Details
+                    </p>
                   </div>
-
-                  <div className="flex items-center justify-between gap-4 font-bold p-4">
-                    <h1 className="text-2xl uppercase">{item.title}</h1>
-                    <h2 className="text-2xl group-hover:hidden">
-                      N{item.price}
-                    </h2>
-                    <Link to={`/product/${item.id}`}>
-                      <button className="hidden group-hover:block text-center text-white text-xl bg-green p-4 py-3 rounded-lg font-semibold hover:bg-dark-green focus:scale-95 transition-all duration-200 ease-out">
-                        Add to Cart
-                      </button>
-                    </Link>
-                  </div>
+                </div>
+                <div className="p-4">
+                  <h1 className="text-dark-green text-3xl font-medium mt-3">
+                    {item.title}
+                  </h1>
+                  <p className="text-dark-grey">{item.desc}</p>
+                  <p className="text-green-600 font-semibold mt-2 text-2xl">
+                    N{item.price}
+                  </p>
                 </div>
               </Link>
             </div>
