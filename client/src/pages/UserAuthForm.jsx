@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import InputBox from "../components/InputBox";
 import googleIcon from "../imgs/google.png";
+import facebook from "../../public/assets/facebook.png";
 import AnimationWrapper from "../common/AnimationWrapper";
 
 const UserAuthForm = ({ type }) => {
@@ -8,7 +9,7 @@ const UserAuthForm = ({ type }) => {
     <AnimationWrapper keyValue={type}>
       <section className="h-cover flex items-center justify-center">
         <form action="" className="w-[100%] max-w-[600px]">
-          <h1 className="text-4xl font-gelasio capitalize text-center mb-24 text-green">
+          <h1 className="text-4xl font-gelasio capitalize text-center mt-24 pb-9 text-green">
             {type == "sign-in" ? "Welcome Back" : "Join Us Today"}
           </h1>
           {type != "sign-in" ? (
@@ -37,17 +38,24 @@ const UserAuthForm = ({ type }) => {
             {type.replace("-", " ")}
           </button>
 
-          <div className="relative w-full flex items-center gap-2 my-10  uppercase text-black font-bold">
+          <div className="relative w-full flex items-center gap-2 my-10 uppercase text-black font-bold">
             <hr className="w-1/2 border-black" />
             <p>or</p>
             <hr className="w-1/2 border-black" />
           </div>
 
-          <button className="btn-dark flex items-center justify-center gap-4 w-[90%] center">
-            {" "}
-            <img src={googleIcon} alt="" className="w-5" />
-            Continue with Google
-          </button>
+          <div className="flex flex-col gap-4">
+            <button className="btn-green flex items-center justify-center gap-4 w-[90%] center">
+              {" "}
+              <img src={googleIcon} alt="" className="w-5" />
+              Continue with Google
+            </button>
+            <button className="btn-green flex items-center justify-center gap-4 w-[90%] center">
+              {" "}
+              <img src={facebook} alt="" className="w-5" />
+              Continue with Facebook
+            </button>
+          </div>
 
           {type == "sign-in" ? (
             <p className="mt-6 text-dark-grey text-xl text-center">
