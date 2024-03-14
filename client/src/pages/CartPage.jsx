@@ -16,6 +16,7 @@ const CartPage = () => {
             <h2 className="font-bold">N79.90</h2>
             <span className="cursor-pointer text-red">X</span>
           </div>
+          <hr className="text-black text-3xl" />
           {/* SINGLE ITEM */}
           <div className="flex items-center justify-between mb-4">
             <img src="../assets/m1.png" alt="" width={100} height={100} />
@@ -28,9 +29,10 @@ const CartPage = () => {
             <h2 className="font-bold">N79.90</h2>
             <span className="cursor-pointer text-red">X</span>
           </div>
+          <hr className="text-black text-3xl" />
           {/* SINGLE ITEM */}
           <div className="flex items-center justify-between mb-4">
-            <img src="../assets/m1.png" alt="" width={100} height={100} />
+            <img src="../assets/p2.png" alt="" width={100} height={100} />
             <div className="">
               <h1 className="uppercase text-xl text-dark-green font-bold">
                 sicilian
