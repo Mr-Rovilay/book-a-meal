@@ -4,7 +4,7 @@ const CartPage = ({ type }) => {
   return (
     <AnimationWrapper keyValue={type}>
       <section className="">
-        <div className="h-[calc(100vh-6rem)] md:h-[calc(100vh-9rem)] flex flex-col justify-center lg:flex-row ">
+        <div className="h-screen flex flex-col justify-center lg:flex-row ">
           {/* PRODUCTS CONTAINER */}
           <div className="h-1/2 p-4 flex flex-col justify-center overflow-scroll lg:h-full lg:w-2/3 2xl:w-1/2 lg:px-20 xl:px-40 gap-4">
             {/* SINGLE ITEM */}
