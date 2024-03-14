@@ -5,10 +5,6 @@
 @tailwind components;
 @tailwind utilities;
 
-::-webkit-scrollbar {
-  display: none;
-}
-
 @media (max-width: 1520px) {
   .team .container {
     min-width: 100%;
