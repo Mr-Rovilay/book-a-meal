@@ -6,11 +6,11 @@ const SingleProductPage = () => {
     <section className="">
       <div className="p-4 lg:px-20 xl:px-40 h-screen flex flex-col justify-around md:flex-row md:gap-8 md:items-center">
         {singleProduct.img && (
-          <div className="w-full md:w-1/2 h-1/2 md:h-auto">
+          <div className="w-full md:w-1/2 h-1/2 md:h-auto mt-14">
             <img
               src={singleProduct.img}
               alt=""
-              className="object-contain w-full h-full sm:mt-16"
+              className="object-contain w-full h-full"
             />
           </div>
         )}
