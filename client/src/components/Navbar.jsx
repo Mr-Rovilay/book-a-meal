@@ -9,14 +9,26 @@ import {
   FaGoogle,
   FaTwitter,
 } from "react-icons/fa";
+import profile from "/assets/team_member_2.png";
 import { Link, Outlet } from "react-router-dom";
 import { FaPhoneAlt } from "react-icons/fa";
 import CartIcon from "./CartIcon";
 import Button from "./Button";
+import UserNavigation from "./UserNavigation";
 
 const Navbar = () => {
   const [dropDown, setDropDown] = useState(false);
+  const [userNavPanel, setUserNavPanel] = useState(false);
   const user = false;
+
+  const handleUserNavPanel = () => {
+    setUserNavPanel((currentVal) => !currentVal);
+  };
+  const handleBlur = () => {
+    setTimeout(() => {
+      setUserNavPanel(false);
+    }, 200);
+  };
 
   const showDropDown = () => {
     setDropDown(!dropDown);
@@ -65,12 +77,27 @@ const Navbar = () => {
                   <FaPhoneAlt />
                   <span>+123</span>
                 </div>
-                {!user ? (
+                {user ? (
                   <Link to={"/signin"}>
                     <Button text={"Sign In"} />
                   </Link>
                 ) : (
-                  <Link className="text-white">Orders(Avatar)</Link>
+                  <>
+                    <div
+                      className="relative"
+                      onClick={handleUserNavPanel}
+                      onBlur={handleBlur}
+                    >
+                      <button className="w-12 h-12 mt-1">
+                        <img
+                          src={profile}
+                          alt="profile_img"
+                          className="w-full h-full object-cover rounded-full"
+                        />
+                      </button>
+                      {userNavPanel ? <UserNavigation /> : ""}
+                    </div>
+                  </>
                 )}
                 <Link to={"/cart"}>
                   <CartIcon />
@@ -132,7 +159,7 @@ const Navbar = () => {
                   </li>
                 </ul>
                 <div className="flex flex-col justify-center items-center w-full gap-y-8 mt-4">
-                  {!user ? (
+                  {user ? (
                     <Link to={"/signin"}>
                       <Button text={"Sign In"} />
                     </Link>

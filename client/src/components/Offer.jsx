@@ -25,7 +25,7 @@ const Offer = () => {
           </p>
           <CountDown />
           <Link to={"#"}>
-            <Button text={"Place Orders"} />
+            <Button text={"Place Order"} />
           </Link>
         </div>
         <div className="flex-1 w-full relative md:h-full sm:pt-5">
