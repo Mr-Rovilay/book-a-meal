@@ -4,10 +4,8 @@ const CartPage = ({ type }) => {
   return (
     <AnimationWrapper keyValue={type}>
       <section className="">
-        <div className="h-screen flex flex-col justify-center lg:flex-row ">
-          {/* PRODUCTS CONTAINER */}
+        <div className="h-screen flex flex-col justify-center lg:flex-row">
           <div className="h-1/2 p-4 flex flex-col justify-center overflow-scroll lg:h-full lg:w-2/3 2xl:w-1/2 lg:px-20 xl:px-40 gap-4">
-            {/* SINGLE ITEM */}
             <div className="flex items-center justify-between">
               <img src="../assets/p1.png" alt="" width={100} height={100} />
               <div className="">
@@ -20,7 +18,7 @@ const CartPage = ({ type }) => {
               <span className="cursor-pointer text-red">X</span>
             </div>
             <hr className="text-black text-3xl" />
-            {/* SINGLE ITEM */}
+
             <div className="flex items-center justify-between">
               <img src="../assets/m1.png" alt="" width={100} height={100} />
               <div className="">
@@ -33,7 +31,7 @@ const CartPage = ({ type }) => {
               <span className="cursor-pointer text-red">X</span>
             </div>
             <hr className="text-black text-3xl" />
-            {/* SINGLE ITEM */}
+
             <div className="flex items-center justify-between">
               <img src="../assets/p2.png" alt="" width={100} height={100} />
               <div className="">
@@ -46,7 +44,7 @@ const CartPage = ({ type }) => {
               <span className="cursor-pointer  text-red">X</span>
             </div>
           </div>
-          {/* PAYMENT CONTAINER */}
+
           <div className="flex justify-center flex-col lg:w-1/3 xl:w-1/2 lg:px-8 xl:px-16 gap-5 ">
             <div className="bg-grey p-4 rounded-lg mb-4">
               <div className="flex justify-between">

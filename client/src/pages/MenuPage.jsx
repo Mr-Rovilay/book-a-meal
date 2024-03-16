@@ -1,13 +1,12 @@
 import { Link } from "react-router-dom";
 import { menu } from "../data";
 import AnimationWrapper from "../common/AnimationWrapper";
-import img from "../../public/assets/p5.png";
 
 const MenuPage = ({ type }) => {
   return (
     <AnimationWrapper keyValue={type}>
       <section className="">
-        <div className="h-cover pt-20 flex items-center justify-center container mx-auto ">
+        <div className="h-cover pt-20 flex items-center justify-center container mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-9">
             {menu.map((category) => (
               <div

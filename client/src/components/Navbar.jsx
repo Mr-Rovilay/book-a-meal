@@ -72,7 +72,7 @@ const Navbar = () => {
                     Sign In
                   </Link>
                 ) : (
-                  <Link>Orders</Link>
+                  <Link className="text-white">Orders(Avatar)</Link>
                 )}
                 <Link to={"/cart"}>
                   <CartIcon />

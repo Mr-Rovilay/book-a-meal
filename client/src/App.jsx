@@ -8,6 +8,7 @@ import CategoryPage from "./pages/CategoryPage";
 import SingleProductPage from "./pages/SingleProductPage";
 import CartPage from "./pages/CartPage";
 import ScrollToTop from "./components/ScrollToTop";
+import OrdersPage from "./pages/OrdersPage";
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
         <Route path="/categorypage/:slug" element={<CategoryPage />} />
         <Route path="/product/:id" element={<SingleProductPage />} />
         <Route path="/cartpage" element={<CartPage />} />
+        <Route path="/orderspage" element={<OrdersPage />} />
         <Route path="/signin" element={<UserAuthForm type="sign-in" />} />
         <Route path="/signup" element={<UserAuthForm type="sign-up" />} />
       </Routes>
