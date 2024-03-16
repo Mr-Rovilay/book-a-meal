@@ -23,7 +23,7 @@ const Search = ({ text }) => {
               </svg>
               <p className="text-dark-grey text-lg font-semibold">{text}</p>
             </div>
-            <div className="flex space-x-4">
+            <div className="flex space-x-4 items-center justify-center sm:flex-col">
               <div className="flex rounded-md overflow-hidden w-full">
                 <input
                   type="text"
@@ -33,7 +33,6 @@ const Search = ({ text }) => {
                   Search
                 </button>
               </div>
-              <Button text={"clear"} />
             </div>
           </div>
         </form>

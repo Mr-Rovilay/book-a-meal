@@ -8,9 +8,9 @@ import Search from "../components/Search";
 const CategoryPage = ({ type }) => {
   return (
     <AnimationWrapper keyValue={type}>
-      <section className="mx-auto pt-16">
-        <h1 className="capitalize flex items-center justify-center py-10 text-3xl text-dark-green font-extralight xl:text-5xl">
-          Check out Our categories
+      <section className="mx-auto pt-16 ">
+        <h1 className="capitalize text-3xl flex flex-col items-center justify-center py-10 text-dark-green font-extralight xl:text-5xl ">
+          Check out Our menu
         </h1>
         <Search text={"search available category here"} />
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

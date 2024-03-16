@@ -7,10 +7,10 @@ import Search from "../components/Search";
 const MenuPage = ({ type }) => {
   return (
     <AnimationWrapper keyValue={type}>
-      <section className="">
-        <div className="h-cover pt-20 flex flex-col items-center justify-center container mx-auto">
-          <h1 className="mb-9 capitalize text-2xl py-10 text-dark-green font-extralight xl:text-5xl">
-            discover our menu for the day
+      <section className="h-cover pt-20 flex flex-col items-center justify-center container mx-auto">
+        <div className="">
+          <h1 className="capitalize text-3xl flex flex-col items-center justify-center py-10 text-dark-green font-extralight xl:text-5xl ">
+            Check out Our categories
           </h1>
           <Search text={"search available menu here"} />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-9">

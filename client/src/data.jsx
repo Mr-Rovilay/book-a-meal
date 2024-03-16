@@ -171,7 +171,7 @@ const featuredProducts = [
     id: 9,
     title: "Hawaiian",
     desc: "Experience a taste of the tropics with a juicy beef patty glazed in tangy teriyaki sauce, topped with grilled pineapple, crispy bacon, and fresh lettuce, and all the classic fixings on a toasted bun.",
-    img: "../public/assets/p9.png",
+    img: "../assets/p9.png",
     price: 29.9,
     options: [
       {

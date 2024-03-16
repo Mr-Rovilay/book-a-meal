@@ -1,7 +1,3 @@
-import turkey1 from "../imgs/turkey1.jpeg";
-import turkey from "../imgs/turkey.jpg";
-import jollofRice from "../imgs/j-rice.jpeg";
-import Button from "./Button";
 import { featuredProducts } from "../data";
 import { Link } from "react-router-dom";
 
