@@ -77,7 +77,7 @@ const Navbar = () => {
                   <FaPhoneAlt />
                   <span>+123</span>
                 </div>
-                {user ? (
+                {!user ? (
                   <Link to={"/signin"}>
                     <Button text={"Sign In"} />
                   </Link>
@@ -159,7 +159,7 @@ const Navbar = () => {
                   </li>
                 </ul>
                 <div className="flex flex-col justify-center items-center w-full gap-y-8 mt-4">
-                  {user ? (
+                  {!user ? (
                     <Link to={"/signin"}>
                       <Button text={"Sign In"} />
                     </Link>
