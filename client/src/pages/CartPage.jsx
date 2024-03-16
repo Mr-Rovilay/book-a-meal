@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import AnimationWrapper from "../common/AnimationWrapper";
 
 const CartPage = ({ type }) => {
@@ -6,43 +7,50 @@ const CartPage = ({ type }) => {
       <section className="">
         <div className="h-screen flex flex-col justify-center lg:flex-row">
           <div className="h-1/2 p-4 flex flex-col justify-center overflow-scroll lg:h-full lg:w-2/3 2xl:w-1/2 lg:px-20 xl:px-40 gap-4">
-            <div className="flex items-center justify-between">
-              <img src="../assets/p1.png" alt="" width={100} height={100} />
-              <div className="">
-                <h1 className="uppercase text-dark-green text-xl font-bold">
-                  sicilian
-                </h1>
-                <span>Large</span>
+            <Link to={"/product/:id"}>
+              <div className="flex items-center justify-between">
+                <img src="../assets/p1.png" alt="" width={100} height={100} />
+                <div className="">
+                  <h1 className="uppercase text-dark-green text-xl font-bold">
+                    sicilian
+                  </h1>
+                  <span>Large</span>
+                </div>
+                <h2 className="font-bold">N79.90</h2>
+                <span className="cursor-pointer text-red">X</span>
               </div>
-              <h2 className="font-bold">N79.90</h2>
-              <span className="cursor-pointer text-red">X</span>
-            </div>
+            </Link>
             <hr className="text-black text-3xl" />
 
-            <div className="flex items-center justify-between">
-              <img src="../assets/m1.png" alt="" width={100} height={100} />
-              <div className="">
-                <h1 className="uppercase text-xl text-dark-green font-bold">
-                  sicilian
-                </h1>
-                <span>Large</span>
+            <Link to={"/product/:id"}>
+              <div className="flex items-center justify-between">
+                <img src="../assets/m1.png" alt="" width={100} height={100} />
+                <div className="">
+                  <h1 className="uppercase text-xl text-dark-green font-bold">
+                    sicilian
+                  </h1>
+                  <span>Large</span>
+                </div>
+                <h2 className="font-bold">N79.90</h2>
+                <span className="cursor-pointer text-red">X</span>
               </div>
-              <h2 className="font-bold">N79.90</h2>
-              <span className="cursor-pointer text-red">X</span>
-            </div>
+            </Link>
+
             <hr className="text-black text-3xl" />
 
-            <div className="flex items-center justify-between">
-              <img src="../assets/p2.png" alt="" width={100} height={100} />
-              <div className="">
-                <h1 className="uppercase text-xl text-dark-green font-bold">
-                  sicilian
-                </h1>
-                <span>Large</span>
+            <Link to={"/product/:id"}>
+              <div className="flex items-center justify-between">
+                <img src="../assets/p2.png" alt="" width={100} height={100} />
+                <div className="">
+                  <h1 className="uppercase text-xl text-dark-green font-bold">
+                    sicilian
+                  </h1>
+                  <span>Large</span>
+                </div>
+                <h2 className="font-bold">N79.90</h2>
+                <span className="cursor-pointer  text-red">X</span>
               </div>
-              <h2 className="font-bold">N79.90</h2>
-              <span className="cursor-pointer  text-red">X</span>
-            </div>
+            </Link>
           </div>
 
           <div className="flex justify-center flex-col lg:w-1/3 xl:w-1/2 lg:px-8 xl:px-16 gap-5 ">

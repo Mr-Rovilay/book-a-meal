@@ -393,6 +393,30 @@ const menu = [
     img: "../assets/m3.png",
     color: "white",
   },
+  {
+    id: 4,
+    slug: "pizzas",
+    title: "Rice and Egg",
+    desc: "Pizza Paradise: Irresistible slices, mouthwatering toppings, and cheesy perfection.",
+    img: "../assets/m3.png",
+    color: "white",
+  },
+  {
+    id: 5,
+    slug: "pizzas",
+    title: "Dodo and Yam",
+    desc: "Pizza Paradise: Irresistible slices, mouthwatering toppings, and cheesy perfection.",
+    img: "../assets/m3.png",
+    color: "white",
+  },
+  {
+    id: 6,
+    slug: "pizzas",
+    title: "Chicken and chips",
+    desc: "Pizza Paradise: Irresistible slices, mouthwatering toppings, and cheesy perfection.",
+    img: "../assets/m3.png",
+    color: "white",
+  },
 ];
 
 export { featuredProducts, pizzas, singleProduct, menu, team };

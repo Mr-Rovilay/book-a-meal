@@ -1,12 +1,18 @@
 import { Link } from "react-router-dom";
 import { menu } from "../data";
 import AnimationWrapper from "../common/AnimationWrapper";
+import Button from "../components/Button";
+import Search from "../components/Search";
 
 const MenuPage = ({ type }) => {
   return (
     <AnimationWrapper keyValue={type}>
       <section className="">
-        <div className="h-cover pt-20 flex items-center justify-center container mx-auto">
+        <div className="h-cover pt-20 flex flex-col items-center justify-center container mx-auto">
+          <h1 className="mb-9 capitalize text-2xl py-10 text-dark-green font-extralight xl:text-5xl">
+            discover our menu for the day
+          </h1>
+          <Search text={"search available menu here"} />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-9">
             {menu.map((category) => (
               <div
@@ -24,9 +30,9 @@ const MenuPage = ({ type }) => {
                     <p className="text-dark-grey text-xl mt-3">
                       {category.desc}
                     </p>
-                    <button className="text-center text-white text-xl bg-green p-4 py-3 rounded-lg font-semibold mt-4 hover:bg-dark-green focus:scale-95 transition-all duration-200 ease-out">
-                      Click here to Explore More
-                    </button>
+                    <div className="pt-5">
+                      <Button text={"click here to explore more"} />
+                    </div>
                   </div>
                 </Link>
               </div>

@@ -12,6 +12,7 @@ import {
 import { Link, Outlet } from "react-router-dom";
 import { FaPhoneAlt } from "react-icons/fa";
 import CartIcon from "./CartIcon";
+import Button from "./Button";
 
 const Navbar = () => {
   const [dropDown, setDropDown] = useState(false);
@@ -65,11 +66,8 @@ const Navbar = () => {
                   <span>+123</span>
                 </div>
                 {!user ? (
-                  <Link
-                    className="rounded-full bg-green text-lg text-white border-none font-bold px-8 py-3 hover:bg-dark-green"
-                    to={"/signin"}
-                  >
-                    Sign In
+                  <Link to={"/signin"}>
+                    <Button text={"Sign In"} />
                   </Link>
                 ) : (
                   <Link className="text-white">Orders(Avatar)</Link>
@@ -135,18 +133,12 @@ const Navbar = () => {
                 </ul>
                 <div className="flex flex-col justify-center items-center w-full gap-y-8 mt-4">
                   {!user ? (
-                    <Link
-                      className="rounded-md bg-green text-xl text-white border-none font-bold px-8 py-3 hover:bg-dark-green"
-                      to={"/signin"}
-                    >
-                      Sign in
+                    <Link to={"/signin"}>
+                      <Button text={"Sign In"} />
                     </Link>
                   ) : (
-                    <Link
-                      className="rounded-md bg-green text-xl text-white border-none font-bold px-8 py-3 hover:bg-dark-green"
-                      to={"/orders"}
-                    >
-                      Orders
+                    <Link to={"/orders"}>
+                      <Button text={"Order"} />
                     </Link>
                   )}
                   <Link to={"/cart"} className="text-black">

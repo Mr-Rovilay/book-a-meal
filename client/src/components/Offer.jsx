@@ -1,4 +1,6 @@
+import { Link } from "react-router-dom";
 import turkey3 from "../imgs/turkey3.jpeg";
+import Button from "./Button";
 import CountDown from "./CountDown";
 
 const Offer = () => {
@@ -6,7 +8,7 @@ const Offer = () => {
     <section className="bg-grey">
       <div className="offer-content flex flex-col md:flex-row md:justify-between py-9 ">
         <div className=" flex-1 flex flex-col justify-center items-center text-center gap-8 p-6">
-          <h1 className=" uppercase text-dark-green text-4xl font-extralight xl:text-5xl">
+          <h1 className=" uppercase text-dark-green text-3xl font-extralight xl:text-3xl">
             Available Delicious Food On Discount
           </h1>
           <p className=" text-dark-grey text-2xl xl:text-xl">
@@ -22,9 +24,9 @@ const Offer = () => {
             our table
           </p>
           <CountDown />
-          <button className=" text-white text-xl bg-green p-4 py-3 rounded-lg font-semibold mt-4 hover:bg-dark-green focus:scale-95 transition-all duration-200 ease-out">
-            Order Now
-          </button>
+          <Link to={"#"}>
+            <Button text={"Place Orders"} />
+          </Link>
         </div>
         <div className="flex-1 w-full relative md:h-full sm:pt-5">
           <img
