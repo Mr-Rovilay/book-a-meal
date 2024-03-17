@@ -73,10 +73,6 @@ const Navbar = () => {
 
             <>
               <div className="flex max-lg:hidden gap-x-4 items-center">
-                <div className="flex items-center gap-2 cursor-pointer bg-green px-2 rounded-md hover:bg-dark-green">
-                  <FaPhoneAlt />
-                  <span>+123</span>
-                </div>
                 {!user ? (
                   <Link to={"/signin"}>
                     <Button text={"Sign In"} />

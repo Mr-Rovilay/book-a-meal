@@ -7,6 +7,22 @@ const CartPage = ({ type }) => {
       <section className="">
         <div className="h-screen flex flex-col justify-center lg:flex-row">
           <div className="h-1/2 p-4 flex flex-col justify-center overflow-scroll lg:h-full lg:w-2/3 2xl:w-1/2 lg:px-20 xl:px-40 gap-4">
+            <div className="flex items-center justify-between pl-6">
+              <div className="">
+                <h1 className="uppercase text-dark-green text-xl font-bold">
+                  Product
+                </h1>
+              </div>
+              <div className="">
+                <h1 className="uppercase text-dark-green text-xl font-bold">
+                  Name
+                </h1>
+              </div>
+              <div className="uppercase text-dark-green text-xl font-bold">
+                <h2 className="font-bold">Price</h2>
+              </div>
+              <span className=""></span>
+            </div>
             <Link to={"/product/:id"}>
               <div className="flex items-center justify-between">
                 <img src="../assets/p1.png" alt="" width={100} height={100} />
@@ -77,7 +93,7 @@ const CartPage = ({ type }) => {
               className="text-center text-white bg-green py-4 px-6 rounded-lg font-semibold hover:bg-dark-green focus:scale-95 transition-all duration-200 ease-out"
               to={"#"}
             >
-              Order Now
+              Check Out Now
             </button>
           </div>
         </div>

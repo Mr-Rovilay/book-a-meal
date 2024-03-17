@@ -7,13 +7,14 @@ import Search from "../components/Search";
 const MenuPage = ({ type }) => {
   return (
     <AnimationWrapper keyValue={type}>
-      <section className="h-cover pt-20 flex flex-col items-center justify-center container mx-auto">
-        <div className="">
-          <h1 className="capitalize text-3xl flex flex-col items-center justify-center py-10 text-dark-green font-extralight xl:text-5xl ">
-            Check out Our categories
+      <section className="">
+        <div className="flex flex-col items-center">
+          {" "}
+          <h1 className="capitalize text-3xl flex flex-col items-center justify-center pt-40 text-dark-green font-extralight xl:text-5xl ">
+            Check out Our category
           </h1>
-          <Search text={"search available menu here"} />
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-9">
+          <Search text={"search available category here"} />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 pb-20">
             {menu.map((category) => (
               <div
                 className="rounded-xl shadow-lg hover:bg-grey cursor-pointer"

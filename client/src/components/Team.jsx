@@ -2,8 +2,8 @@ import { team } from "../data";
 
 const Team = () => {
   return (
-    <section className="team ">
-      <div className="container flex flex-col items-center justify-center p-5 ">
+    <section className="team">
+      <div className="flex flex-col items-center justify-center p-5 ">
         <div className="heading_section text-center mb-3 ">
           <h1 className="text-4xl text-dark-green font-extralight">OUR TEAM</h1>
           <p className="text-xl mb-5 text-dark-grey">

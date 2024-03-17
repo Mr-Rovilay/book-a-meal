@@ -14,7 +14,7 @@ const Footer = ({ type }) => {
       <AnimationWrapper keyValue={type}>
         <section className="bg-black py-6">
           <div className=" text-white py-6">
-            <div className="container mx-auto">
+            <div className="">
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 px-6 text-center">
                 <div className="space-y-6 ">
                   <h1 className="text-3xl font-bold text-green">Book Meal</h1>
