@@ -23,50 +23,50 @@ const CartPage = ({ type }) => {
               </div>
               <span className=""></span>
             </div>
-            <Link to={"/product/:id"}>
-              <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between">
+              <Link to={"/product/:id"}>
                 <img src="../assets/p1.png" alt="" width={100} height={100} />
-                <div className="">
-                  <h1 className="uppercase text-dark-green text-xl font-bold">
-                    sicilian
-                  </h1>
-                  <span>Large</span>
-                </div>
-                <h2 className="font-bold">N79.90</h2>
-                <span className="cursor-pointer text-red">X</span>
+              </Link>
+              <div className="">
+                <h1 className="uppercase text-dark-green text-xl font-bold">
+                  sicilian
+                </h1>
+                <span>Large</span>
               </div>
-            </Link>
+              <h2 className="font-bold">N79.90</h2>
+              <span className="cursor-pointer text-red">X</span>
+            </div>
             <hr className="text-black text-3xl" />
 
-            <Link to={"/product/:id"}>
-              <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between">
+              <Link to={"/product/:id"}>
                 <img src="../assets/m1.png" alt="" width={100} height={100} />
-                <div className="">
-                  <h1 className="uppercase text-xl text-dark-green font-bold">
-                    sicilian
-                  </h1>
-                  <span>Large</span>
-                </div>
-                <h2 className="font-bold">N79.90</h2>
-                <span className="cursor-pointer text-red">X</span>
+              </Link>
+              <div className="">
+                <h1 className="uppercase text-xl text-dark-green font-bold">
+                  sicilian
+                </h1>
+                <span>Large</span>
               </div>
-            </Link>
+              <h2 className="font-bold">N79.90</h2>
+              <span className="cursor-pointer text-red">X</span>
+            </div>
 
             <hr className="text-black text-3xl" />
 
-            <Link to={"/product/:id"}>
-              <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between">
+              <Link to={"/product/:id"}>
                 <img src="../assets/p2.png" alt="" width={100} height={100} />
-                <div className="">
-                  <h1 className="uppercase text-xl text-dark-green font-bold">
-                    sicilian
-                  </h1>
-                  <span>Large</span>
-                </div>
-                <h2 className="font-bold">N79.90</h2>
-                <span className="cursor-pointer  text-red">X</span>
+              </Link>
+              <div className="">
+                <h1 className="uppercase text-xl text-dark-green font-bold">
+                  sicilian
+                </h1>
+                <span>Large</span>
               </div>
-            </Link>
+              <h2 className="font-bold">N79.90</h2>
+              <span className="cursor-pointer  text-red">X</span>
+            </div>
           </div>
 
           <div className="flex justify-center flex-col lg:w-1/3 xl:w-1/2 lg:px-8 xl:px-16 gap-5 ">
@@ -89,12 +89,12 @@ const CartPage = ({ type }) => {
                 <span className="font-bold">N81.70</span>
               </div>
             </div>
-            <button
+            <Link
               className="text-center text-white bg-green py-4 px-6 rounded-lg font-semibold hover:bg-dark-green focus:scale-95 transition-all duration-200 ease-out"
-              to={"#"}
+              to={"/orders"}
             >
               Check Out Now
-            </button>
+            </Link>
           </div>
         </div>
       </section>
