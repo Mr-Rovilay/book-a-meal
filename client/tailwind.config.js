@@ -1,11 +1,14 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+    "./pages/**/*.{html,js}",
+  ],
   theme: {
     colors: {
       white: "#FFFFFF",
       black: "#242424",
-      grey: "#F3F3F3",
       "dark-grey": "#6B6B6B",
       red: "#FF4E4E",
       transparent: "transparent",
@@ -14,6 +17,8 @@ export default {
       primary: "#B784B7",
       "dark-green": "rgb(22 101 52);",
       green: "#21d4b9",
+      secondary: "#555",
+      prigmayBG: "#FCFCFC",
     },
 
     fontSize: {
@@ -34,5 +39,5 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [require("daisyui")],
 };

@@ -12,12 +12,12 @@ const Footer = ({ type }) => {
   return (
     <>
       <AnimationWrapper keyValue={type}>
-        <section className="bg-black py-6">
-          <div className=" text-white py-6">
+        <section className="section-container mt-20">
+          <div className="py-6">
             <div className="">
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 px-6 text-center">
                 <div className="space-y-6 ">
-                  <h1 className="text-3xl font-bold text-green">Book Meal</h1>
+                  <h1 className="title">Book Meal</h1>
                   <div className="flex items-center justify-center">
                     <p className="text-xl max-w-[300px]">
                       © {year} Your Mr Rovilay Meals. All rights reserved.
@@ -25,7 +25,7 @@ const Footer = ({ type }) => {
                   </div>
                 </div>
                 <div className="">
-                  <h1 className="text-3xl font-bold text-green">Quick Links</h1>
+                  <h1 className="title">Quick Links</h1>
                   <div className="grid grid-cols-1 gap-3">
                     <div className="">
                       <ul className="cursor-pointer">
@@ -66,9 +66,7 @@ const Footer = ({ type }) => {
                   </div>
                 </div>
                 <div className="space-y-6">
-                  <h1 className="text-3xl font-bold capitalize text-green">
-                    Follow us
-                  </h1>
+                  <h1 className="title">Follow us</h1>
                   <div className="">
                     <p className="">08140570029</p>
                     <p className="capitalize">

@@ -2,13 +2,11 @@ import { team } from "../data";
 
 const Team = () => {
   return (
-    <section className="py-10">
+    <div className="section-container my-20">
       <div className="container mx-auto">
         <div className="flex flex-col items-center justify-center p-5">
           <div className="heading_section text-center mb-3">
-            <h1 className="text-4xl text-dark-green font-extralight">
-              OUR TEAM
-            </h1>
+            <h1 className="title">OUR TEAM</h1>
             <p className="text-xl mb-5 text-dark-grey">
               Welcome to the heart and soul of our culinary journey. Our team is
               driven by passion, creativity, and a shared love for exceptional
@@ -38,7 +36,7 @@ const Team = () => {
           </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 

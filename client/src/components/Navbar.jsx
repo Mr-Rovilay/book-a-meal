@@ -1,187 +1,165 @@
-import { useState } from "react";
-import { HiMenuAlt3 } from "react-icons/hi";
-import { MdClose } from "react-icons/md";
-import { motion } from "framer-motion";
-import {
-  FaFacebook,
-  FaInstagram,
-  FaTelegram,
-  FaGoogle,
-  FaTwitter,
-} from "react-icons/fa";
-import profile from "/assets/team_member_2.png";
-import { Link, Outlet } from "react-router-dom";
-import { FaPhoneAlt } from "react-icons/fa";
-import CartIcon from "./CartIcon";
+import { IoIosLogIn } from "react-icons/io";
+import { Link } from "react-router-dom";
+import { BsCart } from "react-icons/bs";
 import Button from "./Button";
-import UserNavigation from "./UserNavigation";
+import { useEffect, useState } from "react";
+import Model from "./Model";
 
-const Navbar = () => {
-  const [dropDown, setDropDown] = useState(false);
-  const [userNavPanel, setUserNavPanel] = useState(false);
-  const user = false;
+const Navbar = ({ text, icon }) => {
+  const [isSticky, setSticky] = useState(false);
 
-  const handleUserNavPanel = () => {
-    setUserNavPanel((currentVal) => !currentVal);
-  };
-  const handleBlur = () => {
-    setTimeout(() => {
-      setUserNavPanel(false);
-    }, 200);
-  };
+  useEffect(() => {
+    const handleScroll = () => {
+      const offset = window.scrollY;
+      if (offset > 0) {
+        setSticky(true);
+      } else {
+        setSticky(false);
+      }
+    };
 
-  const showDropDown = () => {
-    setDropDown(!dropDown);
-  };
-  return (
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  const navItems = (
     <>
-      <nav className="w-full h-24 flex flex-col justify-center items-center fixed z-20 bg-black  border-b-2 border-b-green">
-        <div className="container lg:px-8">
-          <div className="lg:w-full w-11/12 mx-auto h-full flex justify-between items-center">
-            <div className="flex flex-col gap-y-4">
-              <div className="flex items-center gap-x-2">
-                <span className="flex items-center lg:text-5xl text-3xl">
-                  <Link
-                    to={"/"}
-                    className="rounded-full py-1 lg:text-2xl text-3xl outline-none border-none"
-                  >
-                    <h5 className="text-green font-semibold text-2xl">Meal</h5>
-                  </Link>
-                </span>
-              </div>
+      <li className="font-bold text-xl">
+        <a href="/">Home</a>
+      </li>
+      <li tabIndex={0} className="text-xl">
+        <details>
+          <summary className="font-bold text-xl">Menu</summary>
+          <ul className="p-2 bg-white text-black">
+            <li>
+              <a href="/menu">All</a>
+            </li>
+            <li>
+              <a>Pizza</a>
+            </li>
+            <li>
+              <a>Swallow</a>
+            </li>
+          </ul>
+        </details>
+      </li>
+      <li tabIndex={0} className="text-xl">
+        <details>
+          <summary className="font-bold text-xl">Services</summary>
+          <ul className="p-2 bg-white text-black">
+            <li>
+              <a>Online Order</a>
+            </li>
+            <li>
+              <a>Bookings</a>
+            </li>
+            <li>
+              <a>Order Tracking</a>
+            </li>
+          </ul>
+        </details>
+      </li>
+      <li className="font-bold text-xl">
+        <a>Offers</a>
+      </li>
+    </>
+  );
+  return (
+    <header className="mx-w-screen-2xl w-full mx-auto fixed bg-white top-0 left-0 right-0 transition-all duration-300 ease-in-out">
+      <div
+        className={`navbar xl:px-32 py-4 ${
+          isSticky ? "shadow-md  transition-all duration-300 ease-in-out" : ""
+        }`}
+      >
+        <div className="navbar-start">
+          <div className="dropdown ">
+            <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5 "
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M4 6h16M4 12h8m-8 6h16"
+                />
+              </svg>
             </div>
-            <ul className="flex-1 flex justify-center text-white items-center xl:gap-12 gap-x-4 max-lg:hidden cursor-pointer">
-              <Link
-                to={"/"}
-                className="leading-normal no-underline font-bold text-xl hover:text-dark-green"
-              >
-                Home
-              </Link>
-              <Link
-                to={"/menupage"}
-                className="leading-normal no-underline font-bold text-xl hover:text-dark-green"
-              >
-                Menu
-              </Link>
-              <Link
-                to={"#"}
-                className="leading-normal no-underline font-bold text-xl hover:text-dark-green"
-              >
-                Contact
-              </Link>
-            </ul>
-
-            <>
-              <div className="flex max-lg:hidden gap-x-4 items-center">
-                {!user ? (
-                  <Link to={"/signin"}>
-                    <Button text={"Sign In"} />
-                  </Link>
-                ) : (
-                  <>
-                    <div
-                      className="relative"
-                      onClick={handleUserNavPanel}
-                      onBlur={handleBlur}
-                    >
-                      <button className="w-12 h-12 mt-1">
-                        <img
-                          src={profile}
-                          alt="profile_img"
-                          className="w-full h-full object-cover rounded-full"
-                        />
-                      </button>
-                      {userNavPanel ? <UserNavigation /> : ""}
-                    </div>
-                  </>
-                )}
-                <Link to={"/cart"}>
-                  <CartIcon />
-                </Link>
-              </div>
-            </>
-            {dropDown ? (
-              <div
-                className="lg:hidden text-[22px] cursor-pointer text-white"
-                onClick={showDropDown}
-              >
-                <MdClose className="text-3xl" />{" "}
-              </div>
-            ) : (
-              <div
-                className="lg:hidden text-[22px] cursor-pointer text-white"
-                onClick={showDropDown}
-              >
-                {" "}
-                <HiMenuAlt3 className="text-3xl" />
-              </div>
-            )}
-          </div>
-          {dropDown ? (
-            <motion.div
-              className="lg:hidden w-full h-[100vh] fixed top-24 bg-grey  ease-in-out duration-100 right-0"
-              onClick={showDropDown}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: dropDown ? 1 : 0 }}
-              transition={{ duration: 0.3 }}
+            <ul
+              tabIndex={0}
+              className="bg-white menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow text-dark-grey rounded-box w-60"
             >
-              <div className="w-full h-[320px] flex flex-col items-baseline pt-14 gap-6 ">
-                <ul className="text-center p-0 flex flex-col justify-center w-full gap-y-8 text-black">
+              {navItems}
+              <li>
+                <a>Parent</a>
+                <ul className="p-2">
                   <li>
-                    <Link
-                      to={"/"}
-                      className="leading-normal no-underline  font-bold text-2xl hover:bg-dark-green"
-                    >
-                      Home
-                    </Link>
+                    <a>Submenu 1</a>
                   </li>
-
                   <li>
-                    <Link
-                      to={"/menupage"}
-                      className="leading-normal no-underline  font-bold text-2xl hover:bg-dark-green"
-                    >
-                      Menu
-                    </Link>
-                  </li>
-
-                  <li>
-                    <Link
-                      to={"#"}
-                      className="leading-normal no-underline  font-bold text-2xl hover:bg-dark-green"
-                    >
-                      Contact
-                    </Link>
+                    <a>Submenu 2</a>
                   </li>
                 </ul>
-                <div className="flex flex-col justify-center items-center w-full gap-y-8 mt-4">
-                  {!user ? (
-                    <Link to={"/signin"}>
-                      <Button text={"Sign In"} />
-                    </Link>
-                  ) : (
-                    <Link to={"/orders"}>
-                      <Button text={"Order"} />
-                    </Link>
-                  )}
-                  <Link to={"/cart"} className="text-black">
-                    <CartIcon />
-                  </Link>
-                  <div className="flex items-center justify-center gap-3 cursor-pointer text-black">
-                    <FaFacebook className="text-4xl hover:scale-105 duration-300 hover:bg-green2" />
-                    <FaInstagram className="text-4xl hover:scale-105 duration-30 hover:text-green2" />
-                    <FaTelegram className="text-4xl hover:scale-105 duration-30 hover:text-green2" />
-                    <FaGoogle className="text-4xl hover:scale-105 duration-30 hover:text-green2" />
-                    <FaTwitter className="text-4xl hover:scale-105 duration-30 hover:text-green2" />
-                  </div>
+              </li>
+              <li>
+                <a>Item 3</a>
+              </li>
+            </ul>
+          </div>
+          <a className="btn btn-ghost text-2xl text-green pl-0">Meal</a>
+        </div>
+        <div className="navbar-center hidden lg:flex">
+          <ul className="menu menu-horizontal px-1">{navItems}</ul>
+        </div>
+        <div className="navbar-end">
+          <button className="btn btn-ghost btn-circle hidden lg:flex">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-5 w-5 "
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+              />
+            </svg>
+          </button>
+          <div
+            tabIndex={0}
+            role="button"
+            className="btn btn-ghost btn-circle mr-3 lg:flex hidden items-center justify-center "
+          >
+            <Link to="/cartpage" className="flex items-center gap-4">
+              <div className="relative flex items-center justify-center">
+                <BsCart className="fill w-8 h-8 md:w-5 md:h-5" />
+                <div className="absolute -top-2 -right-2 w-5 h-5 rounded-full bg-red flex items-center justify-center">
+                  <p className="text-white font-semibold">6</p>
                 </div>
               </div>
-            </motion.div>
-          ) : null}
+            </Link>
+          </div>
+          <button
+            className="btn bg-green border-green text-white flex items-center gap-2 hover:bg-dark-green hover:bg-opacity-80 focus:scale-95 transition-all duration-200 ease-out"
+            onClick={() => document.getElementById("my_modal_5").showModal()}
+          >
+            <IoIosLogIn className="text-2xl" />
+            Login
+          </button>
+          <Model />
         </div>
-      </nav>
-      <Outlet />
-    </>
+      </div>
+    </header>
   );
 };
 
