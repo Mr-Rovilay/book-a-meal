@@ -8,21 +8,21 @@ const categoryItems = [
     title: "Main Dish",
     desc: "(86 dishes)",
     price: 24.9,
-    image: "../../public/imgs/p3.png",
+    image: "imgs/p3.png",
   },
   {
     id: 2,
     title: "Break Fast",
     desc: "(12 break fast)",
     price: 24.9,
-    image: "../../public/recipes/img3.png",
+    image: "recipes/img3.png",
   },
   {
     id: 3,
     title: "Dessert",
     desc: "(48 dessert)",
     price: 24.9,
-    image: "../../public/recipes/img1.png",
+    image: "recipes/img1.png",
   },
 ];
 

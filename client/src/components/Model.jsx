@@ -9,11 +9,11 @@ const Model = () => {
     formState: { errors },
   } = useForm();
   return (
-    <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
+    <dialog id="my_modal_5" className="modal modal-bottom">
       <div className="modal-box bg-white">
         <div className="modal-action flex flex-col justify-center mt-0">
           <form className="card-body" method="dialog">
-            <h3 className="text-4xl font-gelasio capitalize text-center mt-24 pb-9 text-green">
+            <h3 className="text-4xl font-gelasio capitalize text-center mt-18 pb-9 text-green">
               Please Login
             </h3>
             <div className="form-control">
