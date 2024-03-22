@@ -12,9 +12,9 @@ const SignUp = () => {
   return (
     <div className="flex items-center justify-center">
       <div className="modal-box bg-white">
-        <div className="modal-action flex flex-col justify-center mt-0">
+        <div className="modal-action flex flex-col justify-center">
           <form className="card-body" method="dialog">
-            <h3 className="text-4xl font-gelasio capitalize text-center mt-24 pb-9 text-green">
+            <h3 className="text-4xl font-gelasio capitalize text-center pb-9 text-green">
               Please Register
             </h3>
             <div className="form-control">
