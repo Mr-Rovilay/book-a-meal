@@ -14,7 +14,7 @@ const SignUp = () => {
       <div className="modal-box bg-white">
         <div className="modal-action flex flex-col justify-center">
           <form className="card-body" method="dialog">
-            <h3 className="text-4xl font-gelasio capitalize text-center pb-9 text-green">
+            <h3 className="text-4xl font-gelasio capitalize text-center justify-center pb-9 text-green">
               Please Register
             </h3>
             <div className="form-control">
