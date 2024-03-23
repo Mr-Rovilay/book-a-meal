@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { FaGoogle } from "react-icons/fa";
 import InputBox from "./InputBox";
 import googleIcon from "/imgs/google.png";
 import { useNavigate } from "react-router-dom";
