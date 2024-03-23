@@ -11,14 +11,13 @@ const Model = ({ type }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Implement form submission logic here
-    // Example:
-    // if (type === "sign-in") {
-    //   // Sign-in logic
-    // } else {
-    //   // Sign-up logic
-    // }
-    // Then redirect or handle modal closing accordingly
+
+    if (type === "sign-in") {
+      // Sign-in logic
+    } else {
+      // Sign-up logic
+    }
+
     document.getElementById("my_modal_5").close();
     navigate(from, { replace: true });
   };
@@ -32,17 +31,10 @@ const Model = ({ type }) => {
             onSubmit={handleSubmit}
             className="w-[80%] max-w-[400px]"
           >
-            <h1 className="text-4xl font-gelasio capitalize text-center mb-24 text-primary">
-              {type && type === "sign-up" ? "Welcome Back" : "Join Us Today"}
+            <h1 className="text-4xl font-gelasio text-green capitalize text-center mb-16 ">
+              {type && type === "sign-in" ? "" : "Welcome Back"}
             </h1>
-            {type && type !== "sign-in" && (
-              <InputBox
-                name={"fullname"}
-                type={"text"}
-                placeholder={"Full Name"}
-                icon={"fi-rr-user"}
-              />
-            )}
+
             <InputBox
               name={"email"}
               type={"email"}
@@ -81,7 +73,7 @@ const Model = ({ type }) => {
                 ? "Don't have an account?"
                 : "Already a Member ?"}{" "}
               <Link
-                to={type && type === "sign-in" ? "/signup" : "/signin"}
+                to={type && type === "signup" ? "/signup" : "/signup"}
                 className="underline text-black text-xl ml-1"
               >
                 {type && type === "sign-in" ? "Join us Today" : "Sign in here"}

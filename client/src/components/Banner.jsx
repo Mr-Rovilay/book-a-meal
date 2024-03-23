@@ -3,7 +3,7 @@ import Button from "./Button";
 
 const Banner = ({ text }) => {
   return (
-    <div className="section-container bg-gradient-to-r from-0% from-[#FAFAFA] to-[#FCFCFC] to-100% bg-no-repeat bg-cover bg-center">
+    <div className="section-container ">
       <div className="py-24 flex flex-col md:flex-row-reverse items-center justify-between gap-8 ">
         {/* img */}
         <div className="md:w-1/2">

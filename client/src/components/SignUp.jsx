@@ -1,7 +1,8 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 // import { useForm } from "react-hook-form";
-import { FaFacebookF, FaGithub, FaGoogle } from "react-icons/fa";
+import googleIcon from "/imgs/google.png";
 import Model from "./Model";
+import InputBox from "./InputBox";
 // import { AuthContext } from "../contexts/AuthProvider";
 // import { useContext } from "react";
 
@@ -48,24 +49,34 @@ const SignUp = () => {
             </h3>
             <div className="form-control">
               <label className="label">
+                <span className="label-text">Name</span>
+              </label>
+              <InputBox
+                name={"name"}
+                type={"text"}
+                placeholder={"Full Name"}
+                icon={"fi-rr-user"}
+              />
+            </div>
+            <div className="form-control">
+              <label className="label">
                 <span className="label-text">Email</span>
               </label>
-              <input
-                type="email"
-                placeholder="Email"
-                className="input input-bordered bg-white"
-                // {...register("email")}
+              <InputBox
+                name={"email"}
+                type={"email"}
+                placeholder={"Email"}
+                icon={"fi-rr-envelope"}
               />
             </div>
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Password</span>
               </label>
-              <input
-                type="password"
-                placeholder="password"
-                className="input input-bordered bg-white"
-                // {...register("password")}
+              <InputBox
+                name={"password"}
+                type={"password"}
+                placeholder={"Passwod"}
               />
             </div>
             <div className="form-control mt-6">
@@ -75,7 +86,19 @@ const SignUp = () => {
                 className="btn capitalize bg-green border-green rounded-xl font-semibold px-6 text-white flex items-center gap-2 hover:bg-dark-green hover:bg-opacity-80 focus:scale-95 transition-all duration-200 ease-out"
               />
             </div>
-            <p className="text-center my-2">
+            <div className="relative w-full flex items-center gap-2 my-5 uppercase text-black font-bold">
+              <hr className="w-1/2 border-black" />
+              <p>or</p>
+              <hr className="w-1/2 border-black" />
+            </div>
+
+            <button className="btn capitalize bg-green border-green rounded-xl font-semibold px-6 text-white flex items-center gap-2 hover:bg-dark-green hover:bg-opacity-80 focus:scale-95 transition-all duration-200 ease-out w-full">
+              {" "}
+              <img src={googleIcon} alt="" className="w-5" />
+              Continue with Google
+            </button>
+
+            <p className="text-center">
               Have an account?{" "}
               <button
                 className="underline text-red ml-1"
@@ -93,18 +116,6 @@ const SignUp = () => {
               ✕
             </Link>
           </form>
-          <hr className="mb-5" />
-          <div className="text-center space-x-3 mb-5">
-            <button className="btn btn-ghost btn-circle">
-              <FaGoogle />
-            </button>
-            <button className="btn btn-ghost btn-circle">
-              <FaFacebookF />
-            </button>
-            <button className="btn btn-ghost btn-circle">
-              <FaGithub />
-            </button>
-          </div>
         </div>
         <Model />
       </div>

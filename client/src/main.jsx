@@ -1,12 +1,14 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
-import router from "./router/Router.jsx";
+import ReactDOM from "react-dom";
+import { BrowserRouter } from "react-router-dom"; // Import BrowserRouter instead of RouterProvider
+import AuthProvider from "./contexts/AuthProvider"; // Assuming you have an AuthProvider
+import AppRouter from "./router/Router"; // Assuming your router configuration is in Router.jsx
 import "./index.css";
-import { RouterProvider } from "react-router-dom";
-import AuthProvider from "./contexts/AuthProvider.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <AuthProvider>
-    <RouterProvider router={router} />
-  </AuthProvider>
+  <React.StrictMode>
+    <AuthProvider>
+      <AppRouter />
+    </AuthProvider>
+  </React.StrictMode>
 );

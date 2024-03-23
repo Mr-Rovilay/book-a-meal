@@ -30,12 +30,12 @@ const Navbar = ({ text, icon }) => {
 
   const navItems = (
     <>
-      <li className="font-bold text-xl">
+      <li className="text-xl">
         <a href="/">Home</a>
       </li>
       <li tabIndex={0} className="text-xl">
         <details>
-          <summary className="font-bold text-xl">Menu</summary>
+          <summary className=" text-xl">Menu</summary>
           <ul className="p-2 bg-white text-black">
             <li>
               <a href="/menu">All</a>
@@ -51,7 +51,7 @@ const Navbar = ({ text, icon }) => {
       </li>
       <li tabIndex={0} className="text-xl">
         <details>
-          <summary className="font-bold text-xl">Services</summary>
+          <summary className="text-xl">Services</summary>
           <ul className="p-2 bg-white text-black">
             <li>
               <a>Online Order</a>
@@ -65,7 +65,7 @@ const Navbar = ({ text, icon }) => {
           </ul>
         </details>
       </li>
-      <li className="font-bold text-xl">
+      <li className="text-xl">
         <a>Offers</a>
       </li>
     </>
@@ -152,7 +152,7 @@ const Navbar = ({ text, icon }) => {
               </div>
             </Link>
           </div>
-          {!user1 ? (
+          {user1 ? (
             <button
               className="btn bg-green border-green text-white flex items-center gap-2 hover:bg-dark-green hover:bg-opacity-80 focus:scale-95 transition-all duration-200 ease-out"
               onClick={() => document.getElementById("my_modal_5").showModal()}
