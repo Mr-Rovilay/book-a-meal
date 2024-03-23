@@ -1,12 +1,15 @@
 import { IoIosLogIn } from "react-icons/io";
 import { Link } from "react-router-dom";
 import { BsCart } from "react-icons/bs";
-import Button from "./Button";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Model from "./Model";
+import { AuthContext } from "../contexts/AuthProvider";
+import Profile from "./Profile";
 
 const Navbar = ({ text, icon }) => {
+  const user1 = false;
   const [isSticky, setSticky] = useState(false);
+  const { user } = useContext(AuthContext);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -79,7 +82,7 @@ const Navbar = ({ text, icon }) => {
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5 "
+                className="h-6 w-6 "
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -122,7 +125,7 @@ const Navbar = ({ text, icon }) => {
           <button className="btn btn-ghost btn-circle hidden lg:flex">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5 "
+              className="h-9 w-9 text-black"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -149,13 +152,17 @@ const Navbar = ({ text, icon }) => {
               </div>
             </Link>
           </div>
-          <button
-            className="btn bg-green border-green text-white flex items-center gap-2 hover:bg-dark-green hover:bg-opacity-80 focus:scale-95 transition-all duration-200 ease-out"
-            onClick={() => document.getElementById("my_modal_5").showModal()}
-          >
-            <IoIosLogIn className="text-2xl" />
-            Login
-          </button>
+          {!user1 ? (
+            <button
+              className="btn bg-green border-green text-white flex items-center gap-2 hover:bg-dark-green hover:bg-opacity-80 focus:scale-95 transition-all duration-200 ease-out"
+              onClick={() => document.getElementById("my_modal_5").showModal()}
+            >
+              <IoIosLogIn className="text-2xl" />
+              Login
+            </button>
+          ) : (
+            <Profile user={user1} />
+          )}
           <Model />
         </div>
       </div>

@@ -1,63 +1,90 @@
+import React from "react";
 import { Link } from "react-router-dom";
-import { FaFacebookF, FaGithub, FaGoogle } from "react-icons/fa";
-import { useForm } from "react-hook-form";
+import { FaGoogle } from "react-icons/fa";
+import InputBox from "./InputBox";
+import googleIcon from "/imgs/google.png";
+import { useNavigate } from "react-router-dom";
 
-const Model = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+const Model = ({ type }) => {
+  const navigate = useNavigate();
+  const from = "/"; // default path
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    // Implement form submission logic here
+    // Example:
+    // if (type === "sign-in") {
+    //   // Sign-in logic
+    // } else {
+    //   // Sign-up logic
+    // }
+    // Then redirect or handle modal closing accordingly
+    document.getElementById("my_modal_5").close();
+    navigate(from, { replace: true });
+  };
+
   return (
     <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
       <div className="modal-box bg-white">
-        <div className="modal-action flex flex-col justify-center mt-0">
-          <form className="card-body" method="dialog">
-            <h3 className="text-4xl font-gelasio capitalize text-center pb-9 text-green">
-              Please Login
-            </h3>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Email</span>
-              </label>
-              <input
-                type="email"
-                placeholder="email"
-                className="input input-bordered bg-white"
-                required
+        <div className="h-cover flex items-center justify-center">
+          <form
+            id="formElement"
+            onSubmit={handleSubmit}
+            className="w-[80%] max-w-[400px]"
+          >
+            <h1 className="text-4xl font-gelasio capitalize text-center mb-24 text-primary">
+              {type && type === "sign-up" ? "Welcome Back" : "Join Us Today"}
+            </h1>
+            {type && type !== "sign-in" && (
+              <InputBox
+                name={"fullname"}
+                type={"text"}
+                placeholder={"Full Name"}
+                icon={"fi-rr-user"}
               />
+            )}
+            <InputBox
+              name={"email"}
+              type={"email"}
+              placeholder={"Email"}
+              icon={"fi-rr-envelope"}
+            />
+            <InputBox
+              name={"password"}
+              type={"password"}
+              placeholder={"Password"}
+              icon={"fi-rr-password"}
+            />
+            <button
+              className="btn capitalize bg-green border-green rounded-xl font-semibold px-6 text-white flex items-center gap-2 hover:bg-dark-green hover:bg-opacity-80 focus:scale-95 transition-all duration-200 ease-out w-full"
+              type="submit"
+            >
+              {" "}
+              Submit
+              {type && type.replace("-", " ")}
+            </button>
+
+            <div className="relative w-full flex items-center gap-2 my-10  uppercase text-black font-bold">
+              <hr className="w-1/2 border-black" />
+              <p>or</p>
+              <hr className="w-1/2 border-black" />
             </div>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Password</span>
-              </label>
-              <input
-                type="password"
-                placeholder="password"
-                className="input input-bordered bg-white"
-                required
-              />
-              <label className="label mt-2">
-                <a href="#" className="label-text-alt link link-hover">
-                  Forgot password?
-                </a>
-              </label>
-            </div>
-            <div className="form-control mt-6">
-              <input
-                type="submit"
-                value="Login"
-                className="btn capitalize bg-green border-green rounded-xl font-semibold px-6 text-white flex items-center gap-2 hover:bg-dark-green hover:bg-opacity-80 focus:scale-95 transition-all duration-200 ease-out"
-              />
-            </div>
-            <p className="text-center my-2">
-              Dont Have an account?{" "}
+
+            <button className="btn capitalize bg-green border-green rounded-xl font-semibold px-6 text-white flex items-center gap-2 hover:bg-dark-green hover:bg-opacity-80 focus:scale-95 transition-all duration-200 ease-out w-full">
+              {" "}
+              <img src={googleIcon} alt="" className="w-5" />
+              Continue with Google
+            </button>
+
+            <p className="mt-6 text-dark-grey text-xl text-center">
+              {type && type === "sign-in"
+                ? "Don't have an account?"
+                : "Already a Member ?"}{" "}
               <Link
-                to="/signup"
-                className="underline text-red ml-1"
-                onClick={() => document.getElementById("my_modal_5").close()}
+                to={type && type === "sign-in" ? "/signup" : "/signin"}
+                className="underline text-black text-xl ml-1"
               >
-                Sign up
+                {type && type === "sign-in" ? "Join us Today" : "Sign in here"}
               </Link>
             </p>
           </form>
@@ -68,18 +95,6 @@ const Model = () => {
           >
             ✕
           </button>
-          <hr className="mb-5" />
-          <div className="text-center space-x-3 mb-5">
-            <button className="btn btn-ghost btn-circle">
-              <FaGoogle />
-            </button>
-            <button className="btn btn-ghost btn-circle">
-              <FaFacebookF />
-            </button>
-            <button className="btn btn-ghost btn-circle">
-              <FaGithub />
-            </button>
-          </div>
         </div>
       </div>
     </dialog>
