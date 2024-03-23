@@ -116,7 +116,9 @@ const Navbar = ({ text, icon }) => {
               </li>
             </ul>
           </div>
-          <a className="btn btn-ghost text-2xl text-green pl-0">Meal</a>
+          <a href="/" className="btn btn-ghost text-2xl text-green pl-0">
+            Meal
+          </a>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{navItems}</ul>
