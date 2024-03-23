@@ -37,13 +37,13 @@ const Navbar = ({ text, icon }) => {
         <details>
           <summary className=" text-xl">Menu</summary>
           <ul className="p-2 bg-white text-black">
-            <li>
+            <li className="mt-3 hover:text-black hover:bg-grey opacity-75 border-grey focus:bg-transparent hover:bg-opacity-80">
               <a href="/menu">All</a>
             </li>
-            <li>
+            <li className="mt-3 hover:text-black hover:bg-grey opacity-75 border-grey focus:bg-transparent hover:bg-opacity-80">
               <a>Pizza</a>
             </li>
-            <li>
+            <li className="mt-3 hover:text-black hover:bg-grey opacity-75 border-grey focus:bg-transparent hover:bg-opacity-80">
               <a>Swallow</a>
             </li>
           </ul>
@@ -53,13 +53,13 @@ const Navbar = ({ text, icon }) => {
         <details>
           <summary className="text-xl">Services</summary>
           <ul className="p-2 bg-white text-black">
-            <li>
+            <li className="mt-3 hover:text-black hover:bg-grey opacity-75 border-grey focus:bg-transparent hover:bg-opacity-80">
               <a>Online Order</a>
             </li>
-            <li>
+            <li className="mt-3 hover:text-black hover:bg-grey opacity-75 border-grey focus:bg-transparent hover:bg-opacity-80">
               <a>Bookings</a>
             </li>
-            <li>
+            <li className="mt-3 hover:text-black hover:bg-grey opacity-75 border-grey focus:bg-transparent hover:bg-opacity-80">
               <a>Order Tracking</a>
             </li>
           </ul>

@@ -12,8 +12,13 @@ export default {
       "dark-grey": "#6B6B6B",
       red: "#FF4E4E",
       transparent: "transparent",
-      yellow: "#F1EF99",
+
+      grey: "#F3F3F3",
+
+      twitter: "#1DA1F2",
       purple: "#8B46FF",
+      yellow: "#F1EF99",
+
       primary: "#B784B7",
       "dark-green": "rgb(22 101 52);",
       green: "#21d4b9",
