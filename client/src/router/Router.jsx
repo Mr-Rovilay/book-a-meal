@@ -21,9 +21,9 @@ const AppRouter = () => {
           <Route path="/menu" element={<Menu />} />
           <Route path="/cart-page" element={<CartPage />} />
           <Route path="/user-profile" element={<UpdateProfile />} />
+          <Route path="/sign-in" element={<Login type="sign-in" />} />
         </Route>
         <Route path="/signup" element={<SignUp type="sign-up" />} />
-        <Route path="/signin" element={<Login type="sign-in" />} />
         <Route path="dashboard" element={<DashboardLayOut />}>
           <Route path="" element={<Dashboard />} />
           <Route path="users" element={<Users />} />
