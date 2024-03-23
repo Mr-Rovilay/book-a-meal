@@ -60,9 +60,9 @@ const Categories = () => {
                   <p className="text-green-600 font-semibold mt-2 text-2xl">
                     N{item.price}
                   </p>
-                  <Link to={"/cartpage"}>
+                  <div>
                     <Button text={"add to cart"} />
-                  </Link>
+                  </div>
                 </div>
               </div>
             </Link>

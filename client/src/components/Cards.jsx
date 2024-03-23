@@ -2,9 +2,27 @@ import React, { useState } from "react";
 import { FaHeart } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import Button from "./Button";
+import { useContext } from "react";
+import { AuthContext } from "../contexts/AuthProvider";
 
 const Cards = ({ item }) => {
+  const { name, image, price, recipe, _id } = item;
+  const user = useContext(AuthContext);
   const [isHeartFilled, setIsHeartFilled] = useState(false);
+
+  const handleAddToCart = (item) => {
+    if (user && user.email) {
+      const cartItem = {
+        menuItemId: _id,
+        name,
+        quantity: 1,
+        image,
+        price,
+        email: user.email,
+      };
+      console.log(cartItem);
+    }
+  };
 
   const handleHeartClick = () => {
     setIsHeartFilled(!isHeartFilled);
@@ -37,7 +55,9 @@ const Cards = ({ item }) => {
           <h5 className="font-semibold">
             <span className="text-sm text-red">$ </span> {item.price}
           </h5>
-          <Button text={"add to cart"} />
+          <div className="" onClick={() => handleAddToCart(item)}>
+            <Button text={"add to cart"} />
+          </div>
         </div>
       </div>
     </div>

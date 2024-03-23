@@ -71,9 +71,9 @@ const Navbar = ({ text, icon }) => {
     </>
   );
   return (
-    <header className="mx-w-screen-2xl w-full mx-auto fixed bg-white top-0 left-0 right-0 transition-all duration-300 ease-in-out">
+    <header className="mx-auto fixed bg-white top-0 left-0 right-0 transition-all duration-300 ease-in-out">
       <div
-        className={`navbar xl:px-32 py-4 ${
+        className={`navbar xl:px-32 py-4 section-container ${
           isSticky ? "shadow-md  transition-all duration-300 ease-in-out" : ""
         }`}
       >
@@ -97,23 +97,9 @@ const Navbar = ({ text, icon }) => {
             </div>
             <ul
               tabIndex={0}
-              className="bg-white menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow text-dark-grey rounded-box w-60"
+              className="bg-white menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow text-dark-grey rounded-box w-60 gap-4"
             >
               {navItems}
-              <li>
-                <a>Parent</a>
-                <ul className="p-2">
-                  <li>
-                    <a>Submenu 1</a>
-                  </li>
-                  <li>
-                    <a>Submenu 2</a>
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <a>Item 3</a>
-              </li>
             </ul>
           </div>
           <a href="/" className="btn btn-ghost text-2xl text-green pl-0">
@@ -140,20 +126,22 @@ const Navbar = ({ text, icon }) => {
               />
             </svg>
           </button>
-          <div
-            tabIndex={0}
-            role="button"
-            className="btn btn-ghost btn-circle mr-3 lg:flex hidden items-center justify-center "
-          >
-            <Link to="/cartpage" className="flex items-center gap-4">
-              <div className="relative flex items-center justify-center">
-                <BsCart className="fill w-8 h-8 md:w-5 md:h-5" />
-                <div className="absolute -top-2 -right-2 w-5 h-5 rounded-full bg-red flex items-center justify-center">
-                  <p className="text-white font-semibold">6</p>
+          <Link to={"cart-page"}>
+            <label
+              tabIndex={0}
+              role="button"
+              className="btn btn-ghost btn-circle mr-3 lg:flex hidden items-center justify-center "
+            >
+              <Link to="/cart-page" className="flex items-center gap-4">
+                <div className="relative flex items-center justify-center">
+                  <BsCart className="fill w-8 h-8 md:w-5 md:h-5" />
+                  <div className="absolute -top-2 -right-2 w-5 h-5 rounded-full bg-red flex items-center justify-center">
+                    <p className="text-white font-semibold">0</p>
+                  </div>
                 </div>
-              </div>
-            </Link>
-          </div>
+              </Link>
+            </label>
+          </Link>
           {user1 ? (
             <button
               className="btn bg-green border-green text-white flex items-center gap-2 hover:bg-dark-green hover:bg-opacity-80 focus:scale-95 transition-all duration-200 ease-out"

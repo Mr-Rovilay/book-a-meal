@@ -83,7 +83,7 @@ const Menu = () => {
   return (
     <div>
       {/* menu banner */}
-      <div className="max-w-screen-2xl container mx-auto xl:px-24 px-4 bg-gradient-to-r from-0% from-[#FAFAFA] to-[#FCFCFC] to-100%">
+      <div className="max-w-screen-2xl container mx-auto xl:px-24 px-4">
         <div className="py-48 flex flex-col items-center justify-center">
           {/* content */}
           <div className=" text-center px-4 space-y-7">
