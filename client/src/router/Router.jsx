@@ -9,7 +9,7 @@ import CartPage from "../pages/CartPage";
 import Login from "../components/Login";
 import Users from "../pages/Admin/Users";
 import Dashboard from "../pages/Admin/Dashboard";
-import DashboardLayOut from "../layout/DashboardLayout";
+import DashboardLayout from "../layout/DashboardLayout";
 
 // Define the router configuration
 const AppRouter = () => {
@@ -24,7 +24,7 @@ const AppRouter = () => {
           <Route path="/sign-in" element={<Login type="sign-in" />} />
         </Route>
         <Route path="/signup" element={<SignUp type="sign-up" />} />
-        <Route path="dashboard" element={<DashboardLayOut />}>
+        <Route path="/dashboard" element={<DashboardLayout />}>
           <Route path="" element={<Dashboard />} />
           <Route path="users" element={<Users />} />
         </Route>

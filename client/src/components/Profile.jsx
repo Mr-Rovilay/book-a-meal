@@ -1,17 +1,7 @@
-import React, { useContext } from "react";
-import { AuthContext } from "../contexts/AuthProvider";
+// import React, { useContext } from "react";
+// import { AuthContext } from "../contexts/AuthProvider";
 
 const Profile = ({ user }) => {
-  const { logOut } = useContext(AuthContext);
-  const handleLogout = () => {
-    logOut()
-      .then(() => {
-        // Sign-out successful.
-      })
-      .catch((error) => {
-        // An error happened.
-      });
-  };
   return (
     <div>
       <div className="drawer drawer-end z-50 ">
@@ -42,17 +32,22 @@ const Profile = ({ user }) => {
           ></label>
           <ul className="menu p-4 w-80 min-h-full bg-white text-base-content text-2xl">
             {/* Sidebar content here */}
-            <li>
+            <li className="mt-3 hover:text-black hover:bg-grey opacity-75 border-grey focus:bg-transparent hover:bg-opacity-80">
               <a href="/user-profile">Profile</a>
             </li>
-            <li>
+            <li className="mt-3 hover:text-black hover:bg-grey opacity-75 border-grey focus:bg-transparent hover:bg-opacity-80">
               <a>Order</a>
             </li>
-            <li>
+            <li className="mt-3 hover:text-black hover:bg-grey opacity-75 border-grey focus:bg-transparent hover:bg-opacity-80">
               <a>Setting</a>
             </li>
-            <li>
-              <a onClick={handleLogout}>Logout</a>
+            <a href="/dashboard">
+              <li className="mt-3 hover:text-black hover:bg-grey opacity-75 border-grey focus:bg-transparent hover:bg-opacity-80">
+                <a>Dashboard</a>
+              </li>
+            </a>
+            <li className="mt-3 hover:text-black hover:bg-grey opacity-75 border-grey focus:bg-transparent hover:bg-opacity-80">
+              <a>Logout</a>
             </li>
           </ul>
         </div>

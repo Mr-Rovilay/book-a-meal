@@ -12,7 +12,6 @@ import {
 } from "react-icons/fa";
 import { FaCartShopping } from "react-icons/fa6";
 import Login from "../components/Login";
-import Loading from "../components/Loading";
 
 const sharedLinks = (
   <>
@@ -40,8 +39,8 @@ const sharedLinks = (
 );
 
 const DashboardLayout = () => {
-  const isAdmin = false;
-  // const [isAdmin, isAdminLoading] = useAdmin();
+  const isAdmin = true;
+  //
   return (
     <div className="">
       {isAdmin ? (
@@ -122,15 +121,15 @@ const DashboardLayout = () => {
             </ul>
           </div>
         </div>
-      ) : <Loading /> ? (
-        <Login />
       ) : (
-        <div className="h-screen flex justify-center items-center">
-          <Link to="/">
-            <button className="btn bg-green text-white">Back to Home</button>
-          </Link>
-        </div>
+        <Login />
       )}
+
+      <div className="h-screen flex justify-center items-center">
+        <Link to="/">
+          <button className="btn bg-green text-white">Back to Home</button>
+        </Link>
+      </div>
     </div>
   );
 };

@@ -3,13 +3,12 @@ import { Link } from "react-router-dom";
 import { BsCart } from "react-icons/bs";
 import { useContext, useEffect, useState } from "react";
 import Model from "./Model";
-import { AuthContext } from "../contexts/AuthProvider";
+
 import Profile from "./Profile";
 
 const Navbar = ({ text, icon }) => {
   const user1 = false;
   const [isSticky, setSticky] = useState(false);
-  const { user } = useContext(AuthContext);
 
   useEffect(() => {
     const handleScroll = () => {
