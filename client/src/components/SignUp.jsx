@@ -36,8 +36,8 @@ const SignUp = () => {
   //     });
   // };
   return (
-    <div className=" h-screen flex items-center justify-center">
-      <div className="modal-box bg-white">
+    <div className="flex items-center justify-center">
+      <div className="modal-box bg-white w-full">
         <div className="modal-action flex flex-col justify-center">
           <form
             className="card-body"
