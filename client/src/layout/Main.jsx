@@ -4,7 +4,7 @@ import Footer from "../components/Footer";
 
 const Main = () => {
   return (
-    <div className="bg-white">
+    <div className="">
       <>
         <Navbar />
         <div className="min-h-screen">
