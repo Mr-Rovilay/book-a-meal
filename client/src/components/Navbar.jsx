@@ -72,7 +72,7 @@ const Navbar = ({ text, icon }) => {
   return (
     <header className="mx-auto fixed bg-white top-0 left-0 right-0 transition-all duration-300 ease-in-out">
       <div
-        className={`navbar xl:px-32 py-4 section-container ${
+        className={`navbar xl:px-32 py-4 ${
           isSticky ? "shadow-md  transition-all duration-300 ease-in-out" : ""
         }`}
       >
