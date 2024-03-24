@@ -31,9 +31,9 @@ const sharedLinks = (
       </Link>
     </li>
     <li className="mt-3 hover:text-black hover:bg-grey opacity-75 border-grey focus:bg-transparent hover:bg-opacity-80">
-      <Link to="/menu">
-        <FaQuestionCircle /> Customer Support
-      </Link>
+      <button className="btn rounded-full px-6 bg-green flex items-center gap-2 text-white sm:hidden">
+        <FaRegUser /> Logout
+      </button>
     </li>
   </>
 );
@@ -55,9 +55,6 @@ const DashboardLayout = () => {
               >
                 <MdDashboardCustomize />
               </label>
-              <button className="btn rounded-full px-6 bg-green flex items-center gap-2 text-white sm:hidden">
-                <FaRegUser /> Logout
-              </button>
             </div>
             <div className="mt-5 md:mt-2 mx-4">
               <Outlet />
@@ -71,7 +68,7 @@ const DashboardLayout = () => {
             ></label>
             <ul className="menu p-4 w-80 min-h-full text-base-content bg-white">
               {/* Sidebar content here */}
-              <li className="hover:text-black hover:bg-grey opacity-75 border-grey focus:bg-transparent hover:bg-opacity-80">
+              <li className="">
                 <Link to="/dashboard" className="flex justify-start mb-3">
                   <h1>
                     <a

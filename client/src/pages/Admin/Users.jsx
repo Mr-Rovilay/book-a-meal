@@ -13,7 +13,7 @@ const Users = () => {
         <div className="overflow-x-auto">
           <table className="table table-zebra md:w-[870px]">
             {/* head */}
-            <thead className="bg-grey text-black rounded-lg">
+            <thead className="bg-green text-black rounded-lg">
               <tr>
                 <th>#</th>
                 <th>Name</th>
@@ -28,12 +28,12 @@ const Users = () => {
                 <td>name</td>
                 <td>email</td>
                 <td>
-                  <button className="btn btn-xs btn-circle bg-indigo-500 text-white">
+                  <button className="btn btn-xs btn-circle bg-twitter ">
                     <FaUsers />
                   </button>
                 </td>
                 <td>
-                  <button className="btn btn-xs bg-orange-500 text-white">
+                  <button className="btn btn-xs bg-orange-500 bg-red text-white">
                     <FaTrashAlt />
                   </button>
                 </td>
