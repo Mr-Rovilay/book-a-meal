@@ -12,7 +12,7 @@ const UserAuthForm = ({ type }) => {
           action=""
           className="md:modal-box w-[80%] max-w-[400px]"
         >
-          <h1 className="text-4xl font-gelasio capitalize text-center mb-24 text-green">
+          <h1 className="text-4xl font-gelasio capitalize text-center mb-16 text-green">
             {type == "sign-in" ? "Welcome Back" : "Join Us Today"}
           </h1>
           {type != "sign-in" ? (
