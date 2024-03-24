@@ -58,13 +58,13 @@ const Model = ({ type }) => {
               </Link>
             </p>
           </form>
-          <button
+          <Link
             htmlFor="my_modal_5"
             onClick={() => document.getElementById("my_modal_5").close()}
-            className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+            className="btn btn-sm btn-circle btn-ghost px-6 hover:bg-grey hover:bg-opacity-80 focus:scale-95 transition-all duration-200 ease-out absolute right-2 top-2"
           >
             ✕
-          </button>
+          </Link>
         </div>
       </div>
     </dialog>

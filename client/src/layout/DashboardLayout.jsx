@@ -11,7 +11,7 @@ import {
   FaUser,
 } from "react-icons/fa";
 import { FaCartShopping } from "react-icons/fa6";
-import Login from "../components/Login";
+import Button from "../components/Button";
 
 const sharedLinks = (
   <>
@@ -119,7 +119,9 @@ const DashboardLayout = () => {
           </div>
         </div>
       ) : (
-        <Login />
+        <Link to={"/sign-in"}>
+          <Button text={"login"} />
+        </Link>
       )}
 
       <div className="h-screen flex justify-center items-center">
