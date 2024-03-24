@@ -1,36 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { FaGoogle } from "react-icons/fa";
 import InputBox from "./InputBox";
 import googleIcon from "/imgs/google.png";
-import { useNavigate } from "react-router-dom";
 
 const Model = ({ type }) => {
-  const navigate = useNavigate();
-  const from = "/"; // default path
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
-    if (type === "sign-in") {
-      // Sign-in logic
-    } else {
-      // Sign-up logic
-    }
-
-    document.getElementById("my_modal_5").close();
-    navigate(from, { replace: true });
-  };
-
   return (
     <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
-      <div className="modal-box bg-white">
-        <div className="h-cover flex items-center justify-center">
-          <form
-            id="formElement"
-            onSubmit={handleSubmit}
-            className="w-[80%] max-w-[400px]"
-          >
+      <div className="modal-box bg-white border border-white">
+        <div className="h-cover flex items-center justify-center border border-white">
+          <form id="formElement" className="w-[80%] max-w-[400px]">
             <h1 className="text-4xl font-gelasio text-green capitalize text-center mb-16 ">
               {type && type === "sign-in" ? "" : "Welcome Back"}
             </h1>
@@ -71,12 +49,12 @@ const Model = ({ type }) => {
             <p className="mt-6 text-dark-grey text-xl text-center">
               {type && type === "sign-in"
                 ? "Don't have an account?"
-                : "Already a Member ?"}{" "}
+                : "Don't have an account?"}{" "}
               <Link
                 to={type && type === "signup" ? "/signup" : "/signup"}
                 className="underline text-black text-xl ml-1"
               >
-                {type && type === "sign-in" ? "Join us Today" : "Sign in here"}
+                {type && type === "sign-in" ? "Join us Today" : "Join us Today"}
               </Link>
             </p>
           </form>

@@ -1,5 +1,5 @@
 // Import necessary dependencies
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Router, Routes, Route } from "react-router-dom";
 import Main from "../layout/Main";
 import Home from "../pages/Home";
 import Menu from "../pages/Menu";
@@ -14,22 +14,20 @@ import DashboardLayout from "../layout/DashboardLayout";
 // Define the router configuration
 const AppRouter = () => {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Main />}>
-          <Route index element={<Home />} />
-          <Route path="/menu" element={<Menu />} />
-          <Route path="/cart-page" element={<CartPage />} />
-          <Route path="/user-profile" element={<UpdateProfile />} />
-          <Route path="/sign-in" element={<Login type="sign-in" />} />
-        </Route>
-        <Route path="/signup" element={<SignUp type="sign-up" />} />
-        <Route path="/dashboard" element={<DashboardLayout />}>
-          <Route path="" element={<Dashboard />} />
-          <Route path="users" element={<Users />} />
-        </Route>
-      </Routes>
-    </Router>
+    <Routes>
+      <Route path="/" element={<Main />}>
+        <Route index element={<Home />} />
+        <Route path="/menu" element={<Menu />} />
+        <Route path="/cart-page" element={<CartPage />} />
+        <Route path="/user-profile" element={<UpdateProfile />} />
+      </Route>
+      <Route path="/signup" element={<SignUp type="sign-up" />} />
+      <Route path="/sign-in" element={<Login type="sign-in" />} />
+      <Route path="/dashboard" element={<DashboardLayout />}>
+        <Route path="" element={<Dashboard />} />
+        <Route path="users" element={<Users />} />
+      </Route>
+    </Routes>
   );
 };
 
