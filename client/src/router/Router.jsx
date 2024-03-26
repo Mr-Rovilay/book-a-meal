@@ -14,31 +14,36 @@ import ManageItem from "../pages/Admin/ManageItem";
 import UpdateMenu from "../pages/Admin/UpdateMenu";
 import DeliveryInfo from "../pages/DeliveryInfo";
 import Order from "../pages/Order";
+import AnimationWrapper from "../common/AnimationWrapper";
+import ScrollToTop from "../components/ScrollToTop";
 
 // Define the router configuration
-const AppRouter = () => {
+const AppRouter = ({ type }) => {
   return (
-    <Routes>
-      {/* user route */}
-      <Route path="/" element={<Main />}>
-        <Route index element={<Home />} />
-        <Route path="/menu" element={<Menu />} />
-        <Route path="/order" element={<Order />} />
-        <Route path="/cart-page" element={<CartPage />} />
-        <Route path="/user-profile" element={<UpdateProfile />} />
-        <Route path="/delivery-info" element={<DeliveryInfo />} />
-      </Route>
-      <Route path="/signin" element={<UserAuthForm type="sign-in" />} />
-      <Route path="/signup" element={<UserAuthForm type="sign-up" />} />
-      {/* Admin route*/}
-      <Route path="/dashboard" element={<DashboardLayout />}>
-        <Route path="" element={<Dashboard />} />
-        <Route path="users" element={<Users />} />
-        <Route path="add-menu" element={<AddMenu />} />
-        <Route path="update-menu/:id" element={<UpdateMenu />} />
-        <Route path="manage-items" element={<ManageItem />} />
-      </Route>
-    </Routes>
+    <AnimationWrapper keyValue={type}>
+      <ScrollToTop />
+      <Routes>
+        {/* user route */}
+        <Route path="/" element={<Main />}>
+          <Route index element={<Home />} />
+          <Route path="/menu" element={<Menu />} />
+          <Route path="/order" element={<Order />} />
+          <Route path="/cart-page" element={<CartPage />} />
+          <Route path="/user-profile" element={<UpdateProfile />} />
+          <Route path="/delivery-info" element={<DeliveryInfo />} />
+        </Route>
+        <Route path="/signin" element={<UserAuthForm type="sign-in" />} />
+        <Route path="/signup" element={<UserAuthForm type="sign-up" />} />
+        {/* Admin route*/}
+        <Route path="/dashboard" element={<DashboardLayout />}>
+          <Route path="" element={<Dashboard />} />
+          <Route path="users" element={<Users />} />
+          <Route path="add-menu" element={<AddMenu />} />
+          <Route path="update-menu/:id" element={<UpdateMenu />} />
+          <Route path="manage-items" element={<ManageItem />} />
+        </Route>
+      </Routes>
+    </AnimationWrapper>
   );
 };
 
