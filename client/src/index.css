@@ -23,12 +23,6 @@ nav {
   @apply text-4xl md:text-5xl md:leading-snug font-bold my-2 text-green;
 }
 
-.slick-slider {
-  /* background-color: aquamarine; */
-  /* padding-left: 30px; */
-  /* height: 480px !important; */
-}
-
 .input-box {
   @apply w-[100%] rounded-md p-4 bg-grey pl-12 border border-grey focus:bg-transparent placeholder:text-black;
 }
@@ -40,6 +34,13 @@ input:disabled ~ .input-icon {
 
 .input-icon {
   @apply absolute left-4 top-1/2 -translate-y-1/2;
+}
+.hide {
+  @apply opacity-0 pointer-events-none duration-100;
+}
+
+.show {
+  @apply opacity-100 pointer-events-auto;
 }
 
 .slick-prev {
@@ -68,12 +69,6 @@ input:disabled ~ .input-icon {
 
 .section-container {
   @apply max-w-screen-2xl container mx-auto xl:px-24 px-4;
-}
-
-.active {
-  text-decoration: underline;
-  text-underline-offset: 5px;
-  color: #21d4b9;
 }
 
 @media (max-width: 1520px) {

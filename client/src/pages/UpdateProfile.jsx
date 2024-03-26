@@ -11,11 +11,6 @@ const social_links = {
     type: String,
     default: "",
   },
-  instagram: {
-    key: 1,
-    type: String,
-    default: "",
-  },
   facebook: {
     key: 2,
     type: String,
@@ -28,11 +23,6 @@ const social_links = {
   },
   github: {
     key: 4,
-    type: String,
-    default: "",
-  },
-  website: {
-    key: 5,
     type: String,
     default: "",
   },

@@ -12,7 +12,8 @@ import UserAuthForm from "../pages/UserAuthForm";
 import AddMenu from "../pages/Admin/AddMenu";
 import ManageItem from "../pages/Admin/ManageItem";
 import UpdateMenu from "../pages/Admin/UpdateMenu";
-import Payment from "../pages/Payment";
+import DeliveryInfo from "../pages/DeliveryInfo";
+import Order from "../pages/Order";
 
 // Define the router configuration
 const AppRouter = () => {
@@ -22,9 +23,10 @@ const AppRouter = () => {
       <Route path="/" element={<Main />}>
         <Route index element={<Home />} />
         <Route path="/menu" element={<Menu />} />
+        <Route path="/order" element={<Order />} />
         <Route path="/cart-page" element={<CartPage />} />
         <Route path="/user-profile" element={<UpdateProfile />} />
-        <Route path="/checkout-payment" element={<Payment />} />
+        <Route path="/delivery-info" element={<DeliveryInfo />} />
       </Route>
       <Route path="/signin" element={<UserAuthForm type="sign-in" />} />
       <Route path="/signup" element={<UserAuthForm type="sign-up" />} />

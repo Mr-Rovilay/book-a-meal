@@ -36,16 +36,14 @@ const Profile = ({ user }) => {
               <a href="/user-profile">Profile</a>
             </li>
             <li className="mt-3 hover:text-black hover:bg-grey opacity-75 border-grey focus:bg-transparent hover:bg-opacity-80">
-              <a>Order</a>
+              <a href="/order">Orders</a>
             </li>
             <li className="mt-3 hover:text-black hover:bg-grey opacity-75 border-grey focus:bg-transparent hover:bg-opacity-80">
               <a>Setting</a>
             </li>
-            <a href="/dashboard">
-              <li className="mt-3 hover:text-black hover:bg-grey opacity-75 border-grey focus:bg-transparent hover:bg-opacity-80">
-                <a>Dashboard</a>
-              </li>
-            </a>
+            <li className="mt-3 hover:text-black hover:bg-grey opacity-75 border-grey focus:bg-transparent hover:bg-opacity-80">
+              <a href="/dashboard">Dashboard (Admin Only)</a>
+            </li>
             <li className="mt-3 hover:text-black hover:bg-grey opacity-75 border-grey focus:bg-transparent hover:bg-opacity-80">
               <a>Logout</a>
             </li>

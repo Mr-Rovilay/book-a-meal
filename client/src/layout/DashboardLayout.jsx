@@ -16,17 +16,12 @@ import Button from "../components/Button";
 const sharedLinks = (
   <>
     <li className="mt-3 hover:text-black hover:bg-grey opacity-75 border-grey focus:bg-transparent hover:bg-opacity-80">
-      <Link to="/">
-        <MdDashboard /> Home
-      </Link>
-    </li>
-    <li className="mt-3 hover:text-black hover:bg-grey opacity-75 border-grey focus:bg-transparent hover:bg-opacity-80">
       <Link to="/menu">
         <FaCartShopping /> Menu
       </Link>
     </li>
     <li className="mt-3 hover:text-black hover:bg-grey opacity-75 border-grey focus:bg-transparent hover:bg-opacity-80">
-      <Link to="/menu">
+      <Link to="#">
         <FaLocationArrow /> Orders Tracking
       </Link>
     </li>
@@ -66,10 +61,10 @@ const DashboardLayout = () => {
               aria-label="close sidebar"
               className="drawer-overlay"
             ></label>
-            <ul className="menu p-4 w-80 min-h-full text-base-content bg-white">
+            <ul className="menu p-4 w-80 min-h-full text-base-content bg-white text-xl">
               {/* Sidebar content here */}
               <li className="">
-                <Link to="/dashboard" className="flex justify-start mb-3">
+                <div className="flex justify-start mb-3">
                   <h1>
                     <a
                       href="/"
@@ -81,7 +76,7 @@ const DashboardLayout = () => {
                   <span className="badge badge-primary bg-green text-white border border-green py-2">
                     admin
                   </span>
-                </Link>
+                </div>
               </li>
               <hr />
               <li className="mt-3 hover:text-black hover:bg-grey opacity-75 border-grey focus:bg-transparent hover:bg-opacity-80">
@@ -89,11 +84,7 @@ const DashboardLayout = () => {
                   <MdDashboard /> Dashboard
                 </Link>
               </li>
-              <li className="mt-3 hover:text-black hover:bg-grey opacity-75 border-grey focus:bg-transparent hover:bg-opacity-80">
-                <Link to="/dashboard">
-                  <FaShoppingBag /> Manage Bookings
-                </Link>
-              </li>
+
               <li className="mt-3 hover:text-black hover:bg-grey opacity-75 border-grey focus:bg-transparent hover:bg-opacity-80">
                 <Link to="/dashboard/add-menu">
                   <FaPlusCircle />

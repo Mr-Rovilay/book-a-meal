@@ -1,8 +1,6 @@
-import { useState } from "react";
 import { FaTrash } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import profile from "/assets/team_member_3.png";
-import Swal from "sweetalert2";
 import Button from "../components/Button";
 
 const CartPage = () => {
@@ -14,7 +12,7 @@ const CartPage = () => {
         <div className="py-28 flex flex-col items-center justify-center">
           {/* content */}
           <div className="text-center px-4 space-y-7">
-            <h2 className="md:text-5xl text-4xl font-bold md:leading-snug leading-snug text-green">
+            <h2 className="md:text-5xl text-4xl font-bold md:leading-snug leading-snug">
               Items Added to The<span className="text-green"> Cart</span>
             </h2>
           </div>
@@ -26,7 +24,7 @@ const CartPage = () => {
           <div className="overflow-x-auto">
             <table className="table">
               {/* head */}
-              <thead className="bg-green text-white rounded-sm">
+              <thead className="bg-green text-white rounded-sm text-xl">
                 <tr>
                   <th>#</th>
                   <th>Food</th>
@@ -78,8 +76,9 @@ const CartPage = () => {
             <p>Name: {user?.displayName || "None"}</p>
             <p>Email: {user?.email}</p>
             <p>
-              User_id: <span className="text-sm">{user?.uid}</span>
+              User_id:<span className="text-sm">{user?.uid}</span>
             </p>
+            <p>Address: {user?.address}</p>
           </div>
           <div className="md:w-1/2 space-y-3">
             <h3 className="text-lg font-semibold">Shopping Details</h3>
@@ -87,8 +86,8 @@ const CartPage = () => {
             <p>
               Total Price: <span id="total-price">$2</span>
             </p>
-            <Link to="/checkout-payment">
-              <div className="mt-">
+            <Link to="/delivery-info">
+              <div className="mt-4">
                 <Button text={"proceed to checkout"} />
               </div>
             </Link>
