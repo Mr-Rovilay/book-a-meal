@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { FaFilter } from "react-icons/fa";
 import Cards from "../components/Cards";
 import Button from "../components/Button";
 
 const Menu = () => {
+  const postRef = useRef(null);
+
   const [menu, setMenu] = useState([]);
   const [filteredItems, setFilteredItems] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("all");
@@ -79,6 +81,13 @@ const Menu = () => {
   const currentItems = filteredItems.slice(indexOfFirstItem, indexOfLastItem);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  const handlePaginate = (pageIndex) => {
+    // Update current page
+    if (postRef.current) {
+      postRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+    paginate(pageIndex);
+  };
 
   return (
     <div>
@@ -103,7 +112,7 @@ const Menu = () => {
       </div>
 
       {/* menu shop  */}
-      <div className="section-container">
+      <div className="section-container" id="post" ref={postRef}>
         <div className="flex flex-col md:flex-row flex-wrap md:justify-between items-center space-y-3 mb-8">
           {/* all category buttons */}
           <div className="flex flex-row justify-start md:items-center md:gap-8 gap-4 flex-wrap">
@@ -175,12 +184,13 @@ const Menu = () => {
 
       {/* Pagination */}
       <div className="flex justify-center my-8">
+        {/* Create pagination buttons */}
         {Array.from({
           length: Math.ceil(filteredItems.length / itemsPerPage),
         }).map((_, index) => (
           <button
             key={index + 1}
-            onClick={() => paginate(index + 1)}
+            onClick={() => handlePaginate(index + 1)}
             className={`mx-1 px-3 py-1 rounded-full ${
               currentPage === index + 1 ? "bg-green text-white" : "bg-gray-200"
             }`}
