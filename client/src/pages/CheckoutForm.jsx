@@ -1,6 +1,7 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import Button from "../components/Button";
 import { FaPaypal } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const CheckoutForm = () => {
   // const stripe = useStripe();
@@ -40,12 +41,14 @@ const CheckoutForm = () => {
           />
         </form> */}
         <form onSubmit={handleSubmit}>
-          <button
-            type="submit"
-            className="btn btn-sm mt-5 bg-green border border-green text-white w-full"
-          >
-            pay
-          </button>
+          <Link to={"/paymentsuccess"}>
+            <button
+              type="submit"
+              className="btn w-full capitalize bg-green border-green rounded-xl font-semibold px-6 text-white flex items-center gap-2 hover:bg-dark-green hover:bg-opacity-80 focus:scale-95 transition-all duration-200 ease-out"
+            >
+              pay
+            </button>
+          </Link>
         </form>
 
         <hr />

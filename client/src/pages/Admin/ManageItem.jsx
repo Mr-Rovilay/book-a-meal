@@ -11,9 +11,9 @@ const ManageItems = () => {
       {/* menu item table */}
       <div>
         <div className="overflow-x-auto">
-          <table className="table">
+          <table className="table text-xl">
             {/* head */}
-            <thead>
+            <thead className="bg-green text-white rounded-lg text-xl">
               <tr>
                 <th>#</th>
                 <th>Image</th>

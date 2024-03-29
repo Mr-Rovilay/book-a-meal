@@ -45,7 +45,9 @@ const Profile = ({ user }) => {
               <a href="/dashboard">Dashboard (Admin Only)</a>
             </li>
             <li className="mt-3 hover:text-black hover:bg-grey opacity-75 border-grey focus:bg-transparent hover:bg-opacity-80">
-              <a>Logout</a>
+              <a className="btn capitalize bg-green border-green rounded-xl font-semibold px-6 text-white flex items-center gap-2 hover:bg-dark-green hover:bg-opacity-80 focus:scale-95 transition-all duration-200 ease-out">
+                Logout
+              </a>
             </li>
           </ul>
         </div>

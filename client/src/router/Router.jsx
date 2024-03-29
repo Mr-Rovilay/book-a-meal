@@ -16,6 +16,8 @@ import DeliveryInfo from "../pages/DeliveryInfo";
 import Order from "../pages/Order";
 import AnimationWrapper from "../common/AnimationWrapper";
 import ScrollToTop from "../components/ScrollToTop";
+import PaymentSuccess from "../pages/SuccessPage/PaymentSuccess";
+import ManageBookings from "../pages/Admin/ManageBookings";
 
 // Define the router configuration
 const AppRouter = ({ type }) => {
@@ -31,6 +33,7 @@ const AppRouter = ({ type }) => {
           <Route path="/cart-page" element={<CartPage />} />
           <Route path="/user-profile" element={<UpdateProfile />} />
           <Route path="/delivery-info" element={<DeliveryInfo />} />
+          <Route path="/paymentsuccess" element={<PaymentSuccess />} />
         </Route>
         <Route path="/signin" element={<UserAuthForm type="sign-in" />} />
         <Route path="/signup" element={<UserAuthForm type="sign-up" />} />
@@ -41,6 +44,7 @@ const AppRouter = ({ type }) => {
           <Route path="add-menu" element={<AddMenu />} />
           <Route path="update-menu/:id" element={<UpdateMenu />} />
           <Route path="manage-items" element={<ManageItem />} />
+          <Route path="manage-bookings" element={<ManageBookings />} />
         </Route>
       </Routes>
     </AnimationWrapper>

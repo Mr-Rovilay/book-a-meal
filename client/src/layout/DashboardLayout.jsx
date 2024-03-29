@@ -61,7 +61,7 @@ const DashboardLayout = () => {
               aria-label="close sidebar"
               className="drawer-overlay"
             ></label>
-            <ul className="menu p-4 w-80 min-h-full text-base-content bg-white text-xl">
+            <ul className="menu p-4 w-80 min-h-full text-base-content bg-grey text-xl">
               {/* Sidebar content here */}
               <li className="">
                 <div className="flex justify-start mb-3">
@@ -91,6 +91,14 @@ const DashboardLayout = () => {
                   Add Menu
                 </Link>
               </li>
+
+              <li className="mt-3 hover:text-black hover:bg-grey opacity-75 border-grey focus:bg-transparent hover:bg-opacity-80">
+                <Link to="/dashboard/manage-bookings">
+                  <FaPlusCircle />
+                  Manage Users Bookings
+                </Link>
+              </li>
+
               <li className="mt-3 hover:text-black hover:bg-grey opacity-75 border-grey focus:bg-transparent hover:bg-opacity-80">
                 <Link to="/dashboard/manage-items">
                   <FaEdit /> Manage Items
@@ -110,16 +118,10 @@ const DashboardLayout = () => {
           </div>
         </div>
       ) : (
-        <Link to={"/sign-in"}>
-          <Button text={"login"} />
+        <Link to={"/signin"}>
+          <Button text={"login as admin"} />
         </Link>
       )}
-
-      <div className="h-screen flex justify-center items-center">
-        <Link to="/">
-          <button className="btn bg-green text-white">Back to Home</button>
-        </Link>
-      </div>
     </div>
   );
 };

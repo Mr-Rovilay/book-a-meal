@@ -63,7 +63,7 @@ const Navbar = ({ text, icon }) => {
         </summary>
         <ul
           tabIndex={0}
-          className="dropdown-content z-[1] menu p-2 bg-white text-black rounded-box w-52 text-xl"
+          className="md:dropdown-content z-[1] menu p-2 bg-white text-black rounded-box w-52 text-xl"
         >
           <li className="mt-3 hover:text-black hover:bg-grey opacity-75 border-grey focus:bg-transparent hover:bg-opacity-80">
             <a href="/order">Order</a>
@@ -117,12 +117,12 @@ const Navbar = ({ text, icon }) => {
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{navItems}</ul>
         </div>
-        <div className="navbar-end">
+        <div className="navbar-end gap-2">
           <button
-            className="md:hidden bg-red w-12 h-12 rounded-full flex items-center justify-center text-dark-grey"
+            className="bg-grey w-12 h-12 rounded-full flex items-center justify-center text-dark-grey"
             onClick={() => setSearchBox((currentVal) => !currentVal)}
           >
-            <CiSearch />
+            <i className="fi fi-rr-search text-1xl"></i>
           </button>
           <div
             className={
@@ -145,8 +145,8 @@ const Navbar = ({ text, icon }) => {
           >
             <Link to="/cart-page" className="flex items-center gap-4">
               <div className="relative flex items-center justify-center ">
-                <BsCart className="fill w-8 h-8 md:w-5 md:h-5" />
-                <div className="absolute -top-2 -right-2 w-5 h-5 rounded-full bg-red flex items-center justify-center">
+                <BsCart className="fill w-6 h-6 md:w-5 md:h-5" />
+                <div className="absolute -top-2 -right-2 w-4 h-4 rounded-full bg-red flex items-center justify-center">
                   <p className="text-white font-semibold">0</p>
                 </div>
               </div>

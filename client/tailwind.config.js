@@ -22,7 +22,7 @@ export default {
       primary: "#B784B7",
       "dark-green": "rgb(22 101 52);",
       green: "#21d4b9",
-      secondary: "#555",
+
       prigmayBG: "#FCFCFC",
     },
 

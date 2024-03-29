@@ -10,7 +10,7 @@ const Model = ({ type }) => {
         <div className="h-cover flex items-center justify-center border border-white">
           <form id="formElement" className="w-[80%] max-w-[400px]">
             <h1 className="text-4xl font-gelasio text-green capitalize text-center mb-16 ">
-              {type && type === "sign-in" ? "" : "Welcome Back"}
+              {type === "sign-in" ? "" : "Welcome Back"}
             </h1>
 
             <InputBox
@@ -23,7 +23,6 @@ const Model = ({ type }) => {
               name={"password"}
               type={"password"}
               placeholder={"Password"}
-              icon={"fi-rr-password"}
             />
             <button
               className="btn capitalize bg-green border-green rounded-xl font-semibold px-6 text-white flex items-center gap-2 hover:bg-dark-green hover:bg-opacity-80 focus:scale-95 transition-all duration-200 ease-out w-full"
@@ -47,14 +46,12 @@ const Model = ({ type }) => {
             </button>
 
             <p className="mt-6 text-dark-grey text-xl text-center">
-              {type && type === "sign-in"
-                ? "Don't have an account?"
-                : "Don't have an account?"}{" "}
+              {type === "sign-in" ? "" : "Don't have an account?"}{" "}
               <Link
-                to={type && type === "signup" ? "/signup" : "/signup"}
+                to={type === "signup" ? "/signup" : "/signup"}
                 className="underline text-black text-xl ml-1"
               >
-                {type && type === "sign-in" ? "Join us Today" : "Join us Today"}
+                {type === "sign-in" ? "" : "Join us Today"}
               </Link>
             </p>
           </form>

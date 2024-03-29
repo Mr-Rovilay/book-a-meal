@@ -11,7 +11,7 @@ const Order = () => {
           {/* content */}
           <div className="text-center px-4 space-y-7">
             <h2 className="md:text-5xl text-4xl font-bold md:leading-snug leading-snug capitalize">
-              Track All your<span className="text-green">orders</span>
+              Track All your <span className="text-green">orders</span>
             </h2>
           </div>
         </div>

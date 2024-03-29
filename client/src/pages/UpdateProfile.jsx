@@ -14,17 +14,17 @@ const social_links = {
   facebook: {
     key: 2,
     type: String,
-    default: "",
+    default: "https://",
   },
   twitter: {
     key: 3,
     type: String,
-    default: "",
+    default: "https://",
   },
   github: {
     key: 4,
     type: String,
-    default: "",
+    default: "https://",
   },
 };
 
@@ -36,7 +36,7 @@ const UpdateProfile = () => {
         <Loading />
       ) : (
         <form>
-          <h1 className="max-md:hidden">Profile</h1>
+          <h1 className="max-md:hidden text-2xl my-8">Profile</h1>
           <div className="flex flex-col lg:flex-row items-start py-10 gap-8 lg:gap-10">
             <div className="max-lg:center mb-5 flex flex-col gap-2">
               <label
@@ -80,6 +80,12 @@ const UpdateProfile = () => {
                 type="text"
                 name="username"
                 placeholder="Username"
+                icon={<CiUser />}
+              />
+              <InputBox
+                type="text"
+                name="address"
+                placeholder="Address"
                 icon={<CiUser />}
               />
               <div className="md:grid md:grid-cols-2 gap-x-6">

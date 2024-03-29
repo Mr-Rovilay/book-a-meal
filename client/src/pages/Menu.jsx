@@ -104,9 +104,6 @@ const Menu = () => {
               Greek Salad, Lasagne, Butternut Pumpkin, Tokusen Wagyu, Olivas
               Rellenas and more for a moderate cost
             </p>
-            <div className="flex items-center justify-center">
-              <Button text={"Order Now"} />
-            </div>
           </div>
         </div>
       </div>
