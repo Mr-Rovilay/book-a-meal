@@ -1,12 +1,96 @@
 import { Link, Navigate } from "react-router-dom";
 import InputBox from "../components/InputBox";
 import googleIcon from "/imgs/google.png";
+import axios from "axios";
+import { Toaster, toast } from "react-hot-toast";
 import AnimationWrapper from "../common/AnimationWrapper";
+import { storeInSession } from "../common/session";
+import { useContext } from "react";
+import { UserContext } from "../router/Router";
+import { authWithGoogle } from "../common/firebase";
 
 const UserAuthForm = ({ type }) => {
-  return (
+  let {
+    userAuth: { access_token },
+    setUserAuth,
+  } = useContext(UserContext);
+
+  const userAuthThroughServer = (serverRoute, formData) => {
+    console.log(import.meta.env.VITE_SERVER_DOMAIN + serverRoute, formData);
+    axios
+      .post(import.meta.env.VITE_SERVER_DOMAIN + serverRoute, formData)
+      .then(({ data }) => {
+        storeInSession("user", JSON.stringify(data));
+        setUserAuth(data);
+      })
+      .catch(({ response }) => {
+        toast.error(response.data.error);
+      });
+  };
+
+  // handleSubmit
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    let serverRoute = type == "sign-in" ? "/signin" : "/signup";
+    let emailRegex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/; // regex for email
+    let passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/; // regex for password
+
+    let form = new FormData(document.getElementById("formElement"));
+
+    let formData = {};
+
+    for (let [key, value] of form.entries()) {
+      formData[key] = value;
+    }
+    console.log(formData);
+
+    let { fullname, email, password } = formData;
+
+    if (fullname) {
+      if (fullname.length < 3) {
+        return toast.error("Fullname must be at least 3 characters long");
+      }
+    }
+
+    if (!email.length) {
+      return toast.error("Enter email address");
+    }
+    if (!emailRegex.test(email)) {
+      return toast.error("invalid email address");
+    }
+    if (!passwordRegex.test(password)) {
+      return toast.error(
+        "password should be 6 to 20 characters long with numeric, 1 lowercase and 1 uppercase letter"
+      );
+    }
+
+    // send data to backend
+    userAuthThroughServer(serverRoute, formData);
+  };
+
+  // firebase with google
+  const handleGoogleAuth = (e) => {
+    e.preventDefault();
+    authWithGoogle()
+      .then((user) => {
+        let serverRoute = "/google-auth";
+        let formData = {
+          access_token: user.accessToken,
+        };
+        userAuthThroughServer(serverRoute, formData);
+      })
+      .error((err) => {
+        toast.error("Trouble loging in through Google");
+      });
+  };
+
+  return access_token ? (
+    <Navigate to={"/"} />
+  ) : (
     <AnimationWrapper keyValue={type}>
       <section className="section-container my-20 flex items-center justify-center">
+        <Toaster />
         <form
           id="formElement"
           action=""
@@ -39,6 +123,7 @@ const UserAuthForm = ({ type }) => {
           <button
             className="btn capitalize bg-green border-green rounded-xl font-semibold px-6 text-white flex items-center w-full hover:bg-dark-green hover:bg-opacity-80 focus:scale-95 transition-all duration-200 ease-out"
             type="submit"
+            onClick={handleSubmit}
           >
             {type.replace("-", " ")}
           </button>
@@ -49,7 +134,10 @@ const UserAuthForm = ({ type }) => {
             <hr className="w-1/2 border-black" />
           </div>
 
-          <button className="btn capitalize bg-green border-green rounded-xl font-semibold px-6 text-white flex items-center gap-2 hover:bg-dark-green hover:bg-opacity-80 focus:scale-95 transition-all duration-200 ease-out w-full">
+          <button
+            onClick={handleGoogleAuth}
+            className="btn capitalize bg-green border-green rounded-xl font-semibold px-6 text-white flex items-center gap-2 hover:bg-dark-green hover:bg-opacity-80 focus:scale-95 transition-all duration-200 ease-out w-full"
+          >
             {" "}
             <img src={googleIcon} alt="" className="w-5" />
             Continue with Google
