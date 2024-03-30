@@ -20,8 +20,8 @@ export default {
       yellow: "#F1EF99",
 
       primary: "#B784B7",
-      "dark-green": "rgb(22 101 52);",
-      green: "#21d4b9",
+      "dark-green": "#2dfe54",
+      green: "#7cfc00",
 
       prigmayBG: "#FCFCFC",
     },

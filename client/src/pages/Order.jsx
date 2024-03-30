@@ -49,19 +49,8 @@ const Order = () => {
                   </td>
                 </tr>
               </tbody>
-              {/* foot */}
             </table>
           </div>
-        </div>
-        <hr />
-      </div>
-
-      <div className="text-center mt-20">
-        <p>Cart is empty. Please add products.</p>
-        <div className="flex items-center justify-center mt-4">
-          <Link to="/menu">
-            <Button text={"back to menu"} />
-          </Link>
         </div>
       </div>
     </div>

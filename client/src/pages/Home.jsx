@@ -6,12 +6,12 @@ import Team from "../components/Team";
 
 const Home = () => {
   return (
-    <div className="">
+    <>
       <Banner />
       <Categories />
       <SpecialDishes />
       <Team />
-    </div>
+    </>
   );
 };
 
