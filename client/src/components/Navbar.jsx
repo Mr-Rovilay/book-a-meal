@@ -46,11 +46,10 @@ const Navbar = () => {
           tabIndex={0}
           className="dropdown-content z-[1] menu p-2 bg-white text-black rounded-box w-52 text-xl"
         >
-          <Link to={"/menu"}>
-            <li className="mt-3 hover:text-black hover:bg-grey opacity-75 border-grey focus:bg-transparent hover:bg-opacity-80">
-              <a>All</a>
-            </li>
-          </Link>
+          <li className="mt-3 hover:text-black hover:bg-grey opacity-75 border-grey focus:bg-transparent hover:bg-opacity-80">
+            <a href="/menu">All</a>
+          </li>
+
           <li className="mt-3 hover:text-black hover:bg-grey opacity-75 border-grey focus:bg-transparent hover:bg-opacity-80">
             <a>Pizza</a>
           </li>
@@ -171,9 +170,9 @@ const Navbar = () => {
                 <IoIosLogIn className="text-2xl" />
                 Login
               </button>
+              <Model />
             </>
           )}
-          <Model />
         </div>
       </div>
     </header>

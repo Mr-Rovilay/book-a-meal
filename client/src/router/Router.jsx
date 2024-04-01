@@ -20,6 +20,8 @@ import PaymentSuccess from "../pages/SuccessPage/PaymentSuccess";
 import ManageBookings from "../pages/Admin/ManageBookings";
 import { createContext, useEffect, useState } from "react";
 import { lookInSession } from "../common/session";
+import PrivateRouter from "../PrivateRouter/PrivateRouter";
+import UserProfile from "../pages/UserProfile";
 
 export const UserContext = createContext({});
 
@@ -42,10 +44,19 @@ const AppRouter = ({ type }) => {
           {/* user route */}
           <Route path="/" element={<Main />}>
             <Route index element={<Home />} />
-            <Route path="/menu" element={<Menu />} />
+            <Route
+              path="/menu"
+              element={
+                <PrivateRouter>
+                  {" "}
+                  <Menu />
+                </PrivateRouter>
+              }
+            />
             <Route path="/order" element={<Order />} />
             <Route path="/cart-page" element={<CartPage />} />
-            <Route path="/user-profile" element={<UpdateProfile />} />
+            <Route path="/edit-profile/:id" element={<UpdateProfile />} />
+            <Route path="/user/:id" element={<UserProfile />} />
             <Route path="/delivery-info" element={<DeliveryInfo />} />
             <Route path="/paymentsuccess" element={<PaymentSuccess />} />
           </Route>

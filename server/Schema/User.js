@@ -51,7 +51,7 @@ const userSchema = mongoose.Schema(
       },
       address: {
         type: String,
-        maxlength: [100, "Bio should not be more than 200"],
+        maxlength: [100, "Address should not be more than 200"],
         default: "",
       },
       profile_img: {
@@ -70,10 +70,6 @@ const userSchema = mongoose.Schema(
       },
     },
     social_links: {
-      youtube: {
-        type: String,
-        default: "",
-      },
       instagram: {
         type: String,
         default: "",
@@ -87,10 +83,6 @@ const userSchema = mongoose.Schema(
         default: "",
       },
       github: {
-        type: String,
-        default: "",
-      },
-      website: {
         type: String,
         default: "",
       },

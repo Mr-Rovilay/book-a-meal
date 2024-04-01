@@ -44,7 +44,7 @@ const Profile = ({ user }) => {
           <ul className="menu p-4 w-80 min-h-full bg-white text-base-content text-xl">
             {/* Sidebar content here */}
             <li className="mt-3 hover:text-black hover:bg-grey opacity-75 border-grey focus:bg-transparent hover:bg-opacity-80">
-              <a href={`/user-profile/${username}`}>Profile</a>
+              <a href={`/user/${username}`}>Profile</a>
             </li>
             <li className="mt-3 hover:text-black hover:bg-grey opacity-75 border-grey focus:bg-transparent hover:bg-opacity-80">
               <a href="/order">Orders</a>

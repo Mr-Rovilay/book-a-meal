@@ -1,5 +1,6 @@
 import bannerImg from "/imgs/p2.png";
 import Button from "./Button";
+import { Link } from "react-router-dom";
 
 const Banner = ({ text }) => {
   return (
@@ -113,8 +114,10 @@ const Banner = ({ text }) => {
           may be. Let us tantalize your taste buds and elevate your dining
           experience.
         </p>
-        <div className="w-24 flex items-center">
-          <Button text={"Order Now"} />
+        <div className="">
+          <Link to="/menu">
+            <Button text={"Order Now"} />
+          </Link>
         </div>
       </div>
     </div>

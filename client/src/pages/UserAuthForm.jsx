@@ -16,9 +16,11 @@ const UserAuthForm = ({ type }) => {
   } = useContext(UserContext);
 
   const userAuthThroughServer = (serverRoute, formData) => {
-    console.log(import.meta.env.VITE_SERVER_DOMAIN + serverRoute, formData);
     axios
-      .post(import.meta.env.VITE_SERVER_DOMAIN + serverRoute, formData)
+      .post(
+        import.meta.env.VITE_SERVER_DOMAIN + "/router" + serverRoute,
+        formData
+      )
       .then(({ data }) => {
         storeInSession("user", JSON.stringify(data));
         setUserAuth(data);
@@ -43,8 +45,6 @@ const UserAuthForm = ({ type }) => {
     for (let [key, value] of form.entries()) {
       formData[key] = value;
     }
-    console.log(formData);
-
     let { fullname, email, password } = formData;
 
     if (fullname) {
@@ -89,7 +89,7 @@ const UserAuthForm = ({ type }) => {
     <Navigate to={"/"} />
   ) : (
     <AnimationWrapper keyValue={type}>
-      <section className="section-container my-20 flex items-center justify-center">
+      <section className="h-screen flex items-center justify-center">
         <Toaster />
         <form
           id="formElement"
