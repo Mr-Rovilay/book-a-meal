@@ -13,7 +13,10 @@ const Cards = ({ item }) => {
     setIsHeartFilled(!isHeartFilled);
   };
   return (
-    <div to={`/menu/${item._id}`} className="card shadow-xl relative md:my-5">
+    <div
+      to={`/menu/${item._id}`}
+      className="card shadow-xl mr-5 relative md:my-2"
+    >
       <div
         className={`rating gap-1 absolute right-2 top-2 p-4 heartStar bg-green ${
           isHeartFilled ? "text-red" : "text-white"
@@ -26,7 +29,7 @@ const Cards = ({ item }) => {
         <figure>
           <img
             src={item.image}
-            alt="Shoes"
+            alt={item.name}
             className="hover:scale-105 transition-all duration-300 md:h-72"
           />
         </figure>
@@ -38,7 +41,8 @@ const Cards = ({ item }) => {
         <p>{item.recipe}</p>
         <div className="card-actions justify-between items-center mt-2">
           <h5 className="font-semibold">
-            <span className="text-sm text-red">$ </span> {item.price}
+            <span className="text-sm">$</span>
+            {item.price}
           </h5>
           <div className="">
             <Button text={"add to cart"} />

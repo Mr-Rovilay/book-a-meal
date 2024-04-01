@@ -103,7 +103,7 @@ const SpecialDishes = () => {
         </button>
       </div>
 
-      <Slider ref={slider} {...settings} className="overflow-hidden mt-10">
+      <Slider ref={slider} {...settings} className="overflow-hidden mt-5">
         {recipes.map((item, i) => (
           <Cards item={item} key={i} />
         ))}

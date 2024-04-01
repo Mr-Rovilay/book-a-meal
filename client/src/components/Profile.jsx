@@ -1,7 +1,21 @@
 // import React, { useContext } from "react";
 // import { AuthContext } from "../contexts/AuthProvider";
 
+import { useContext } from "react";
+import { UserContext } from "../router/Router";
+import { removeFromSession } from "../common/session";
+
 const Profile = ({ user }) => {
+  const {
+    userAuth: { username, profile_img },
+    setUserAuth,
+  } = useContext(UserContext);
+
+  const signOutUser = (user) => {
+    removeFromSession("user");
+    setUserAuth({ access_token: null });
+  };
+
   return (
     <div>
       <div className="drawer drawer-end z-50 ">
@@ -13,14 +27,11 @@ const Profile = ({ user }) => {
             className="drawer-button btn btn-ghost btn-circle avatar "
           >
             <div className="w-10 rounded-full">
-              {user.photoURL ? (
-                <img alt="Tailwind CSS Navbar component" src={user.photoURL} />
-              ) : (
-                <img
-                  alt="Tailwind CSS Navbar component"
-                  src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
-                />
-              )}
+              <img
+                src={profile_img}
+                alt="profile_img"
+                className="w-full h-full object-cover rounded-full"
+              />
             </div>
           </label>
         </div>
@@ -30,10 +41,10 @@ const Profile = ({ user }) => {
             aria-label="close sidebar"
             className="drawer-overlay "
           ></label>
-          <ul className="menu p-4 w-80 min-h-full bg-white text-base-content text-2xl">
+          <ul className="menu p-4 w-80 min-h-full bg-white text-base-content text-xl">
             {/* Sidebar content here */}
             <li className="mt-3 hover:text-black hover:bg-grey opacity-75 border-grey focus:bg-transparent hover:bg-opacity-80">
-              <a href="/user-profile">Profile</a>
+              <a href={`/user/${username}`}>Profile</a>
             </li>
             <li className="mt-3 hover:text-black hover:bg-grey opacity-75 border-grey focus:bg-transparent hover:bg-opacity-80">
               <a href="/order">Orders</a>
@@ -45,9 +56,13 @@ const Profile = ({ user }) => {
               <a href="/dashboard">Dashboard (Admin Only)</a>
             </li>
             <li className="mt-3 hover:text-black hover:bg-grey opacity-75 border-grey focus:bg-transparent hover:bg-opacity-80">
-              <a className="btn capitalize bg-green border-green rounded-xl font-semibold px-6 text-white flex items-center gap-2 hover:bg-dark-green hover:bg-opacity-80 focus:scale-95 transition-all duration-200 ease-out">
+              <button
+                onClick={signOutUser}
+                className="btn capitalize bg-green border-green rounded-xl font-bold px-6 text-white flex items-center gap-2 hover:bg-dark-green hover:bg-opacity-80 focus:scale-95 transition-all duration-200 ease-out"
+              >
                 Logout
-              </a>
+                <a href="#">@{username}</a>
+              </button>
             </li>
           </ul>
         </div>

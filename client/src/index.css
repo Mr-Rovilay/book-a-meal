@@ -12,7 +12,7 @@ body {
 
 header,
 nav {
-  z-index: 10001 !important;
+  z-index: 10 !important;
 }
 
 .subtitle {

@@ -3,14 +3,17 @@ import { Link } from "react-router-dom";
 import { BsCart } from "react-icons/bs";
 import { useContext, useEffect, useState } from "react";
 import Model from "./Model";
-import { CiSearch } from "react-icons/ci";
-
 import Profile from "./Profile";
+import { UserContext } from "../router/Router";
 
-const Navbar = ({ text, icon }) => {
+const Navbar = () => {
   const [searchBox, setSearchBox] = useState(false);
-  const user1 = false;
   const [isSticky, setSticky] = useState(false);
+
+  const {
+    userAuth,
+    userAuth: { access_token, profile_img },
+  } = useContext(UserContext);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -43,11 +46,10 @@ const Navbar = ({ text, icon }) => {
           tabIndex={0}
           className="dropdown-content z-[1] menu p-2 bg-white text-black rounded-box w-52 text-xl"
         >
-          <Link to={"/menu"}>
-            <li className="mt-3 hover:text-black hover:bg-grey opacity-75 border-grey focus:bg-transparent hover:bg-opacity-80">
-              <a>All</a>
-            </li>
-          </Link>
+          <li className="mt-3 hover:text-black hover:bg-grey opacity-75 border-grey focus:bg-transparent hover:bg-opacity-80">
+            <a href="/menu">All</a>
+          </li>
+
           <li className="mt-3 hover:text-black hover:bg-grey opacity-75 border-grey focus:bg-transparent hover:bg-opacity-80">
             <a>Pizza</a>
           </li>
@@ -153,18 +155,24 @@ const Navbar = ({ text, icon }) => {
             </Link>
           </label>
 
-          {user1 ? (
-            <button
-              className="btn bg-green border-green text-white flex items-center gap-2 hover:bg-dark-green hover:bg-opacity-80 focus:scale-95 transition-all duration-200 ease-out"
-              onClick={() => document.getElementById("my_modal_5").showModal()}
-            >
-              <IoIosLogIn className="text-2xl" />
-              Login
-            </button>
+          {access_token ? (
+            <>
+              <Profile />
+            </>
           ) : (
-            <Profile user={user1} />
+            <>
+              <button
+                className="btn bg-green border-green text-white flex items-center gap-2 hover:bg-dark-green hover:bg-opacity-80 focus:scale-95 transition-all duration-200 ease-out"
+                onClick={() =>
+                  document.getElementById("my_modal_5").showModal()
+                }
+              >
+                <IoIosLogIn className="text-2xl" />
+                Login
+              </button>
+              <Model />
+            </>
           )}
-          <Model />
         </div>
       </div>
     </header>
