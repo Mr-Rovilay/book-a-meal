@@ -67,7 +67,7 @@ const UserProfile = () => {
       />
       <h1 className="text-2xl font-medium">@{profile_username}</h1>
       <p className="text-xl capitalize h-6">{fullname}</p>
-      <p className="flex flex-start items-start justify-start"></p>
+      <p className="flex flex-start items-start justify-start">user</p>
 
       <div className="flex gap-4 mt-2">
         {profileId == username ? (

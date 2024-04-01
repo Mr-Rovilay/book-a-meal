@@ -1,12 +1,12 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import axios from "axios";
 import Button from "../components/Button";
-import { CiUser } from "react-icons/ci";
+
 import InputBox from "../components/InputBox";
 import { UserContext } from "../router/Router";
 import { profileDataStructure } from "./UserProfile";
 import { Toaster, toast } from "react-hot-toast";
-import Loading from "../components/Loading";
+
 import { uploadImage } from "../common/aws";
 import { storeInSession } from "../common/session";
 

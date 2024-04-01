@@ -3,11 +3,13 @@ import "./db/db.js";
 import cors from "cors";
 import jwt from "jsonwebtoken";
 import User from "./Schema/User.js";
+import Menus from "./Schema/Menu.js";
 import aws from "aws-sdk";
 import { nanoid } from "nanoid";
 const app = express();
 
 import authRoute from "./routes/authRoute.js";
+import Carts from "./Schema/Carts.js";
 
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
@@ -146,6 +148,32 @@ app.post("/update-profile", verifyJWT, (req, res) => {
 
 // import route
 app.use("/router", authRoute);
+
+app.get("/menu", async (req, res) => {
+  try {
+    const menus = await Menus.find({});
+    res.status(200).json(menus);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+// app.post("/carts", async (req, res) => {
+//   const cartItem = req.body;
+//   const result = await Carts.insertOne(cartItem);
+//   res.send(result);
+// });
+
+app.post("/carts", async (req, res) => {
+  const cartItemData = req.body;
+  try {
+    const newItem = await Carts.create(cartItemData);
+    res.status(201).json(newItem);
+  } catch (error) {
+    console.error("Error inserting document into collection:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
 
 app.get("/", (req, res) => {
   res.send("OK...my message");

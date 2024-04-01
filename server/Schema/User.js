@@ -54,6 +54,11 @@ const userSchema = mongoose.Schema(
         maxlength: [100, "Address should not be more than 200"],
         default: "",
       },
+      role: {
+        type: String,
+        enum: ["user", "admin"],
+        default: "user",
+      },
       profile_img: {
         type: String,
         default: () => {

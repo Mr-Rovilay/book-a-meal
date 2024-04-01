@@ -81,7 +81,7 @@ const UserAuthForm = ({ type }) => {
         userAuthThroughServer(serverRoute, formData);
       })
       .error((err) => {
-        toast.error("Trouble loging in through Google");
+        toast.error("Trouble logging in through Google");
       });
   };
 
