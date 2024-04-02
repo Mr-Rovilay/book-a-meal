@@ -158,11 +158,19 @@ app.get("/menu", async (req, res) => {
   }
 });
 
-// app.post("/carts", async (req, res) => {
-//   const cartItem = req.body;
-//   const result = await Carts.insertOne(cartItem);
-//   res.send(result);
-// });
+// get cart using username
+app.get("/carts", async (req, res) => {
+  const username = req.query.username;
+  if (!username) {
+    return res.status(400).json({ error: "Username parameter is missing" });
+  }
+  try {
+    const result = await Carts.find({ username: username });
+    res.send(result);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
 
 app.post("/carts", async (req, res) => {
   const cartItemData = req.body;
@@ -172,6 +180,43 @@ app.post("/carts", async (req, res) => {
   } catch (error) {
     console.error("Error inserting document into collection:", error);
     res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+// get cart
+app.get("/carts/:id", async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    // Find cart by its unique ID
+    const cart = await Carts.findById(id);
+    if (!cart) {
+      return res.status(404).send({ message: "Cart not found" });
+    }
+    res.status(200).json(cart);
+  } catch (error) {
+    res
+      .status(500)
+      .send({ message: "Error fetching cart", error: error.message });
+  }
+});
+
+// delete items from carts
+// DELETE endpoint to delete an item by ID
+app.delete("/carts/:id", async (req, res) => {
+  try {
+    const { id } = req.params.id;
+    const carts = await Carts.deleteOne(id);
+
+    if (!carts) {
+      return res.status(404).send({ message: "Item not found" });
+    }
+
+    res.status(200).send({ message: "Item deleted successfully", carts });
+  } catch (error) {
+    res
+      .status(500)
+      .send({ message: "Error deleting item", error: error.message });
   }
 });
 

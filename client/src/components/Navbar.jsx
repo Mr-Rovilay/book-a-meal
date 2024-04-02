@@ -5,32 +5,27 @@ import { useContext, useEffect, useState } from "react";
 import Model from "./Model";
 import Profile from "./Profile";
 import { UserContext } from "../router/Router";
+import useCart from "../hooks/useCart";
 
 const Navbar = () => {
   const [searchBox, setSearchBox] = useState(false);
   const [isSticky, setSticky] = useState(false);
-
   const {
-    userAuth,
-    userAuth: { access_token, profile_img },
+    userAuth: { access_token, profile_img, username },
   } = useContext(UserContext);
+  const [cart, refetch] = useCart();
 
   useEffect(() => {
-    const handleScroll = () => {
-      const offset = window.scrollY;
-      if (offset > 0) {
-        setSticky(true);
-      } else {
-        setSticky(false);
-      }
-    };
-
+    const handleScroll = () => setSticky(window.scrollY > 0);
     window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(() => {
+    if (username) {
+      refetch();
+    }
+  }, [username, refetch]);
 
   const navItems = (
     <>
@@ -149,7 +144,7 @@ const Navbar = () => {
               <div className="relative flex items-center justify-center ">
                 <BsCart className="fill w-6 h-6 md:w-5 md:h-5" />
                 <div className="absolute -top-2 -right-2 w-5 h-5 rounded-full bg-red flex items-center justify-center">
-                  <p className="text-white">0</p>
+                  <p className="text-white">{cart.length || 0}</p>
                 </div>
               </div>
             </Link>

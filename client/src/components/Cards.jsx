@@ -1,16 +1,19 @@
 import React, { useState } from "react";
 import { FaHeart } from "react-icons/fa";
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import Button from "./Button";
 import { useContext } from "react";
 import { UserContext } from "../router/Router";
 import { profileDataStructure } from "../pages/UserProfile";
 import toast from "react-hot-toast";
+import Swal from "sweetalert2";
 
 const Cards = ({ item }) => {
   const { name, image, price, recipe, _id } = item;
   // let [user, setUser] = useState(null);
   const [isHeartFilled, setIsHeartFilled] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   // let { id: profileId } = useParams();
 
@@ -55,18 +58,33 @@ const Cards = ({ item }) => {
       })
         .then((res) => {
           if (!res.ok) {
-            toast.error("Failed to add item to cart");
+            throw new Error("Failed to add item to cart");
           }
           return res.json();
         })
         .then((data) => {
           console.log(data);
-          // Optionally, you can provide feedback to the user that the item was added to the cart successfully
+          toast.success("Item added to cart successfully!");
         })
         .catch((error) => {
           console.error("Error adding item to cart:", error);
-          // Optionally, you can provide feedback to the user that there was an error adding the item to the cart
+          toast.error("Failed to add item to cart. Please try again.");
         });
+    } else {
+      // toast.error("Please log in to add items to your cart.");
+      Swal.fire({
+        title: "Login",
+        text: "Please log in to add items to your cart.",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "sign up",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate("/signup", { state: { from: location } });
+        }
+      });
     }
   };
 

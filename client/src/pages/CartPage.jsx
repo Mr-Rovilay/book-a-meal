@@ -1,12 +1,66 @@
 import { FaTrash } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import profile from "/assets/team_member_3.png";
+import { Toaster, toast } from "react-hot-toast"; // Import toast from react-hot-toast
 import Button from "../components/Button";
+import useCart from "../hooks/useCart";
+import Swal from "sweetalert2";
 
 const CartPage = () => {
-  const user = true;
+  const [cart, refetch] = useCart();
+  const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+  const totalPrice = cart.reduce(
+    (total, item) => total + item.price * item.quantity,
+    0
+  );
+  let user = true;
+
+  const handleDelete = (item) => {
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: "btn bg-red hover:bg-red ml-2 text-white",
+        cancelButton: "btn bg-green hover:bg-green text-white",
+      },
+      buttonsStyling: false,
+    });
+
+    swalWithBootstrapButtons
+      .fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes, delete it!",
+        cancelButtonText: "No, cancel!",
+        reverseButtons: true,
+      })
+      .then((result) => {
+        if (result.isConfirmed) {
+          fetch(`${import.meta.env.VITE_SERVER_DOMAIN}/carts/${item.id}`, {
+            method: "DELETE",
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              if (data.deletedCount > 0) {
+                refetch();
+                // Use toast.success to show a success message
+                toast.success("Item has been deleted successfully...", {
+                  duration: 3000, // Optional: Specify duration
+                });
+              }
+            });
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+          swalWithBootstrapButtons.fire({
+            title: "Cancelled",
+            text: "Your item is safe :)",
+            icon: "error",
+          });
+        }
+      });
+  };
+
   return (
     <div className="section-container mx-auto xl:px-24 px-4">
+      <Toaster /> {/* Place the toaster component here */}
       {/* banner */}
       <div className="section-container">
         <div className="py-28 flex flex-col items-center justify-center">
@@ -35,35 +89,37 @@ const CartPage = () => {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>
-                    <div className="avatar">
-                      <div className="mask mask-squircle w-12 h-12">
-                        <img
-                          src={profile}
-                          alt="Avatar Tailwind CSS Component"
-                        />
+                {cart.map((item, i) => (
+                  <tr key={i}>
+                    <td>{i + 1}</td>
+                    <td>
+                      <div className="avatar">
+                        <div className="mask mask-squircle w-12 h-12">
+                          <img src={item.image} alt="" />
+                        </div>
                       </div>
-                    </div>
-                  </td>
-                  <td className="font-medium">name</td>
-                  <td>
-                    <button className="btn btn-xs">-</button>
-                    <input
-                      type="number"
-                      value={"quantity"}
-                      className="w-10 mx-2 text-center overflow-hidden appearance-none"
-                    />
-                    <button className="btn btn-xs">+</button>
-                  </td>
-                  <td>$20</td>
-                  <td>
-                    <button className="btn btn-sm border-none text-red bg-transparent">
-                      <FaTrash />
-                    </button>
-                  </td>
-                </tr>
+                    </td>
+                    <td className="font-medium">{item.name}</td>
+                    <td>
+                      <button className="btn btn-xs">-</button>
+                      <input
+                        type="number"
+                        value={"quantity"}
+                        className="w-10 mx-2 text-center overflow-hidden appearance-none"
+                      />
+                      <button className="btn btn-xs">+</button>
+                    </td>
+                    <td>{item.price}</td>
+                    <td>
+                      <button
+                        className="btn btn-sm border-none text-red bg-transparent"
+                        onClick={() => handleDelete(item)}
+                      >
+                        <FaTrash />
+                      </button>
+                    </td>
+                  </tr>
+                ))}
               </tbody>
               {/* foot */}
             </table>
@@ -82,9 +138,9 @@ const CartPage = () => {
           </div>
           <div className="md:w-1/2 space-y-3">
             <h3 className="text-lg font-semibold">Shopping Details</h3>
-            <p>Total Items: 2</p>
+            <p>Total Items: {totalItems}</p>
             <p>
-              Total Price: <span id="total-price">$2</span>
+              Total Price: <span id="total-price">${totalPrice}</span>
             </p>
             <Link to="/delivery-info">
               <div className="mt-4">
@@ -94,7 +150,6 @@ const CartPage = () => {
           </div>
         </div>
       </div>
-
       <div className="text-center mt-20">
         <p>Cart is empty. Please add products.</p>
         <div className="flex items-center justify-center mt-4">

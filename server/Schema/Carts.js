@@ -6,6 +6,7 @@ const cartSchema = new Schema({
   name: {
     type: String,
     trim: true,
+    required: true,
     minlength: 3,
   },
   recipe: String,
