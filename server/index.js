@@ -148,27 +148,143 @@ app.post("/update-profile", verifyJWT, (req, res) => {
 });
 
 // get single user
-
 app.get("/users/:id", async (req, res) => {
-  try {
-    const user = await User.findById(req.params.id)``;
-    if (!user) return res.status(404).send("User not found.");
+  const { id } = req.params;
 
-    res.send(user);
+  try {
+    // Fetch the user by their ID from the database
+    const user = await User.findById(id);
+
+    if (!user) {
+      // If no user found with the provided ID, return 404 Not Found
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    // Return the user as JSON response
+    res.status(200).json(user);
   } catch (error) {
-    res.status(500).send("Something went wrong");
+    console.error("Error fetching user:", error);
+    res.status(500).json({ error: "Internal server error" }); // Handle errors
+  }
+});
+
+// Define route to delete a single user by ID
+app.delete("/users/:id", async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    // Delete the user by their ID from the database
+    const deletedUser = await User.findByIdAndDelete(id);
+
+    if (!deletedUser) {
+      // If no user found with the provided ID, return 404 Not Found
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    // Return a success message
+    res.status(200).json({ message: "User deleted successfully" });
+  } catch (error) {
+    console.error("Error deleting user:", error);
+    res.status(500).json({ error: "Internal server error" }); // Handle errors
+  }
+});
+
+// route to get all users
+app.get("/users", async (req, res) => {
+  try {
+    // Fetch all users from the database
+    const users = await User.find({});
+    res.status(200).json(users); // Return the list of users as JSON response
+  } catch (error) {
+    console.error("Error fetching users:", error);
+    res.status(500).json({ error: "Internal server error" }); // Handle errors
+  }
+});
+
+// get admin
+// Define route to get admin status based on email
+app.get("/admin/:email", async (req, res) => {
+  const email = req.params.email;
+
+  try {
+    // Query for the user with the provided email
+    const user = await User.findOne({ email: email });
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    // Check if the user has the role of admin
+    const isAdmin = user.role === "admin";
+
+    if (!isAdmin) {
+      return res.status(403).json({ message: "Forbidden user" });
+    }
+
+    // Return admin status
+    res.status(200).json({ isAdmin: isAdmin });
+  } catch (error) {
+    console.error("Error checking admin status:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+// Define route to make a user an admin
+app.put("/admin/:userId", async (req, res) => {
+  const { userId } = req.params;
+
+  try {
+    // Find the user by their ID
+    const user = await User.findById(userId);
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    // Update the user's role to "admin"
+    user.role = "admin";
+    await user.save();
+
+    // Return success message
+    res.status(200).json({ message: "User has been made an admin" });
+  } catch (error) {
+    console.error("Error making user an admin:", error);
+    res.status(500).json({ error: "Internal server error" }); // Handle errors
   }
 });
 
 // import route
 app.use("/router", authRoute);
 
+// get all menus
 app.get("/menu", async (req, res) => {
   try {
     const menus = await Menus.find({});
     res.status(200).json(menus);
   } catch (error) {
     res.status(500).json({ message: error.message });
+  }
+});
+
+// get single menu
+// Define route to get a single menu item by ID
+app.get("/menus/:id", async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    // Fetch the menu item by its ID from the database
+    const menuItem = await Menus.findById(id);
+
+    if (!menuItem) {
+      // If no menu item found with the provided ID, return 404 Not Found
+      return res.status(404).json({ message: "Menu item not found" });
+    }
+
+    // Return the menu item as JSON response
+    res.status(200).json(menuItem);
+  } catch (error) {
+    console.error("Error fetching menu item:", error);
+    res.status(500).json({ error: "Internal server error" }); // Handle errors
   }
 });
 

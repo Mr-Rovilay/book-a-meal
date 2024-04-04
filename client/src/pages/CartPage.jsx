@@ -9,7 +9,6 @@ import { UserContext } from "../router/Router";
 
 const CartPage = () => {
   const [cart, refetch] = useCart();
-  console.log(cart);
   const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
   const totalPrice = cart.reduce(
     (total, item) => total + item.price * item.quantity,
@@ -182,7 +181,7 @@ const CartPage = () => {
               </thead>
               <tbody>
                 {cart.map((item, i) => (
-                  <tr key={i}>
+                  <tr key={i} className="bg-grey">
                     <td>{i + 1}</td>
                     <td>
                       <div className="avatar">
