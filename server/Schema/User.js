@@ -51,7 +51,6 @@ const userSchema = mongoose.Schema(
       },
       address: {
         type: String,
-        maxlength: [100, "Address should not be more than 200"],
         default: "",
       },
       role: {

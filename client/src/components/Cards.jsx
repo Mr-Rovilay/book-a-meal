@@ -10,32 +10,14 @@ import Swal from "sweetalert2";
 
 const Cards = ({ item }) => {
   const { name, image, price, recipe, _id } = item;
-  // let [user, setUser] = useState(null);
   const [isHeartFilled, setIsHeartFilled] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
-
-  // let { id: profileId } = useParams();
-
-  // let [profile, setProfile] = useState(profileDataStructure);
-  // let [loading, setLoading] = useState(true);
-
-  // let {
-  //   personal_info: {
-  //     fullname,
-  //     username: profile_username,
-  //     profile_img,
-  //     address,
-  //   },
-  //   social_links,
-  //   joinedAt,
-  // } = profile;
 
   const {
     userAuth,
     userAuth: { access_token },
   } = useContext(UserContext);
-  // console.log(userAuth);
 
   const addToCart = (item) => {
     if (userAuth && userAuth?.username) {
@@ -47,7 +29,6 @@ const Cards = ({ item }) => {
         price,
         username: userAuth.username,
       };
-      // console.log(cartItem);
 
       fetch(import.meta.env.VITE_SERVER_DOMAIN + "/carts", {
         method: "POST",
@@ -71,20 +52,7 @@ const Cards = ({ item }) => {
           toast.error("Failed to add item to cart. Please try again.");
         });
     } else {
-      // toast.error("Please log in to add items to your cart.");
-      Swal.fire({
-        title: "Login",
-        text: "Please log in to add items to your cart.",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "sign up",
-      }).then((result) => {
-        if (result.isConfirmed) {
-          navigate("/signup", { state: { from: location } });
-        }
-      });
+      toast.error("Please login to add items to your cart.");
     }
   };
 

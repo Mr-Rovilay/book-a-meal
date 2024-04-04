@@ -6,6 +6,7 @@ import { UserContext } from "../router/Router";
 export const profileDataStructure = {
   personal_info: {
     fullname: "",
+    email: "",
     username: "",
     profile_img: "",
     address: "",

@@ -7,6 +7,7 @@ import Menus from "./Schema/Menu.js";
 import aws from "aws-sdk";
 import { nanoid } from "nanoid";
 const app = express();
+import { ObjectId } from "mongodb";
 
 import authRoute from "./routes/authRoute.js";
 import Carts from "./Schema/Carts.js";
@@ -146,6 +147,19 @@ app.post("/update-profile", verifyJWT, (req, res) => {
     });
 });
 
+// get single user
+
+app.get("/users/:id", async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id)``;
+    if (!user) return res.status(404).send("User not found.");
+
+    res.send(user);
+  } catch (error) {
+    res.status(500).send("Something went wrong");
+  }
+});
+
 // import route
 app.use("/router", authRoute);
 
@@ -217,6 +231,30 @@ app.delete("/carts/:id", async (req, res) => {
     res
       .status(500)
       .send({ message: "Error deleting item", error: error.message });
+  }
+});
+
+// update carts quentity
+app.put("/carts/:id", async (req, res) => {
+  const { id } = req.params; // Correctly extracting id from req.params
+  const { quantity } = req.body;
+  const filter = { _id: new ObjectId(id) };
+  const options = { upsert: true };
+
+  const updateDoc = {
+    $set: {
+      quantity: parseInt(quantity, 10),
+    },
+  };
+
+  try {
+    const result = await Carts.updateOne(filter, updateDoc, options);
+    res
+      .status(200)
+      .json({ success: true, message: "Cart item updated successfully" });
+  } catch (error) {
+    console.error("Error updating cart item:", error);
+    res.status(500).json({ success: false, message: "Internal server error" });
   }
 });
 

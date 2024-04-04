@@ -52,6 +52,12 @@ input:disabled ~ .input-icon {
   /* background-color: red !important; */
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 .slick-dots li button:before {
   color: rgb(179, 178, 178) !important;
   font-size: 10px !important;

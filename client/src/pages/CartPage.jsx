@@ -4,15 +4,105 @@ import { Toaster, toast } from "react-hot-toast"; // Import toast from react-hot
 import Button from "../components/Button";
 import useCart from "../hooks/useCart";
 import Swal from "sweetalert2";
+import { useContext, useEffect, useState } from "react";
+import { UserContext } from "../router/Router";
 
 const CartPage = () => {
   const [cart, refetch] = useCart();
+  console.log(cart);
   const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
   const totalPrice = cart.reduce(
     (total, item) => total + item.price * item.quantity,
     0
   );
-  let user = true;
+  const [cartItems, setCartItems] = useState([]);
+
+  let { userAuth } = useContext(UserContext);
+  console.log(userAuth);
+
+  // Calculate the total price for each item in the cart
+  const calculateTotalPrice = (item) => {
+    return item.price * item.quantity;
+  };
+  // Handle quantity increase
+  const handleIncrease = async (item) => {
+    console.log(item._id);
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_SERVER_DOMAIN}/carts/${item._id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ quantity: item.quantity + 1 }),
+        }
+      );
+
+      if (response.ok) {
+        const updatedCart = cartItems.map((cartItem) => {
+          if (cartItem.id === item.id) {
+            return {
+              ...cartItem,
+              quantity: cartItem.quantity + 1,
+            };
+          }
+          return cartItem;
+        });
+        await refetch();
+        setCartItems(updatedCart);
+      } else {
+        toast.error("Failed to update quantity");
+      }
+    } catch (error) {
+      toast.error("Error updating quantity:", error);
+    }
+  };
+
+  const handleDecrease = async (item) => {
+    if (item.quantity > 1) {
+      try {
+        const response = await fetch(
+          `${import.meta.env.VITE_SERVER_DOMAIN}/carts/${item._id}`,
+          {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ quantity: item.quantity - 1 }),
+          }
+        );
+
+        if (response.ok) {
+          const updatedCart = cartItems.map((cartItem) => {
+            if (cartItem.id === item.id) {
+              return {
+                ...cartItem,
+                quantity: cartItem.quantity - 1,
+              };
+            }
+            return cartItem;
+          });
+          await refetch();
+          setCartItems(updatedCart);
+        } else {
+          toast.error("Failed to update quantity");
+        }
+      } catch (error) {
+        toast.error("Error updating quantity:", error);
+      }
+    } else {
+      toast.error("Item can't be zero");
+    }
+  };
+
+  const cartSubtotal = cart.reduce((total, item) => {
+    return total + calculateTotalPrice(item);
+  }, 0);
+
+  // Calculate the order total
+  const orderTotal = cartSubtotal;
+  // console.log(orderTotal)
 
   const handleDelete = (item) => {
     const swalWithBootstrapButtons = Swal.mixin({
@@ -35,18 +125,20 @@ const CartPage = () => {
       })
       .then((result) => {
         if (result.isConfirmed) {
-          fetch(`${import.meta.env.VITE_SERVER_DOMAIN}/carts/${item.id}`, {
+          fetch(`${import.meta.env.VITE_SERVER_DOMAIN}/carts/${item._id}`, {
             method: "DELETE",
           })
             .then((res) => res.json())
             .then((data) => {
+              refetch();
               if (data.deletedCount > 0) {
-                refetch();
-                // Use toast.success to show a success message
-                toast.success("Item has been deleted successfully...", {
-                  duration: 3000, // Optional: Specify duration
-                });
+                console.log(data);
+                toast.success("Item added to cart successfully!");
               }
+            })
+            .catch((error) => {
+              console.error("Error deleting item");
+              toast.error("Failed to delete item. Please try again.");
             });
         } else if (result.dismiss === Swal.DismissReason.cancel) {
           swalWithBootstrapButtons.fire({
@@ -101,15 +193,26 @@ const CartPage = () => {
                     </td>
                     <td className="font-medium">{item.name}</td>
                     <td>
-                      <button className="btn btn-xs">-</button>
+                      <button
+                        className="btn btn-xs"
+                        onClick={() => handleDecrease(item)}
+                      >
+                        -
+                      </button>
                       <input
                         type="number"
-                        value={"quantity"}
+                        value={item.quantity}
+                        onChange={() => console.log(item.quantity)}
                         className="w-10 mx-2 text-center overflow-hidden appearance-none"
                       />
-                      <button className="btn btn-xs">+</button>
+                      <button
+                        className="btn btn-xs"
+                        onClick={() => handleIncrease(item)}
+                      >
+                        +
+                      </button>
                     </td>
-                    <td>{item.price}</td>
+                    <td>{calculateTotalPrice(item).toFixed(2)}</td>
                     <td>
                       <button
                         className="btn btn-sm border-none text-red bg-transparent"
@@ -129,18 +232,19 @@ const CartPage = () => {
         <div className="flex flex-col md:flex-row justify-between items-start my-12 gap-8">
           <div className="md:w-1/2 space-y-3">
             <h3 className="text-lg font-semibold">Customer Details</h3>
-            <p>Name: {user?.displayName || "None"}</p>
-            <p>Email: {user?.email}</p>
+            <p className="capitalize">Name: {userAuth?.fullname || "None"}</p>
+            <p>Email: {userAuth?.email}</p>
             <p>
-              User_id:<span className="text-sm">{user?.uid}</span>
+              User_id:<span className="text-sm bold"> {userAuth?.id}</span>
             </p>
-            <p>Address: {user?.address}</p>
+            <p>Address: {userAuth.address || "Not provided"}</p>
           </div>
           <div className="md:w-1/2 space-y-3">
             <h3 className="text-lg font-semibold">Shopping Details</h3>
             <p>Total Items: {totalItems}</p>
             <p>
-              Total Price: <span id="total-price">${totalPrice}</span>
+              Total Price:{" "}
+              <span id="total-price">${orderTotal.toFixed(2)}</span>
             </p>
             <Link to="/delivery-info">
               <div className="mt-4">
@@ -151,7 +255,7 @@ const CartPage = () => {
         </div>
       </div>
       <div className="text-center mt-20">
-        <p>Cart is empty. Please add products.</p>
+        {cart.length === 0 && <p>Cart is empty. Please add products.</p>}
         <div className="flex items-center justify-center mt-4">
           <Link to="/menu">
             <Button text={"back to menu"} />
