@@ -253,11 +253,11 @@ app.get("/users", async (req, res) => {
 
 // Define route to make a user an admin
 app.patch("/users/admin/:id", async (req, res) => {
-  const { _id } = req.params;
+  const { id } = req.params;
 
   try {
     // Find the user by their ID
-    const user = await User.findById(_id);
+    const user = await User.findById(id);
 
     if (!user) {
       return res.status(404).json({ message: "User not found" });
