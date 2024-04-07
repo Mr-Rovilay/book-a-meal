@@ -41,7 +41,7 @@ const SignUp = () => {
               <InputBox
                 name={"password"}
                 type={"password"}
-                placeholder={"Passwod"}
+                placeholder={"Password"}
               />
             </div>
             <div className="form-control mt-6">

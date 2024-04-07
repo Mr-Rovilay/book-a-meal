@@ -20,7 +20,7 @@ const verifyJWT = (req, res, next) => {
   const authHeader = req.headers["authorization"];
   const token = authHeader && authHeader.split(" ")[1];
   if (token == null) {
-    return res.status(401).json({ error: "No access token" });
+    return res.status(401).json({ error: "No access token or unauthorized" });
   }
   jwt.verify(token, process.env.SECRET_ACCESS_KEY, (err, user) => {
     if (err) {
@@ -189,6 +189,28 @@ app.delete("/users/:id", async (req, res) => {
   }
 });
 
+app.get("/users/admin/:email", async (req, res) => {
+  const { email } = req.params;
+
+  try {
+    // Find the user by their email
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    // Check if the user is an admin
+    const isAdmin = user.role === "admin";
+
+    // Return admin status
+    res.status(200).json({ isAdmin });
+  } catch (error) {
+    console.error("Error checking admin status:", error);
+    res.status(500).json({ error: "Internal server error" }); // Handle errors
+  }
+});
+
 // route to get all users
 app.get("/users", async (req, res) => {
   try {
@@ -203,39 +225,39 @@ app.get("/users", async (req, res) => {
 
 // get admin
 // Define route to get admin status based on email
-app.get("/admin/:email", async (req, res) => {
-  const email = req.params.email;
+// app.get("/admin/:email", async (req, res) => {
+//   const email = req.params.email;
 
-  try {
-    // Query for the user with the provided email
-    const user = await User.findOne({ email: email });
+//   try {
+//     // Query for the user with the provided email
+//     const user = await User.findOne({ email: email });
 
-    if (!user) {
-      return res.status(404).json({ message: "User not found" });
-    }
+//     if (!user) {
+//       return res.status(404).json({ message: "User not found" });
+//     }
 
-    // Check if the user has the role of admin
-    const isAdmin = user.role === "admin";
+//     // Check if the user has the role of admin
+//     const isAdmin = user.role === "admin";
 
-    if (!isAdmin) {
-      return res.status(403).json({ message: "Forbidden user" });
-    }
+//     if (!isAdmin) {
+//       return res.status(403).json({ message: "Forbidden user" });
+//     }
 
-    // Return admin status
-    res.status(200).json({ isAdmin: isAdmin });
-  } catch (error) {
-    console.error("Error checking admin status:", error);
-    res.status(500).json({ error: "Internal server error" });
-  }
-});
+//     // Return admin status
+//     res.status(200).json({ isAdmin: isAdmin });
+//   } catch (error) {
+//     console.error("Error checking admin status:", error);
+//     res.status(500).json({ error: "Internal server error" });
+//   }
+// });
 
 // Define route to make a user an admin
-app.put("/admin/:userId", async (req, res) => {
-  const { userId } = req.params;
+app.patch("/users/admin/:id", async (req, res) => {
+  const { _id } = req.params;
 
   try {
     // Find the user by their ID
-    const user = await User.findById(userId);
+    const user = await User.findById(_id);
 
     if (!user) {
       return res.status(404).json({ message: "User not found" });
@@ -288,8 +310,44 @@ app.get("/menus/:id", async (req, res) => {
   }
 });
 
-// get cart using username
-app.get("/carts", async (req, res) => {
+// Route to get cart items by username
+app.get("/carts/:username", verifyJWT, async (req, res) => {
+  try {
+    const { username } = req.params;
+
+    // Fetch cart items based on username
+    const cartItems = await Carts.find({ username });
+
+    // If cart is found, send it as response
+    if (cartItems) {
+      res.status(200).json(cartItems);
+    } else {
+      res.status(404).json({ message: "Cart not found" });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Server Error" });
+  }
+});
+
+// Define route to delete a user by ID
+// app.delete("/users/:userId", async (req, res) => {
+//   const { userId } = req.params;
+
+//   try {
+//     // Find the user by their ID and delete it
+//     await User.findByIdAndDelete(userId);
+
+//     // Return success message
+//     res.status(200).json({ message: "User deleted successfully" });
+//   } catch (error) {
+//     console.error("Error deleting user:", error);
+//     res.status(500).json({ error: "Internal server error" }); // Handle errors
+//   }
+// });
+
+// get all cart using username
+app.get("/carts", verifyJWT, async (req, res) => {
   const username = req.query.username;
   if (!username) {
     return res.status(400).json({ error: "Username parameter is missing" });
@@ -302,6 +360,7 @@ app.get("/carts", async (req, res) => {
   }
 });
 
+// create carts
 app.post("/carts", async (req, res) => {
   const cartItemData = req.body;
   try {

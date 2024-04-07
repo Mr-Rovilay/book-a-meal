@@ -1,6 +1,6 @@
 import { FaTrash } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { Toaster, toast } from "react-hot-toast"; // Import toast from react-hot-toast
+import { Toaster, toast } from "react-hot-toast";
 import Button from "../components/Button";
 import useCart from "../hooks/useCart";
 import Swal from "sweetalert2";
@@ -10,14 +10,9 @@ import { UserContext } from "../router/Router";
 const CartPage = () => {
   const [cart, refetch] = useCart();
   const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
-  const totalPrice = cart.reduce(
-    (total, item) => total + item.price * item.quantity,
-    0
-  );
   const [cartItems, setCartItems] = useState([]);
 
   let { userAuth } = useContext(UserContext);
-  console.log(userAuth);
 
   // Calculate the total price for each item in the cart
   const calculateTotalPrice = (item) => {
@@ -25,7 +20,6 @@ const CartPage = () => {
   };
   // Handle quantity increase
   const handleIncrease = async (item) => {
-    console.log(item._id);
     try {
       const response = await fetch(
         `${import.meta.env.VITE_SERVER_DOMAIN}/carts/${item._id}`,
@@ -103,50 +97,34 @@ const CartPage = () => {
   const orderTotal = cartSubtotal;
   // console.log(orderTotal)
 
-  const handleDelete = (item) => {
-    const swalWithBootstrapButtons = Swal.mixin({
-      customClass: {
-        confirmButton: "btn bg-red hover:bg-red ml-2 text-white",
-        cancelButton: "btn bg-green hover:bg-green text-white",
-      },
-      buttonsStyling: false,
-    });
-
-    swalWithBootstrapButtons
-      .fire({
-        title: "Are you sure?",
-        text: "You won't be able to revert this!",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonText: "Yes, delete it!",
-        cancelButtonText: "No, cancel!",
-        reverseButtons: true,
-      })
-      .then((result) => {
-        if (result.isConfirmed) {
-          fetch(`${import.meta.env.VITE_SERVER_DOMAIN}/carts/${item._id}`, {
-            method: "DELETE",
-          })
-            .then((res) => res.json())
-            .then((data) => {
-              refetch();
-              if (data.deletedCount > 0) {
-                console.log(data);
-                toast.success("Item added to cart successfully!");
-              }
-            })
-            .catch((error) => {
-              console.error("Error deleting item");
-              toast.error("Failed to delete item. Please try again.");
-            });
-        } else if (result.dismiss === Swal.DismissReason.cancel) {
-          swalWithBootstrapButtons.fire({
-            title: "Cancelled",
-            text: "Your item is safe :)",
-            icon: "error",
-          });
+  const handleDelete = async (item) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes, delete it!",
+      cancelButtonText: "No, cancel!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          const response = await fetch(
+            `${import.meta.env.VITE_SERVER_DOMAIN}/carts/${item._id}`,
+            {
+              method: "DELETE",
+            }
+          );
+          if (response.ok) {
+            await refetch(); // Refetch cart
+            Swal.fire("Deleted!", "Your item has been deleted.", "success");
+          } else {
+            toast.error("Failed to delete cart item.");
+          }
+        } catch (error) {
+          toast.error(`Error deleting item: ${error.message}`);
         }
-      });
+      }
+    });
   };
 
   return (
@@ -181,7 +159,7 @@ const CartPage = () => {
               </thead>
               <tbody>
                 {cart.map((item, i) => (
-                  <tr key={i} className="bg-grey">
+                  <tr key={i}>
                     <td>{i + 1}</td>
                     <td>
                       <div className="avatar">
@@ -236,7 +214,7 @@ const CartPage = () => {
             <p>
               User_id:<span className="text-sm bold"> {userAuth?.id}</span>
             </p>
-            <p>Address: {userAuth.address || "Not provided"}</p>
+            <p>Address: {userAuth?.address || "Not provided"}</p>
           </div>
           <div className="md:w-1/2 space-y-3">
             <h3 className="text-lg font-semibold">Shopping Details</h3>

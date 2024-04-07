@@ -28,6 +28,7 @@ export const UserContext = createContext({});
 // Define the router configuration
 const AppRouter = ({ type }) => {
   const [userAuth, setUserAuth] = useState({});
+  const [user, setUser] = useState({});
 
   useEffect(() => {
     let userInSession = lookInSession("user");
@@ -39,7 +40,7 @@ const AppRouter = ({ type }) => {
   return (
     <AnimationWrapper keyValue={type}>
       <ScrollToTop />
-      <UserContext.Provider value={{ userAuth, setUserAuth }}>
+      <UserContext.Provider value={{ userAuth, setUserAuth, user, setUser }}>
         <Routes>
           {/* user route */}
           <Route path="/" element={<Main />}>

@@ -1,16 +1,16 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import axios from "axios";
-import Button from "../components/Button";
-
 import InputBox from "../components/InputBox";
 import { UserContext } from "../router/Router";
 import { profileDataStructure } from "./UserProfile";
 import { Toaster, toast } from "react-hot-toast";
-
 import { uploadImage } from "../common/aws";
 import { storeInSession } from "../common/session";
+import { useNavigate } from "react-router-dom";
 
 const UpdateProfile = () => {
+  const navigate = useNavigate();
+
   const [loading, setLoading] = useState(true);
   const {
     userAuth,
@@ -148,6 +148,8 @@ const UpdateProfile = () => {
         toast.dismiss(loadingToast);
         e.target.removeAttribute("disabled");
         toast.success("Profile Updated");
+        // Navigate to the user-id page
+        navigate(`/user/${username}`);
       })
       .catch(({ response }) => {
         toast.dismiss(loadingToast);

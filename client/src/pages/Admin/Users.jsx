@@ -1,22 +1,62 @@
 import { FaTrashAlt, FaUsers } from "react-icons/fa";
 import { useQuery } from "@tanstack/react-query";
-import { useContext } from "react";
-import toast from "react-hot-toast";
+import axios from "axios";
+import { useContext, useState } from "react";
+import { toast, Toaster } from "react-hot-toast";
 import { UserContext } from "../../router/Router";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const Users = () => {
-  const { data: users = [] } = useQuery({
+  const axiosSecure = useAxiosSecure();
+  const [loadingUser, setLoadingUser] = useState(null);
+
+  const {
+    data: users = [],
+    refetch,
+    isLoading,
+    isError,
+  } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
-      const res = await fetch(import.meta.env.VITE_SERVER_DOMAIN + "/users");
-      return res.json();
+      const response = await axiosSecure.get("/users");
+      return response.data;
     },
   });
-  console.log(users);
+
+  const handleMakeAdmin = async (user) => {
+    try {
+      await axiosSecure.patch(`/users/admin/${user._id}`);
+      toast.success(`${user.personal_info.fullname} is now an admin`);
+      await refetch();
+    } catch (error) {
+      console.error("Failed to update user role:", error);
+      toast.error("Failed to make user an admin. Please try again.");
+    }
+    refetch();
+  };
+  if (isLoading) return <div>Loading...</div>; // Show loading indicator
+  if (isError) return <div>Error loading data. Please try again.</div>;
+
+  // delete
+  const handleDeleteUser = async (userId) => {
+    setLoadingUser(userId); // Set loading state for specific user
+
+    try {
+      await axiosSecure.delete(`/users/${userId}`);
+      toast.success("User deleted successfully");
+      // Refetch user data after deletion
+    } catch (error) {
+      console.error("Failed to delete user:", error);
+      toast.error("Failed to delete user. Please try again.");
+    } finally {
+      setLoadingUser(null); // Reset loading state
+    }
+  };
 
   return (
     <div>
       <div className="flex items-center justify-between m-4">
+        <Toaster />
         <h5>All Users</h5>
         <h5>Total Users: {users.length}</h5>{" "}
         {/* Display total number of users */}
@@ -49,16 +89,27 @@ const Users = () => {
                   {user.personal_info.role === "admin" ? (
                     "Admin"
                   ) : (
-                    <button className="btn btn-xs btn-circle bg-twitter">
+                    <button
+                      onClick={() => handleMakeAdmin(user)}
+                      className="btn btn-xs btn-circle bg-twitter text-white"
+                    >
                       <FaUsers />
                     </button>
                   )}
                 </td>
                 <td>
                   {/* Render delete button */}
-                  <button className="btn btn-xs bg-orange-500 bg-red text-white">
-                    <FaTrashAlt />
+                  <button
+                    className="btn bg-orange-500 bg-red text-white hover:bg-red"
+                    onClick={() => handleDeleteUser(user._id)}
+                    disabled={loadingUser === user._id} // Disable button while loading
+                  >
+                    {loadingUser === user._id ? "Deleting..." : <FaTrashAlt />}
                   </button>
+
+                  {/* <button className="btn bg-orange-500 bg-red text-white hover:bg-red ">
+                    <FaTrashAlt />
+                  </button> */}
                 </td>
               </tr>
             ))}

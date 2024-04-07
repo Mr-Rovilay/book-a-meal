@@ -3,10 +3,14 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import User from "../Schema/User.js";
 import { nanoid } from "nanoid";
+import cors from "cors";
 import admin from "firebase-admin";
 import serviceAccountKey from "../book-a-meal-72459-firebase-adminsdk-csmsb-08ab87b617.json" assert { type: "json" };
 import { getAuth } from "firebase-admin/auth";
 const router = express();
+router.use(cors());
+router.use(express.urlencoded({ extended: true }));
+router.use(express.json({ limit: "50mb" }));
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccountKey),

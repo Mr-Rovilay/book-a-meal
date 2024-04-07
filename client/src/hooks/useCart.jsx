@@ -22,7 +22,9 @@ const useCart = () => {
         toast.error("Username is undefined");
       }
       const res = await fetch(
-        `http://localhost:3000/carts?username=${userAuth.username}`,
+        `${import.meta.env.VITE_SERVER_DOMAIN}/carts?username=${
+          userAuth.username
+        }`,
         {
           headers: {
             authorization: `Bearer ${access_token}`,

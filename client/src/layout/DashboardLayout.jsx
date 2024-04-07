@@ -1,17 +1,16 @@
 import React from "react";
 import { Link, Outlet } from "react-router-dom";
 import { MdDashboard, MdDashboardCustomize } from "react-icons/md";
+import { IoIosLogIn } from "react-icons/io";
 import {
   FaEdit,
   FaLocationArrow,
   FaPlusCircle,
-  FaQuestionCircle,
   FaRegUser,
-  FaShoppingBag,
   FaUser,
 } from "react-icons/fa";
 import { FaCartShopping } from "react-icons/fa6";
-import Button from "../components/Button";
+import Model from "../components/Model";
 
 const sharedLinks = (
   <>
@@ -26,7 +25,7 @@ const sharedLinks = (
       </Link>
     </li>
     <li className="mt-3 hover:text-black hover:bg-grey opacity-75 border-grey focus:bg-transparent hover:bg-opacity-80">
-      <button className="btn rounded-full px-6 bg-green flex items-center gap-2 text-white sm:hidden">
+      <button className="btn rounded-full px-6 bg-green flex items-center gap-2 text-white">
         <FaRegUser /> Logout
       </button>
     </li>
@@ -118,9 +117,16 @@ const DashboardLayout = () => {
           </div>
         </div>
       ) : (
-        <Link to={"/signin"}>
-          <Button text={"login as admin"} />
-        </Link>
+        <>
+          <button
+            className="btn bg-green border-green text-white flex items-center gap-2 hover:bg-dark-green hover:bg-opacity-80 focus:scale-95 transition-all duration-200 ease-out"
+            onClick={() => document.getElementById("my_modal_5").showModal()}
+          >
+            <IoIosLogIn className="text-2xl" />
+            Login
+          </button>
+          <Model />
+        </>
       )}
     </div>
   );
