@@ -80,7 +80,10 @@ const Users = () => {
               <tr key={index} className="bg-grey">
                 <td>{index + 1}</td>{" "}
                 {/* Increment index by 1 for readability */}
-                <td>{user.personal_info.fullname}</td> {/* Render user name */}
+                <td className="capitalize">
+                  {user.personal_info.fullname}
+                </td>{" "}
+                {/* Render user name */}
                 <td>{user.personal_info.email}</td> {/* Render user email */}
                 <td>
                   {/* Render user role icon */}
