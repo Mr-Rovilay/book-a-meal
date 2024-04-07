@@ -264,7 +264,7 @@ app.patch("/users/admin/:id", async (req, res) => {
     }
 
     // Update the user's role to "admin"
-    user.role = "admin";
+    user.personal_info.role = "admin";
     await user.save();
 
     // Return success message

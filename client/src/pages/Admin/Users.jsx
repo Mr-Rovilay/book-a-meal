@@ -32,7 +32,6 @@ const Users = () => {
       console.error("Failed to update user role:", error);
       toast.error("Failed to make user an admin. Please try again.");
     }
-    refetch();
   };
   if (isLoading) return <div>Loading...</div>; // Show loading indicator
   if (isError) return <div>Error loading data. Please try again.</div>;
@@ -91,7 +90,8 @@ const Users = () => {
                   ) : (
                     <button
                       onClick={() => handleMakeAdmin(user)}
-                      className="btn btn-xs btn-circle bg-twitter text-white"
+                      className="btn btn-circle bg-twitter hover:bg-twitter text-white"
+                      disabled={loadingUser === user._id}
                     >
                       <FaUsers />
                     </button>
