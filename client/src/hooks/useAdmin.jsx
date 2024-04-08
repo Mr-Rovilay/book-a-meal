@@ -10,13 +10,14 @@ const useAdmin = () => {
   const {
     refetch,
     data: isAdmin,
-    isLoading: isAdminLoading,
+    isPending: isAdminLoading,
     isError,
     error,
   } = useQuery({
-    queryKey: ["isAdmin", user?.email], // Use array to include user email as part of the key
+    queryKey: [user?.email, "isAdmin"], // Use array to include user email as part of the key
     queryFn: async () => {
-      const response = await axiosSecure.get(`/users/admin/${user?.email}`);
+      const response = await axiosSecure.get(`users/admin/${user?.email}`);
+      console.log(response.data);
       return response.data?.admin;
     },
     enabled: !!user?.email, // Ensure the query does not run until the email is available

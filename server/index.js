@@ -11,6 +11,7 @@ import { ObjectId } from "mongodb";
 
 import authRoute from "./routes/authRoute.js";
 import Carts from "./Schema/Carts.js";
+import verifyAdmin from "./middleware/verifyAdmin.js";
 
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
@@ -168,7 +169,7 @@ app.get("/users/:id", async (req, res) => {
   }
 });
 
-// Define route to delete a single user by ID
+// Define route to delete a single user by ID verifyJWT, verifyAdmin,
 app.delete("/users/:id", async (req, res) => {
   const { id } = req.params;
 
@@ -180,8 +181,6 @@ app.delete("/users/:id", async (req, res) => {
       // If no user found with the provided ID, return 404 Not Found
       return res.status(404).json({ message: "User not found" });
     }
-
-    // Return a success message
     res.status(200).json({ message: "User deleted successfully" });
   } catch (error) {
     console.error("Error deleting user:", error);
@@ -189,21 +188,17 @@ app.delete("/users/:id", async (req, res) => {
   }
 });
 
+// verifyJWT,
 app.get("/users/admin/:email", async (req, res) => {
   const { email } = req.params;
 
   try {
     // Find the user by their email
     const user = await User.findOne({ email });
-
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
-
-    // Check if the user is an admin
     const isAdmin = user.role === "admin";
-
-    // Return admin status
     res.status(200).json({ isAdmin });
   } catch (error) {
     console.error("Error checking admin status:", error);
@@ -211,7 +206,7 @@ app.get("/users/admin/:email", async (req, res) => {
   }
 });
 
-// route to get all users
+// route to get all users verifyJWT, verifyAdmin,
 app.get("/users", async (req, res) => {
   try {
     // Fetch all users from the database
@@ -223,35 +218,7 @@ app.get("/users", async (req, res) => {
   }
 });
 
-// get admin
-// Define route to get admin status based on email
-// app.get("/admin/:email", async (req, res) => {
-//   const email = req.params.email;
-
-//   try {
-//     // Query for the user with the provided email
-//     const user = await User.findOne({ email: email });
-
-//     if (!user) {
-//       return res.status(404).json({ message: "User not found" });
-//     }
-
-//     // Check if the user has the role of admin
-//     const isAdmin = user.role === "admin";
-
-//     if (!isAdmin) {
-//       return res.status(403).json({ message: "Forbidden user" });
-//     }
-
-//     // Return admin status
-//     res.status(200).json({ isAdmin: isAdmin });
-//   } catch (error) {
-//     console.error("Error checking admin status:", error);
-//     res.status(500).json({ error: "Internal server error" });
-//   }
-// });
-
-// Define route to make a user an admin
+// Define route to make a user an admin verifyJWT, verifyAdmin,
 app.patch("/users/admin/:id", async (req, res) => {
   const { id } = req.params;
 
@@ -288,21 +255,26 @@ app.get("/menu", async (req, res) => {
   }
 });
 
+app.post("/menu", async (req, res) => {
+  try {
+    // Assuming req.body contains the new menu item data
+    const newMenu = await Menus.create(req.body);
+    res.status(201).json(newMenu);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
 // get single menu
 // Define route to get a single menu item by ID
 app.get("/menus/:id", async (req, res) => {
   const { id } = req.params;
-
   try {
     // Fetch the menu item by its ID from the database
     const menuItem = await Menus.findById(id);
-
     if (!menuItem) {
-      // If no menu item found with the provided ID, return 404 Not Found
       return res.status(404).json({ message: "Menu item not found" });
     }
-
-    // Return the menu item as JSON response
     res.status(200).json(menuItem);
   } catch (error) {
     console.error("Error fetching menu item:", error);
@@ -329,22 +301,6 @@ app.get("/carts/:username", verifyJWT, async (req, res) => {
     res.status(500).json({ message: "Server Error" });
   }
 });
-
-// Define route to delete a user by ID
-// app.delete("/users/:userId", async (req, res) => {
-//   const { userId } = req.params;
-
-//   try {
-//     // Find the user by their ID and delete it
-//     await User.findByIdAndDelete(userId);
-
-//     // Return success message
-//     res.status(200).json({ message: "User deleted successfully" });
-//   } catch (error) {
-//     console.error("Error deleting user:", error);
-//     res.status(500).json({ error: "Internal server error" }); // Handle errors
-//   }
-// });
 
 // get all cart using username
 app.get("/carts", verifyJWT, async (req, res) => {

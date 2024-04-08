@@ -1,4 +1,3 @@
-import React from "react";
 import { Link, Outlet } from "react-router-dom";
 import { MdDashboard, MdDashboardCustomize } from "react-icons/md";
 import { IoIosLogIn } from "react-icons/io";
@@ -11,6 +10,8 @@ import {
 } from "react-icons/fa";
 import { FaCartShopping } from "react-icons/fa6";
 import Model from "../components/Model";
+import useAdmin from "../hooks/useAdmin";
+import useAuth from "../hooks/useAuth";
 
 const sharedLinks = (
   <>
@@ -33,7 +34,13 @@ const sharedLinks = (
 );
 
 const DashboardLayout = () => {
+  // const { loading: authLoading } = useAuth();
+  // const { isAdmin, isAdminLoading } = useAdmin();
   const isAdmin = true;
+
+  // if (authLoading || isAdminLoading) {
+  //   return <div>Loading...</div>;
+  // }
   //
   return (
     <div className="">
