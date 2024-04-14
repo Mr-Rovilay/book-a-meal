@@ -1,5 +1,5 @@
 // Import necessary dependencies
-import { Routes, Route } from "react-router-dom";
+import { Route } from "react-router-dom";
 import Main from "../layout/Main";
 import Home from "../pages/Home";
 import Menu from "../pages/Menu";
@@ -22,13 +22,72 @@ import { createContext, useEffect, useState } from "react";
 import { lookInSession } from "../common/session";
 import PrivateRouter from "../PrivateRouter/PrivateRouter";
 import UserProfile from "../pages/UserProfile";
+import {
+  RouterProvider,
+  createBrowserRouter,
+  createRoutesFromElements,
+} from "react-router-dom";
 
 export const UserContext = createContext({});
 
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route>
+      {/* user route */}
+      <Route path="/" element={<Main />}>
+        <Route index element={<Home />} />
+        <Route
+          path="/menu"
+          element={
+            <PrivateRouter>
+              {" "}
+              <Menu />
+            </PrivateRouter>
+          }
+        />
+        <Route path="/order" element={<Order />} />
+        <Route path="/cart-page" element={<CartPage />} />
+        <Route path="/edit-profile/:id" element={<UpdateProfile />} />
+        <Route path="/user/:id" element={<UserProfile />} />
+        <Route path="/delivery-info" element={<DeliveryInfo />} />
+        <Route path="/paymentsuccess" element={<PaymentSuccess />} />
+      </Route>
+      <Route path="/signin" element={<UserAuthForm type="sign-in" />} />
+      <Route path="/signup" element={<UserAuthForm type="sign-up" />} />
+      {/* Admin route*/}
+      <Route path="/dashboard" element={<DashboardLayout />}>
+        <Route path="" element={<Dashboard />} />
+        <Route path="users" element={<Users />} />
+        <Route path="add-menu" element={<AddMenu />} />
+        <Route
+          path="update-menu/:id"
+          element={<UpdateMenu />}
+          loader={
+            ({ params }) =>
+              fetch(`http://localhost:3000/menu/${params?.id}`)
+                .then((response) => response.json()) // Parse the JSON response
+                .then((data) => ({ data })) // Wrap the data in an object
+          }
+        />
+
+        <Route path="manage-items" element={<ManageItem />} />
+        <Route path="manage-bookings" element={<ManageBookings />} />
+      </Route>
+    </Route>
+  )
+);
+
 // Define the router configuration
-const AppRouter = ({ type }) => {
+const AppRouter = () => {
+  return (
+    <RouterProvider router={router}>
+      <ScrollToTop />
+    </RouterProvider>
+  );
+};
+
+export const Auth = ({ children }) => {
   const [userAuth, setUserAuth] = useState({});
-  const [user, setUser] = useState({});
 
   useEffect(() => {
     let userInSession = lookInSession("user");
@@ -38,43 +97,9 @@ const AppRouter = ({ type }) => {
   }, []);
 
   return (
-    <AnimationWrapper keyValue={type}>
-      <ScrollToTop />
-      <UserContext.Provider value={{ userAuth, setUserAuth, user, setUser }}>
-        <Routes>
-          {/* user route */}
-          <Route path="/" element={<Main />}>
-            <Route index element={<Home />} />
-            <Route
-              path="/menu"
-              element={
-                <PrivateRouter>
-                  {" "}
-                  <Menu />
-                </PrivateRouter>
-              }
-            />
-            <Route path="/order" element={<Order />} />
-            <Route path="/cart-page" element={<CartPage />} />
-            <Route path="/edit-profile/:id" element={<UpdateProfile />} />
-            <Route path="/user/:id" element={<UserProfile />} />
-            <Route path="/delivery-info" element={<DeliveryInfo />} />
-            <Route path="/paymentsuccess" element={<PaymentSuccess />} />
-          </Route>
-          <Route path="/signin" element={<UserAuthForm type="sign-in" />} />
-          <Route path="/signup" element={<UserAuthForm type="sign-up" />} />
-          {/* Admin route*/}
-          <Route path="/dashboard" element={<DashboardLayout />}>
-            <Route path="" element={<Dashboard />} />
-            <Route path="users" element={<Users />} />
-            <Route path="add-menu" element={<AddMenu />} />
-            <Route path="update-menu/:id" element={<UpdateMenu />} />
-            <Route path="manage-items" element={<ManageItem />} />
-            <Route path="manage-bookings" element={<ManageBookings />} />
-          </Route>
-        </Routes>
-      </UserContext.Provider>
-    </AnimationWrapper>
+    <UserContext.Provider value={{ userAuth, setUserAuth }}>
+      {children}
+    </UserContext.Provider>
   );
 };
 

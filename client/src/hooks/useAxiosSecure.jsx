@@ -9,7 +9,7 @@ const axiosSecure = axios.create({ baseURL: "http://localhost:3000" });
 // Setting up interceptors outside the hook to avoid re-registration on every render
 axiosSecure.interceptors.request.use(
   function (config) {
-    const access_token = localStorage.getItem("access_token"); // Assuming 'token' is the key
+    const access_token = sessionStorage.getItem("access_token"); // Assuming 'token' is the key
     if (access_token) {
       config.headers.authorization = `Bearer ${access_token}`;
     }
@@ -42,11 +42,11 @@ const useAxiosSecure = () => {
     };
 
     // Placeholder for setting up a real listener on auth state change
-    // window.addEventListener('authChange', handleAuthChange);
+    window.addEventListener("authChange", handleAuthChange);
 
     return () => {
       // Cleanup listener when component unmounts or auth changes
-      // window.removeEventListener('authChange', handleAuthChange);
+      window.removeEventListener("authChange", handleAuthChange);
     };
   }, [navigate]);
 

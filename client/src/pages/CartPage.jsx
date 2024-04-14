@@ -6,6 +6,7 @@ import useCart from "../hooks/useCart";
 import Swal from "sweetalert2";
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../router/Router";
+import { profileDataStructure } from "./UserProfile";
 
 const CartPage = () => {
   const [cart, refetch] = useCart();
@@ -212,7 +213,7 @@ const CartPage = () => {
             <p className="capitalize">Name: {userAuth?.fullname || "None"}</p>
             <p>Email: {userAuth?.email}</p>
             <p>
-              User_id:<span className="text-sm bold"> {userAuth?.id}</span>
+              User_id:<span className="text-xl bold"> {userAuth?.id}</span>
             </p>
             <p>Address: {userAuth?.address || "Not provided"}</p>
           </div>

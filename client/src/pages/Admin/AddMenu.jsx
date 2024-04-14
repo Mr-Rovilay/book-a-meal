@@ -1,19 +1,81 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { FaUtensils } from "react-icons/fa";
 import { useForm } from "react-hook-form";
+import { toast, Toaster } from "react-hot-toast";
+import { uploadImage } from "../../common/aws";
+import { UserContext } from "../../router/Router";
+import axios from "axios";
 
 const AddMenu = () => {
+  const {
+    userAuth,
+    userAuth: { access_token },
+    setUserAuth,
+  } = useContext(UserContext);
   let characterLimit = 100;
   const [length, setLength] = useState(0);
+  const { register, handleSubmit, reset, watch } = useForm();
+  const [previewUrl, setPreviewUrl] = useState(null);
 
-  const { register, handleSubmit } = useForm();
+  const onSubmit = async (data) => {
+    try {
+      if (data.image[0]) {
+        // Call the upload function
+        const uploadedImageUrl = await uploadImage(data.image[0]);
+        if (uploadedImageUrl) {
+          console.log("Image URL:", uploadedImageUrl);
+          // Add the image URL to the form data or do something with it
+          data.imageUrl = uploadedImageUrl;
+          toast.success("Menu item added successfully!");
+          reset(); // Reset form fields
+        }
+      } else {
+        toast.error("Please select an image.");
+      }
+      // Define menuItem object
+      const menuItem = {
+        name: data.name,
+        category: data.category,
+        price: parseFloat(data.price),
+        recipe: data.recipe,
+        // Access imageUrl property safely
+        image: data.imageUrl, // Use the uploaded image URL from data object
+      };
 
-  const onSubmit = (data) => {
-    console.log(data);
+      // Assuming you've properly defined ImageUrl elsewhere in your code
+      // Ensure ImageUrl is defined before accessing its data
+
+      // Send POST request to the backend API
+      const postMenuItem = await axios.post(
+        import.meta.env.VITE_SERVER_DOMAIN + "/menu",
+        menuItem
+      );
+      console.log(postMenuItem);
+    } catch (error) {
+      console.error("Error uploading image:", error);
+      toast.error("Failed to add menu item.");
+    }
   };
+
+  // To preview the image before uploading
+  const imageFile = watch("image");
+
+  // Update the preview URL whenever the file input changes
+  useState(() => {
+    if (imageFile && imageFile.length > 0) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setPreviewUrl(reader.result);
+      };
+      reader.readAsDataURL(imageFile[0]);
+    } else {
+      setPreviewUrl(null); // Clear preview
+    }
+  }, [imageFile]);
 
   return (
     <div className="w-full md:w-[870px] px-4 mx-auto">
+      <Toaster />
       <h2 className="text-2xl font-semibold my-4">
         Upload A New <span className="text-green">Menu Item</span>
       </h2>
@@ -96,6 +158,16 @@ const AddMenu = () => {
               className="file-input w-full max-w-xs bg-black text-white"
             />
           </div>
+          {/* Image preview section (optional) */}
+          {previewUrl && (
+            <div className="preview">
+              <img
+                src={previewUrl}
+                alt="Preview"
+                style={{ maxWidth: "200px", maxHeight: "200px" }}
+              />
+            </div>
+          )}
 
           <button className="btn bg-green text-white px-6">
             Add Item <FaUtensils />

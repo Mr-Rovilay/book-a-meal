@@ -30,47 +30,45 @@ let profile_imgs_collections_list = [
 
 const userSchema = mongoose.Schema(
   {
-    personal_info: {
-      fullname: {
-        type: String,
-        lowercase: true,
-        required: true,
-        minlength: [3, "fullname must be 3 letters long"],
-      },
-      email: {
-        type: String,
-        required: true,
-        lowercase: true,
-        unique: true,
-      },
-      password: String,
-      username: {
-        type: String,
-        minlength: [3, "Username must be 3 letters long"],
-        unique: true,
-      },
-      address: {
-        type: String,
-        default: "",
-      },
-      role: {
-        type: String,
-        enum: ["user", "admin"],
-        default: "user",
-      },
-      profile_img: {
-        type: String,
-        default: () => {
-          return `https://api.dicebear.com/6.x/${
-            profile_imgs_collections_list[
-              Math.floor(Math.random() * profile_imgs_collections_list.length)
-            ]
-          }/svg?seed=${
-            profile_imgs_name_list[
-              Math.floor(Math.random() * profile_imgs_name_list.length)
-            ]
-          }`;
-        },
+    fullname: {
+      type: String,
+      lowercase: true,
+      required: true,
+      minlength: [3, "fullname must be 3 letters long"],
+    },
+    email: {
+      type: String,
+      required: true,
+      lowercase: true,
+      unique: true,
+    },
+    password: String,
+    username: {
+      type: String,
+      minlength: [3, "Username must be 3 letters long"],
+      unique: true,
+    },
+    address: {
+      type: String,
+      lowercase: true,
+    },
+    role: {
+      type: String,
+      enum: ["user", "admin"],
+      default: "user",
+    },
+    profile_img: {
+      type: String,
+      default: () => {
+        return `https://api.dicebear.com/6.x/${
+          profile_imgs_collections_list[
+            Math.floor(Math.random() * profile_imgs_collections_list.length)
+          ]
+        }/svg?seed=${
+          profile_imgs_name_list[
+            Math.floor(Math.random() * profile_imgs_name_list.length)
+          ]
+        }`;
       },
     },
     social_links: {

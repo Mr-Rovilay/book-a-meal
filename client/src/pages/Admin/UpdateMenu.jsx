@@ -1,9 +1,48 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaUtensils } from "react-icons/fa";
+import { useLoaderData, useSearchParams } from "react-router-dom";
 
-const UpdateMenu = () => {
+const UpdateMenu = ({ params }) => {
   let characterLimit = 100;
   const [length, setLength] = useState(0);
+  // const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const { data } = useLoaderData();
+  // const [menuData, setMenuData] = useState(data || {});
+  // const [searchParams, setSearchParams] = useSearchParams();
+
+  // useEffect(() => {
+  //   const fetchMenuData = async () => {
+  //     try {
+  //       const response = await fetch(
+  //         `http://localhost:3000/menu/${params?.id}`
+  //       );
+  //       console.log(params);
+  //       if (!response.ok) {
+  //         throw new Error("Failed to fetch menu data");
+  //       }
+  //       const data = await response.json();
+  //       setMenuData(data);
+  //       setIsLoading(false);
+  //     } catch (error) {
+  //       setError(error.message);
+  //       setIsLoading(false);
+  //     }
+  //   };
+
+  //   console.log(data, ">>>>>");
+
+  //   fetchMenuData();
+  // }, [data]);
+
+  // if (isLoading) {
+  //   return <div>Loading...</div>;
+  // }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
   return (
     <div className="w-full md:w-[870px] px-4 mx-auto">
       <h2 className="text-2xl font-semibold my-4">
@@ -20,7 +59,8 @@ const UpdateMenu = () => {
             <input
               type="text"
               placeholder="Recipe Name"
-              className="input-box pl-4 "
+              className="input-box pl-4"
+              defaultValue={data?.name}
             />
           </div>
 
@@ -56,6 +96,7 @@ const UpdateMenu = () => {
                 type="number"
                 placeholder="Price"
                 className="input-box pl-4"
+                defaultValue={data?.price}
               />
             </div>
           </div>

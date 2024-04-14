@@ -125,13 +125,15 @@ const DashboardLayout = () => {
         </div>
       ) : (
         <>
-          <button
-            className="btn bg-green border-green text-white flex items-center gap-2 hover:bg-dark-green hover:bg-opacity-80 focus:scale-95 transition-all duration-200 ease-out"
-            onClick={() => document.getElementById("my_modal_5").showModal()}
-          >
-            <IoIosLogIn className="text-2xl" />
-            Login
-          </button>
+          <div className="h-screen flex items-center justify-center">
+            <button
+              className="btn bg-green border-green text-white flex items-center gap-2 hover:bg-dark-green hover:bg-opacity-80 focus:scale-95 transition-all duration-200 ease-out"
+              onClick={() => document.getElementById("my_modal_5").showModal()}
+            >
+              <IoIosLogIn className="text-2xl" />
+              Login
+            </button>
+          </div>
           <Model />
         </>
       )}

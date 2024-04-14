@@ -4,13 +4,12 @@ import axios from "axios";
 import { UserContext } from "../router/Router";
 
 export const profileDataStructure = {
-  personal_info: {
-    fullname: "",
-    email: "",
-    username: "",
-    profile_img: "",
-    address: "",
-  },
+  fullname: "",
+  email: "",
+  username: "",
+  profile_img: "",
+  address: "",
+
   social_links: {},
   joinedAt: "",
 };
@@ -31,9 +30,13 @@ const UserProfile = () => {
       try {
         const serverDomain =
           import.meta.env.VITE_SERVER_DOMAIN || "http://localhost:3000";
-        const { data: user } = await axios.post(`${serverDomain}/get-profile`, {
-          username: profileId,
-        });
+        const { data: user } = await axios.post(
+          `${serverDomain}/router/get-profile`,
+          {
+            username: profileId,
+          }
+        );
+        console.log("Profile data:", user); // Log profile data
         setProfile(user);
       } catch (err) {
         console.error(err);
@@ -50,14 +53,12 @@ const UserProfile = () => {
   if (error) return <div>{error}</div>;
 
   const {
-    personal_info: {
-      fullname,
-      username: profileUsername,
-      profile_img,
-      email,
-      address,
-      role,
-    },
+    fullname,
+    username: profileUsername,
+    profile_img,
+    email,
+    address,
+    role,
     social_links,
   } = profile;
 

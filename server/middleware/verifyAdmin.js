@@ -3,11 +3,11 @@ import User from "../Schema/User.js";
 
 const verifyAdmin = async (req, res, next) => {
   try {
-    // Extract email from decoded JWT token
-    const email = req.decoded.email;
+    // Extract username from decoded JWT token
+    const username = req.decoded.username;
 
-    // Query the database for the user with the extracted email
-    const user = await User.findOne({ email });
+    // Query the database for the user with the extracted username
+    const user = await User.findOne({ username });
 
     // If user not found, return 404 error
     if (!user) {
@@ -15,7 +15,7 @@ const verifyAdmin = async (req, res, next) => {
     }
 
     // Check if user is an admin
-    const isAdmin = user.role === "admin";
+    const isAdmin = user?.role === "admin";
 
     // If user is not an admin, return 403 Forbidden
     if (!isAdmin) {
@@ -26,7 +26,7 @@ const verifyAdmin = async (req, res, next) => {
     next();
   } catch (error) {
     // Handle unexpected errors
-    console.error("Error in verifyAdmin middleware:", error);
+    console.error("Error in verifyAdminByUsername middleware:", error);
     return res.status(500).send({ message: "Internal Server Error" });
   }
 };

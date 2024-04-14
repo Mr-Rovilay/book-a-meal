@@ -26,7 +26,7 @@ const Users = () => {
   const handleMakeAdmin = async (user) => {
     try {
       await axiosSecure.patch(`/users/admin/${user._id}`);
-      toast.success(`${user.personal_info.fullname} is now an admin`);
+      toast.success(`${user.fullname} is now an admin`);
       await refetch();
     } catch (error) {
       console.error("Failed to update user role:", error);
@@ -80,15 +80,13 @@ const Users = () => {
               <tr key={index} className="bg-grey">
                 <td>{index + 1}</td>{" "}
                 {/* Increment index by 1 for readability */}
-                <td className="capitalize">
-                  {user.personal_info.fullname}
-                </td>{" "}
+                <td className="capitalize">{user.fullname}</td>{" "}
                 {/* Render user name */}
-                <td>{user.personal_info.email}</td> {/* Render user email */}
+                <td>{user.email}</td> {/* Render user email */}
                 <td>
                   {/* Render user role icon */}
 
-                  {user.personal_info.role === "admin" ? (
+                  {user.role === "admin" ? (
                     "Admin"
                   ) : (
                     <button

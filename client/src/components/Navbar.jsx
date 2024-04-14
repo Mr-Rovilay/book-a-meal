@@ -11,6 +11,7 @@ const Navbar = () => {
   const [searchBox, setSearchBox] = useState(false);
   const [isSticky, setSticky] = useState(false);
   const {
+    userAuth,
     userAuth: { access_token, profile_img, username },
   } = useContext(UserContext);
   const [cart, refetch] = useCart();

@@ -25,20 +25,18 @@ const UpdateProfile = () => {
   const [profile, setProfile] = useState(profileDataStructure);
   const [updatedProfileImg, setUpdatedProfileImg] = useState(null);
   let {
-    personal_info: {
-      fullname,
-      username: profile_username,
-      profile_img,
-      email,
-      address,
-    },
+    fullname,
+    username: profile_username,
+    profile_img,
+    email,
+    address,
     social_links,
   } = profile;
 
   useEffect(() => {
     if (access_token) {
       axios
-        .post(import.meta.env.VITE_SERVER_DOMAIN + "/get-profile", {
+        .post(import.meta.env.VITE_SERVER_DOMAIN + "/router/get-profile", {
           username: userAuth.username,
         })
         .then(({ data }) => {
@@ -66,7 +64,8 @@ const UpdateProfile = () => {
           if (url) {
             axios
               .post(
-                import.meta.env.VITE_SERVER_DOMAIN + "/update-profile-img",
+                import.meta.env.VITE_SERVER_DOMAIN +
+                  "/router/update-profile-img",
                 { url },
                 {
                   headers: {
@@ -126,7 +125,7 @@ const UpdateProfile = () => {
 
     axios
       .post(
-        import.meta.env.VITE_SERVER_DOMAIN + "/update-profile",
+        import.meta.env.VITE_SERVER_DOMAIN + "/router/update-profile",
         {
           username,
           address,

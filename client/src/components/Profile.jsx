@@ -1,11 +1,12 @@
 // import React, { useContext } from "react";
 // import { AuthContext } from "../contexts/AuthProvider";
-
+import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { UserContext } from "../router/Router";
 import { removeFromSession } from "../common/session";
 
 const Profile = ({ user }) => {
+  const navigate = useNavigate();
   const {
     userAuth: { username, profile_img },
     setUserAuth,
@@ -14,6 +15,7 @@ const Profile = ({ user }) => {
   const signOutUser = (user) => {
     removeFromSession("user");
     setUserAuth({ access_token: null });
+    navigate("/");
   };
 
   return (
