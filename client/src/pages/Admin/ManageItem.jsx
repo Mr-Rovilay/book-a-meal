@@ -25,7 +25,7 @@ const ManageItems = () => {
             }
           );
           if (response.ok) {
-            refetch(); // Refetch cart
+            // refetch(); // Refetch cart
             Swal.fire("Deleted!", "Your item has been deleted.", "success");
           } else {
             toast.error("Failed to delete cart item.");

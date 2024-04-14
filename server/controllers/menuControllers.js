@@ -51,4 +51,33 @@ const deletedMenuItem = async (req, res) => {
       .send({ message: "Error deleting item", error: error.message });
   }
 };
-export default { getAllMenu, postMenu, getSingleMenu, deletedMenuItem };
+const updateMenu = async (req, res) => {
+  const id = req.params.id;
+  const { name, recipe, image, category, price } = req.body;
+  try {
+    // Find the menu item by ID and update it
+    const updatedMenu = await Menus.findByIdAndUpdate(
+      id,
+      { name, recipe, image, category, price },
+      { new: true, runValidators: true }
+    );
+
+    if (!updatedMenu) {
+      return res.status(404).json({ message: "Item not found" });
+    }
+
+    res.status(200).json(updatedMenu);
+  } catch (error) {
+    res
+      .status(500)
+      .send({ message: "Error updating item", error: error.message });
+  }
+};
+
+export default {
+  getAllMenu,
+  postMenu,
+  getSingleMenu,
+  deletedMenuItem,
+  updateMenu,
+};

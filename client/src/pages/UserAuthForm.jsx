@@ -22,7 +22,7 @@ const UserAuthForm = ({ type }) => {
         formData
       )
       .then(({ data }) => {
-        storeInSession("urrrrrser", JSON.stringify(data));
+        storeInSession("user", JSON.stringify(data));
         setUserAuth(data);
       })
       .catch(({ response }) => {

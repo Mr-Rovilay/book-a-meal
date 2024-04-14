@@ -5,6 +5,7 @@ import { toast, Toaster } from "react-hot-toast";
 import { uploadImage } from "../../common/aws";
 import { UserContext } from "../../router/Router";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const AddMenu = () => {
   const {
@@ -16,6 +17,7 @@ const AddMenu = () => {
   const [length, setLength] = useState(0);
   const { register, handleSubmit, reset, watch } = useForm();
   const [previewUrl, setPreviewUrl] = useState(null);
+  const navigate = useNavigate();
 
   const onSubmit = async (data) => {
     try {
@@ -23,7 +25,6 @@ const AddMenu = () => {
         // Call the upload function
         const uploadedImageUrl = await uploadImage(data.image[0]);
         if (uploadedImageUrl) {
-          console.log("Image URL:", uploadedImageUrl);
           // Add the image URL to the form data or do something with it
           data.imageUrl = uploadedImageUrl;
           toast.success("Menu item added successfully!");
@@ -46,11 +47,11 @@ const AddMenu = () => {
       // Ensure ImageUrl is defined before accessing its data
 
       // Send POST request to the backend API
-      const postMenuItem = await axios.post(
+      const postMenuItem = await axios.patch(
         import.meta.env.VITE_SERVER_DOMAIN + "/menu",
         menuItem
       );
-      console.log(postMenuItem);
+      navigate("/menu");
     } catch (error) {
       console.error("Error uploading image:", error);
       toast.error("Failed to add menu item.");
@@ -158,18 +159,8 @@ const AddMenu = () => {
               className="file-input w-full max-w-xs bg-black text-white"
             />
           </div>
-          {/* Image preview section (optional) */}
-          {previewUrl && (
-            <div className="preview">
-              <img
-                src={previewUrl}
-                alt="Preview"
-                style={{ maxWidth: "200px", maxHeight: "200px" }}
-              />
-            </div>
-          )}
 
-          <button className="btn bg-green text-white px-6">
+          <button className="btn bg-green hover:bg-dark-green text-white px-6">
             Add Item <FaUtensils />
           </button>
         </form>
