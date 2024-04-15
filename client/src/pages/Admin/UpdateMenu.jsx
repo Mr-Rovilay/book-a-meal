@@ -20,51 +20,49 @@ const UpdateMenu = ({ params }) => {
   const { register, handleSubmit, reset, watch } = useForm();
   const [previewUrl, setPreviewUrl] = useState(null);
   const navigate = useNavigate();
+  const { id } = useParams();
 
   const onSubmit = async (data) => {
     try {
       if (data.image[0]) {
-        // Call the upload function
         const uploadedImageUrl = await uploadImage(data.image[0]);
         if (uploadedImageUrl) {
-          // Add the image URL to the form data or do something with it
           data.imageUrl = uploadedImageUrl;
-          toast.success("Menu item added successfully!");
-          reset(); // Reset form fields
+          toast.success("Image uploaded successfully!");
+          reset();
         }
       } else {
         toast.error("Please select an image.");
       }
-      // Define menuItem object
+
       const menuItem = {
         name: data.name,
         category: data.category,
         price: parseFloat(data.price),
         recipe: data.recipe,
-        // Access imageUrl property safely
-        image: data.imageUrl, // Use the uploaded image URL from data object
+        image: data.imageUrl,
       };
 
-      // Assuming you've properly defined ImageUrl elsewhere in your code
-      // Ensure ImageUrl is defined before accessing its data
-
-      // Send POST request to the backend API
-      const postMenuItem = await axios.patch(
-        `${import.meta.env.VITE_SERVER_DOMAIN}/menu/${data._id}`,
+      const response = await axios.patch(
+        `${import.meta.env.VITE_SERVER_DOMAIN}/menu/${id}`,
         menuItem
       );
-      navigate("/dashboard/manage-items");
+
+      if (response.status === 200) {
+        reset();
+        toast.success("Item updated successfully");
+        navigate("/dashboard/manage-items");
+      } else {
+        toast.error("Failed to update item. Please try again later.");
+      }
     } catch (error) {
-      console.error("Error uploading image:", error);
-      toast.error("Failed to add menu item.");
+      toast.error("Failed to update menu item.");
     }
   };
 
-  // To preview the image before uploading
   const imageFile = watch("image");
 
-  // Update the preview URL whenever the file input changes
-  useState(() => {
+  useEffect(() => {
     if (imageFile && imageFile.length > 0) {
       const reader = new FileReader();
       reader.onloadend = () => {
@@ -72,9 +70,13 @@ const UpdateMenu = ({ params }) => {
       };
       reader.readAsDataURL(imageFile[0]);
     } else {
-      setPreviewUrl(null); // Clear preview
+      setPreviewUrl(null);
     }
   }, [imageFile]);
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
 
   return (
     <div className="w-full md:w-[870px] px-4 mx-auto">
