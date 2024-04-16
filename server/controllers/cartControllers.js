@@ -1,4 +1,3 @@
-import { ObjectId } from "mongodb";
 import Carts from "../Schema/Carts.js";
 
 const getCartByUsername = async (req, res) => {
@@ -75,12 +74,41 @@ const deleteCart = async (req, res) => {
 // };
 
 // update carts quantity
+// const updateCart = async (req, res) => {
+//   const { id } = req.params;
+//   const { quantity } = req.body;
+//   const filter = { _id: new ObjectId(id) };
+//   const options = { upsert: true };
+
+//   const updateDoc = {
+//     $set: {
+//       quantity: parseInt(quantity, 10),
+//     },
+//   };
+
+//   try {
+//     const result = await Carts.updateOne(filter, updateDoc, options);
+//     res
+//       .status(200)
+//       .json({ success: true, message: "Cart item updated successfully" });
+//   } catch (error) {
+//     console.error("Error updating cart item:", error);
+//     res.status(500).json({ success: false, message: "Internal server error" });
+//   }
+// };
+
 const updateCart = async (req, res) => {
   const { id } = req.params;
   const { quantity } = req.body;
-  const filter = { _id: new ObjectId(id) };
-  const options = { upsert: true };
 
+  // Validate quantity
+  if (isNaN(quantity) || parseInt(quantity, 10) < 0) {
+    return res
+      .status(400)
+      .json({ success: false, message: "Invalid quantity" });
+  }
+
+  const filter = { _id: id };
   const updateDoc = {
     $set: {
       quantity: parseInt(quantity, 10),
@@ -88,7 +116,12 @@ const updateCart = async (req, res) => {
   };
 
   try {
-    const result = await Carts.updateOne(filter, updateDoc, options);
+    const result = await Carts.updateOne(filter, updateDoc);
+    if (result.matchedCount === 0) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Cart item not found" });
+    }
     res
       .status(200)
       .json({ success: true, message: "Cart item updated successfully" });
@@ -97,34 +130,6 @@ const updateCart = async (req, res) => {
     res.status(500).json({ success: false, message: "Internal server error" });
   }
 };
-
-// const updateCart = async (req, res) => {
-//   const { id } = req.params;
-//   const { quantity } = req.body;
-
-//   // Validate quantity
-//   if (isNaN(quantity) || parseInt(quantity, 10) < 0) {
-//     return res.status(400).json({ success: false, message: "Invalid quantity" });
-//   }
-
-//   const filter = { _id: new ObjectId(id) };
-//   const updateDoc = {
-//     $set: {
-//       quantity: parseInt(quantity, 10),
-//     },
-//   };
-
-//   try {
-//     const result = await Carts.updateOne(filter, updateDoc);
-//     if (result.matchedCount === 0) {
-//       return res.status(404).json({ success: false, message: "Cart item not found" });
-//     }
-//     res.status(200).json({ success: true, message: "Cart item updated successfully" });
-//   } catch (error) {
-//     console.error("Error updating cart item:", error);
-//     res.status(500).json({ success: false, message: "Internal server error" });
-//   }
-// };
 
 // get cart by id
 const getSingleCart = async (req, res) => {
