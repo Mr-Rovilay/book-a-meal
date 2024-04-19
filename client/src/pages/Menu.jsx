@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { FaFilter } from "react-icons/fa";
 import Cards from "../components/Cards";
-import Button from "../components/Button";
+import toast, { Toaster } from "react-hot-toast";
 
 const Menu = () => {
   const postRef = useRef(null);
@@ -17,12 +17,14 @@ const Menu = () => {
     // Fetch data from the backend
     const fetchData = async () => {
       try {
-        const response = await fetch("/menu.json");
+        const response = await fetch(
+          import.meta.env.VITE_SERVER_DOMAIN + "/menu"
+        );
         const data = await response.json();
         setMenu(data);
         setFilteredItems(data); // Initially, display all items
       } catch (error) {
-        console.error("Error fetching data:", error);
+        toast.error("Error fetching data:", error);
       }
     };
 
@@ -93,6 +95,7 @@ const Menu = () => {
     <div>
       {/* menu banner */}
       <div className="max-w-screen-2xl container mx-auto xl:px-24 px-4">
+        <Toaster />
         <div className="py-48 flex flex-col items-center justify-center">
           {/* content */}
           <div className=" text-center px-4 space-y-7">

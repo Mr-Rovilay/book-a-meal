@@ -12,7 +12,7 @@ body {
 
 header,
 nav {
-  z-index: 10001 !important;
+  z-index: 10 !important;
 }
 
 .subtitle {
@@ -50,6 +50,12 @@ input:disabled ~ .input-icon {
 .slick-next {
   z-index: 1;
   /* background-color: red !important; */
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 .slick-dots li button:before {

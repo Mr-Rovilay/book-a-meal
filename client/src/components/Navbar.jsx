@@ -3,31 +3,30 @@ import { Link } from "react-router-dom";
 import { BsCart } from "react-icons/bs";
 import { useContext, useEffect, useState } from "react";
 import Model from "./Model";
-import { CiSearch } from "react-icons/ci";
-
 import Profile from "./Profile";
+import { UserContext } from "../router/Router";
+import useCart from "../hooks/useCart";
 
-const Navbar = ({ text, icon }) => {
+const Navbar = () => {
   const [searchBox, setSearchBox] = useState(false);
-  const user1 = false;
   const [isSticky, setSticky] = useState(false);
+  const {
+    userAuth,
+    userAuth: { access_token, profile_img, username },
+  } = useContext(UserContext);
+  const [cart, refetch] = useCart();
 
   useEffect(() => {
-    const handleScroll = () => {
-      const offset = window.scrollY;
-      if (offset > 0) {
-        setSticky(true);
-      } else {
-        setSticky(false);
-      }
-    };
-
+    const handleScroll = () => setSticky(window.scrollY > 0);
     window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(() => {
+    if (username) {
+      refetch();
+    }
+  }, [username, refetch]);
 
   const navItems = (
     <>
@@ -43,11 +42,10 @@ const Navbar = ({ text, icon }) => {
           tabIndex={0}
           className="dropdown-content z-[1] menu p-2 bg-white text-black rounded-box w-52 text-xl"
         >
-          <Link to={"/menu"}>
-            <li className="mt-3 hover:text-black hover:bg-grey opacity-75 border-grey focus:bg-transparent hover:bg-opacity-80">
-              <a>All</a>
-            </li>
-          </Link>
+          <li className="mt-3 hover:text-black hover:bg-grey opacity-75 border-grey focus:bg-transparent hover:bg-opacity-80">
+            <a href="/menu">All</a>
+          </li>
+
           <li className="mt-3 hover:text-black hover:bg-grey opacity-75 border-grey focus:bg-transparent hover:bg-opacity-80">
             <a>Pizza</a>
           </li>
@@ -147,24 +145,30 @@ const Navbar = ({ text, icon }) => {
               <div className="relative flex items-center justify-center ">
                 <BsCart className="fill w-6 h-6 md:w-5 md:h-5" />
                 <div className="absolute -top-2 -right-2 w-5 h-5 rounded-full bg-red flex items-center justify-center">
-                  <p className="text-white font-semibold">0</p>
+                  <p className="text-white">{cart.length || 0}</p>
                 </div>
               </div>
             </Link>
           </label>
 
-          {user1 ? (
-            <button
-              className="btn bg-green border-green text-white flex items-center gap-2 hover:bg-dark-green hover:bg-opacity-80 focus:scale-95 transition-all duration-200 ease-out"
-              onClick={() => document.getElementById("my_modal_5").showModal()}
-            >
-              <IoIosLogIn className="text-2xl" />
-              Login
-            </button>
+          {access_token ? (
+            <>
+              <Profile />
+            </>
           ) : (
-            <Profile user={user1} />
+            <>
+              <button
+                className="btn bg-green border-green text-white flex items-center gap-2 hover:bg-dark-green hover:bg-opacity-80 focus:scale-95 transition-all duration-200 ease-out"
+                onClick={() =>
+                  document.getElementById("my_modal_5").showModal()
+                }
+              >
+                <IoIosLogIn className="text-2xl" />
+                Login
+              </button>
+              <Model />
+            </>
           )}
-          <Model />
         </div>
       </div>
     </header>
