@@ -9,7 +9,6 @@ export const profileDataStructure = {
   username: "",
   profile_img: "",
   address: "",
-
   social_links: {},
   joinedAt: "",
 };
@@ -31,7 +30,7 @@ const UserProfile = () => {
         const serverDomain =
           import.meta.env.VITE_SERVER_DOMAIN || "http://localhost:3000";
         const { data: user } = await axios.post(
-          `${serverDomain}/router/get-profile`,
+          `${serverDomain}/profile/get-profile`,
           {
             username: profileId,
           }

@@ -18,7 +18,7 @@ const Model = ({ type }) => {
     console.log(import.meta.env.VITE_SERVER_DOMAIN + serverRoute, formData);
     axios
       .post(
-        import.meta.env.VITE_SERVER_DOMAIN + "/router" + serverRoute,
+        import.meta.env.VITE_SERVER_DOMAIN + "/auth" + serverRoute,
         formData
       )
       .then(({ data }) => {

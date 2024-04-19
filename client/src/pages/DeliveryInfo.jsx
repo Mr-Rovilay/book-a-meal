@@ -21,7 +21,9 @@ const DeliveryInfo = () => {
 
   // Calculate total price
   const cartTotal = cart.reduce((sum, item) => sum + item.price, 0);
+  console.log(cartTotal);
   const totalPrice = parseFloat(cartTotal.toFixed(2));
+  console.log(totalPrice);
 
   // Use useEffect to log the total price for debugging
   useEffect(() => {

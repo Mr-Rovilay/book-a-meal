@@ -2,21 +2,26 @@ import { useContext, useEffect, useState } from "react";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import Button from "../components/Button";
 import { FaPaypal } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import { UserContext } from "../router/Router";
-import toast from "react-hot-toast";
+import { Toaster, toast } from "react-hot-toast";
 
 const CheckoutForm = ({ price, cart }) => {
+  const navigate = useNavigate();
   const stripe = useStripe();
-  let { userAuth } = useContext(UserContext);
+  let {
+    userAuth,
+    userAuth: { access_token },
+  } = useContext(UserContext);
   const elements = useElements();
   const [paymentError, setPaymentError] = useState(null);
   const [paymentSuccess, setPaymentSuccess] = useState(null);
   const [clientSecret, setClientSecret] = useState("");
   const { user } = useAuth;
   const axiosSecure = useAxiosSecure();
+  console.log(access_token);
 
   useEffect(() => {
     if (typeof price !== "number" || price < 1) {
@@ -68,8 +73,26 @@ const CheckoutForm = ({ price, cart }) => {
     }
     console.log(paymentIntent);
     if (paymentIntent.status === "succeeded") {
-      console.log(paymentIntent);
-      toast.success(`Your transitionId is ${paymentIntent.id}`);
+      // Delete cart items from the database using the extracted IDs
+      const cartIds = cart.map((item) => item._id);
+      try {
+        const deleteCartRequest = await axiosSecure.delete(
+          "/carts/delete-cart-items",
+          { data: { cartIds } },
+          {
+            headers: {
+              Authorization: `Bearer ${userAuth.access_token}`,
+            },
+          }
+        );
+        console.log("Cart items deleted:", deleteCartRequest.data);
+      } catch (error) {
+        console.error("Error deleting cart items:", error);
+        // Handle error
+      }
+
+      console.log(paymentIntent.id);
+      console.log(`Your transitionId is ${paymentIntent.id}`);
       const paymentInfo = {
         email: userAuth.email,
         transitionId: paymentIntent.id,
@@ -81,11 +104,16 @@ const CheckoutForm = ({ price, cart }) => {
         menuItems: cart.map((item) => item.menuItemId),
       };
       console.log(paymentInfo);
+      axiosSecure.post("/payment", paymentInfo).then((res) => {
+        console.log(res.data);
+        navigate("/paymentsuccess");
+      });
     }
   };
 
   return (
     <div className="flex flex-col sm:flex-row justify-start items-start gap-16 capitalize">
+      <Toaster />
       <div className="md:w-1/2 w-full space-y-3">
         <h4 className="text-lg font-semibold">Order Summary</h4>
         <p>Total Price: N {price}</p>

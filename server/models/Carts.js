@@ -13,7 +13,7 @@ const cartSchema = new Schema({
   image: String,
   price: Number,
   quantity: Number,
-  username: {
+  email: {
     type: String,
     true: true,
     required: true,

@@ -27,13 +27,15 @@ const Cards = ({ item }) => {
         quantity: 1,
         image,
         price,
-        username: userAuth.username,
+        email: userAuth.email,
       };
+      console.log(userAuth.email);
 
       fetch(import.meta.env.VITE_SERVER_DOMAIN + "/carts", {
         method: "POST",
         headers: {
           "content-type": "application/json",
+          authorization: `Bearer ${access_token}`,
         },
         body: JSON.stringify(cartItem),
       })

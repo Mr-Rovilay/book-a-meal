@@ -45,12 +45,12 @@ const router = createBrowserRouter(
             </PrivateRouter>
           }
         />
-        <Route path="/order" element={<Order />} />
         <Route path="/cart-page" element={<CartPage />} />
         <Route path="/edit-profile/:id" element={<UpdateProfile />} />
-        <Route path="/user/:id" element={<UserProfile />} />
+        <Route path="/profile/:id" element={<UserProfile />} />
         <Route path="/delivery-info" element={<DeliveryInfo />} />
         <Route path="/paymentsuccess" element={<PaymentSuccess />} />
+        <Route path="/order" element={<Order />} />
       </Route>
       <Route path="/signin" element={<UserAuthForm type="sign-in" />} />
       <Route path="/signup" element={<UserAuthForm type="sign-up" />} />
@@ -98,7 +98,7 @@ export const Auth = ({ children }) => {
 
   return (
     <UserContext.Provider value={{ userAuth, setUserAuth }}>
-      {children}
+      <AnimationWrapper>{children}</AnimationWrapper>
     </UserContext.Provider>
   );
 };

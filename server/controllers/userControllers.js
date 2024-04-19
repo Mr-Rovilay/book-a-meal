@@ -1,4 +1,4 @@
-import User from "../Schema/User.js";
+import User from "../models/User.js";
 
 // get all users
 const getAllUsers = async (req, res) => {
@@ -36,7 +36,7 @@ const deleteSingleUser = async (req, res) => {
     if (!deletedUser) {
       return res.status(404).json({ message: "User not found" });
     }
-    res.status(200).json({ message: "User deleted successfully" });
+    res.status(204).json({ message: "User deleted successfully" });
   } catch (error) {
     console.error("Error deleting user:", error);
     res.status(500).json({ error: "Internal server error" }); // Handle errors
@@ -58,15 +58,15 @@ const deleteSingleUser = async (req, res) => {
 //   }
 // };
 const getAdmin = async (req, res) => {
-  const username = req.params.username; // Assuming you're using something like Express and username is a URL parameter
-  const query = { username: username };
+  const email = req.params.email; // Assuming you're using something like Express and username is a URL parameter
+  const query = { email: email };
 
   try {
     const user = await User.findOne(query); // Find the user by username
 
     // Assuming you're using some form of authentication middleware that decodes the token
     // and assuming the decoded token contains the username of the requester
-    if (username !== req.decoded.username) {
+    if (email !== req.decoded.email) {
       return res.status(403).json({ message: "Forbidden access" });
     }
 

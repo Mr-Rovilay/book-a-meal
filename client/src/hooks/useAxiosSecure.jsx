@@ -20,16 +20,16 @@ axiosSecure.interceptors.request.use(
   }
 );
 
-axiosSecure.interceptors.response.use(
-  (response) => response,
-  async (error) => {
-    if (error.response && [401, 403].includes(error.response.status)) {
-      logOutUser(); // Assuming this handles the logout process
-      // Navigation should happen in the component or context managing the logout, not here
-    }
-    return Promise.reject(error);
-  }
-);
+// axiosSecure.interceptors.response.use(
+//   (response) => response,
+//   async (error) => {
+//     if (error.response && [401, 403].includes(error.response.status)) {
+//       logOutUser(); // Assuming this handles the logout process
+//       // Navigation should happen in the component or context managing the logout, not here
+//     }
+//     return Promise.reject(error);
+//   }
+// );
 
 const useAxiosSecure = () => {
   const navigate = useNavigate();

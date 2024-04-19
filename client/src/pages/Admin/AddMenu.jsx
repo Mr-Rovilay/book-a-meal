@@ -22,10 +22,8 @@ const AddMenu = () => {
   const onSubmit = async (data) => {
     try {
       if (data.image[0]) {
-        // Call the upload function
         const uploadedImageUrl = await uploadImage(data.image[0]);
         if (uploadedImageUrl) {
-          // Add the image URL to the form data or do something with it
           data.imageUrl = uploadedImageUrl;
           toast.success("Menu item added successfully!");
           reset(); // Reset form fields
@@ -39,14 +37,9 @@ const AddMenu = () => {
         category: data.category,
         price: parseFloat(data.price),
         recipe: data.recipe,
-        // Access imageUrl property safely
-        image: data.imageUrl, // Use the uploaded image URL from data object
+
+        image: data.imageUrl,
       };
-
-      // Assuming you've properly defined ImageUrl elsewhere in your code
-      // Ensure ImageUrl is defined before accessing its data
-
-      // Send POST request to the backend API
       const postMenuItem = await axios.patch(
         import.meta.env.VITE_SERVER_DOMAIN + "/menu",
         menuItem
@@ -57,11 +50,7 @@ const AddMenu = () => {
       toast.error("Failed to add menu item.");
     }
   };
-
-  // To preview the image before uploading
   const imageFile = watch("image");
-
-  // Update the preview URL whenever the file input changes
   useState(() => {
     if (imageFile && imageFile.length > 0) {
       const reader = new FileReader();
@@ -70,7 +59,7 @@ const AddMenu = () => {
       };
       reader.readAsDataURL(imageFile[0]);
     } else {
-      setPreviewUrl(null); // Clear preview
+      setPreviewUrl(null);
     }
   }, [imageFile]);
 
@@ -80,8 +69,6 @@ const AddMenu = () => {
       <h2 className="text-2xl font-semibold my-4">
         Upload A New <span className="text-green">Menu Item</span>
       </h2>
-
-      {/* form here */}
       <div>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="form-control w-full">
@@ -95,10 +82,7 @@ const AddMenu = () => {
               className="input-box pl-4"
             />
           </div>
-
-          {/* 2nd row */}
           <div className="flex items-center gap-4">
-            {/* categories */}
             <div className="form-control w-full my-6">
               <label className="label">
                 <span className="label-text">Category*</span>

@@ -1,32 +1,25 @@
-import jwt from "jsonwebtoken";
 import User from "../Schema/User.js";
 
 const verifyAdmin = async (req, res, next) => {
   try {
-    // Extract username from decoded JWT token
-    const username = req.decoded.username;
+    if (!req.decoded || !req.decoded.email) {
+      return res.status(401).send({ error: "Unauthorized" });
+    }
 
-    // Query the database for the user with the extracted username
-    const user = await User.findOne({ username });
+    const email = req.decoded.email;
 
-    // If user not found, return 404 error
+    const user = await User.findOne({ email });
     if (!user) {
       return res.status(404).send({ message: "User not found" });
     }
 
-    // Check if user is an admin
     const isAdmin = user?.role === "admin";
-
-    // If user is not an admin, return 403 Forbidden
     if (!isAdmin) {
       return res.status(403).send({ message: "Forbidden access" });
     }
-
-    // If user is admin, proceed to the next middleware or route handler
     next();
   } catch (error) {
-    // Handle unexpected errors
-    console.error("Error in verifyAdminByUsername middleware:", error);
+    console.error("Error in verifyAdmin middleware:", error);
     return res.status(500).send({ message: "Internal Server Error" });
   }
 };

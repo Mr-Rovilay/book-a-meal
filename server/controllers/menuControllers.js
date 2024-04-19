@@ -1,4 +1,4 @@
-import Menus from "../Schema/Menu.js";
+import Menus from "../models/Menu.js";
 
 // get all menu
 const getAllMenu = async (req, res) => {

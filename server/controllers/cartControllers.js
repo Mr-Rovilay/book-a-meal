@@ -1,10 +1,9 @@
-import Carts from "../Schema/Carts.js";
+import Carts from "../models/Carts.js";
 
 const getCartByUsername = async (req, res) => {
   try {
-    const { username } = req.params;
-    const cartItems = await Carts.find({ username });
-    // If cart is found, send it as response
+    const { email } = req.params;
+    const cartItems = await Carts.find({ email });
     if (cartItems) {
       res.status(200).json(cartItems);
     } else {
@@ -18,12 +17,12 @@ const getCartByUsername = async (req, res) => {
 
 // get all cart using username
 const getAllCart = async (req, res) => {
-  const username = req.query.username;
-  if (!username) {
-    return res.status(400).json({ error: "Username parameter is missing" });
+  const email = req.query.email;
+  if (!email) {
+    return res.status(400).json({ error: "email parameter is missing" });
   }
   try {
-    const result = await Carts.find({ username: username });
+    const result = await Carts.find({ email: email });
     res.send(result);
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -57,64 +56,20 @@ const deleteCart = async (req, res) => {
   }
 };
 
-// DELETE endpoint to delete an item by ID
-// const deleteCart = async (req, res) => {
-//   try {
-//     const { id } = req.params; // Corrected from req.params.id to req.params
-//     const deletedCart = await Carts.findByIdAndDelete(id); // Using findByIdAndDelete to delete the cart item by ID
-
-//     if (!deletedCart) {
-//       return res.status(404).send({ message: "Item not found" });
-//     }
-//     res.status(200).send({ message: "Item deleted successfully", deletedCart });
-//   } catch (error) {
-//     console.error("Error deleting item:", error);
-//     res.status(500).send({ message: "Error deleting item", error: error.message });
-//   }
-// };
-
-// update carts quantity
-// const updateCart = async (req, res) => {
-//   const { id } = req.params;
-//   const { quantity } = req.body;
-//   const filter = { _id: new ObjectId(id) };
-//   const options = { upsert: true };
-
-//   const updateDoc = {
-//     $set: {
-//       quantity: parseInt(quantity, 10),
-//     },
-//   };
-
-//   try {
-//     const result = await Carts.updateOne(filter, updateDoc, options);
-//     res
-//       .status(200)
-//       .json({ success: true, message: "Cart item updated successfully" });
-//   } catch (error) {
-//     console.error("Error updating cart item:", error);
-//     res.status(500).json({ success: false, message: "Internal server error" });
-//   }
-// };
-
 const updateCart = async (req, res) => {
   const { id } = req.params;
   const { quantity } = req.body;
-
-  // Validate quantity
   if (isNaN(quantity) || parseInt(quantity, 10) < 0) {
     return res
       .status(400)
       .json({ success: false, message: "Invalid quantity" });
   }
-
   const filter = { _id: id };
   const updateDoc = {
     $set: {
       quantity: parseInt(quantity, 10),
     },
   };
-
   try {
     const result = await Carts.updateOne(filter, updateDoc);
     if (result.matchedCount === 0) {
@@ -148,6 +103,18 @@ const getSingleCart = async (req, res) => {
   }
 };
 
+const deleteAllCart = async (req, res) => {
+  const { cartIds } = req.body;
+  try {
+    const deleteResult = await Carts.deleteMany({ _id: { $in: cartIds } });
+    console.log("Deleted cart items:", deleteResult);
+    res.status(200).json({ message: "Cart items deleted successfully" });
+  } catch (error) {
+    console.error("Error deleting cart items:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+};
+
 export default {
   getCartByUsername,
   getAllCart,
@@ -155,4 +122,5 @@ export default {
   deleteCart,
   updateCart,
   getSingleCart,
+  deleteAllCart,
 };

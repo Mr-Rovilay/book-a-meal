@@ -36,7 +36,7 @@ const UpdateProfile = () => {
   useEffect(() => {
     if (access_token) {
       axios
-        .post(import.meta.env.VITE_SERVER_DOMAIN + "/router/get-profile", {
+        .post(import.meta.env.VITE_SERVER_DOMAIN + "/profile/get-profile", {
           username: userAuth.username,
         })
         .then(({ data }) => {
@@ -65,7 +65,7 @@ const UpdateProfile = () => {
             axios
               .post(
                 import.meta.env.VITE_SERVER_DOMAIN +
-                  "/router/update-profile-img",
+                  "/profile/update-profile-img",
                 { url },
                 {
                   headers: {
@@ -125,7 +125,7 @@ const UpdateProfile = () => {
 
     axios
       .post(
-        import.meta.env.VITE_SERVER_DOMAIN + "/router/update-profile",
+        import.meta.env.VITE_SERVER_DOMAIN + "/profile/update-profile",
         {
           username,
           address,

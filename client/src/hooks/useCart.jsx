@@ -15,16 +15,10 @@ const useCart = () => {
     error,
     isError,
   } = useQuery({
-    queryKey: ["carts", userAuth?.username],
+    queryKey: ["carts", userAuth?.email],
     queryFn: async () => {
-      if (!userAuth?.username) {
-        // Optionally handle the case when username is not available.
-        toast.error("Username is undefined");
-      }
       const res = await fetch(
-        `${import.meta.env.VITE_SERVER_DOMAIN}/carts?username=${
-          userAuth.username
-        }`,
+        `${import.meta.env.VITE_SERVER_DOMAIN}/carts?email=${userAuth?.email}`,
         {
           headers: {
             authorization: `Bearer ${access_token}`,
@@ -35,10 +29,11 @@ const useCart = () => {
       if (!res.ok) {
         toast.error("Network response was not ok");
       }
-
+      console.log(userAuth?.email);
+      console.log(access_token);
       return res.json();
     },
-    enabled: !!userAuth.username, // This ensures the query runs only if username is not falsy
+    enabled: !!userAuth.email, // This ensures the query runs only if username is not falsy
   });
 
   // Handling or logging the error if needed
