@@ -34,6 +34,9 @@
 }
 
 @layer base {
+  .active-link{
+    @apply flexStart gap-x-2 p-5 medium-15 cursor-pointer max-w-60 h-10 bg-primary rounded-xl;
+  }
 
   .h1 {
     @apply text-[41px] leading-tight md:text-[48px] md:leading-[1.3] mb-4 font-bold;
