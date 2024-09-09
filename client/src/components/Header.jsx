@@ -8,7 +8,7 @@ const Header = () => {
         <Link to={"/"}>
         <h4>Book<span>a</span>Meal</h4></Link>
         <div className="">
-          <NavBar/>
+          <Navbar/>
         </div>
       </div>
     </header>
