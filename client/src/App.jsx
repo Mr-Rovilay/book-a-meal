@@ -18,12 +18,12 @@ const App = () => {
             {/* Add your routes here */}
             <Route path="/" element={<Home />} />
             <Route path="/product" element={<Product />}>
-              <Route path="/:productId" element={<Product />} />
+              <Route path=":productId" element={<Product />} />
             </Route>
             <Route path="/cart" element={<Cart />} />
             <Route path="/order" element={<Order />} />
             <Route path="/verify" element={<Verify />} />
-            <Route path="/myyorders" element={<MyOrders />} />
+            <Route path="/myorders" element={<MyOrders />} />
           </Routes>
           <Footer />
         </div>
