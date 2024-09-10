@@ -7,13 +7,17 @@ import Order from "./pages/Order";
 import Verify from "./pages/Verify";
 import MyOrders from "./pages/MyOrders";
 import Footer from "./components/Footer";
+import LoginPopup from "./components/LoginPopup";
+import { useState } from "react";
 
 const App = () => {
+  const [showLogin, setShowLogin] = useState(false);
   return (
     <div className="overflow-hidden text-[#404040]">
       <BrowserRouter>
         <div className="bg-primary">
-          <Header />
+          {showLogin ? <LoginPopup setShowLogin={setShowLogin} /> : <></>}
+          <Header setShowLogin={setShowLogin}/>
           <Routes>
             {/* Add your routes here */}
             <Route path="/" element={<Home />} />
