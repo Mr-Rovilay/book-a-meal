@@ -10,15 +10,13 @@ const Categories = ({category, setCategory}) => {
 </p>
 
     </div>
-    <div className="flex-wrap gap-10 flexStart">
+    <div className="flex-wrap gap-10 md:flexStart">
       {categories.map((item)=>(
-        <div className={`${category === item.name ? "ring-1 ring-slate-900/5": "" } flexCenter flex-col bg-white rounded-2xl cursor-pointer`} key={item} onClick={() =>setCategory((prev)=>(prev === item.name? "All" : item.name))} id={item.name}>
+        <div className={`${category === item.name ? "ring-1 ring-slate-900/5": "" } flexCenter flex-col mt-2 bg-white rounded-2xl cursor-pointer`} key={item} onClick={() =>setCategory((prev)=>(prev === item.name? "All" : item.name))} id={item.name}>
           <div className="p-8 rounded-2xl">
-
-
           <img src={item.image} alt="category img" srcSet="" height={122} width={122} className="object-contain aspect-square" />
-          <h4 className="">{item.name}</h4>
           </div>
+          <h4 className="pb-4 medium-14">{item.name}</h4>
        
         </div>
       ))}
