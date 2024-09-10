@@ -1,5 +1,6 @@
 import { useState } from "react";
 
+// eslint-disable-next-line react/prop-types
 const Navbar = ({ containerStyles, header, menuOpen }) => {
   const [isActive, setIsActive] = useState("home");
   return (
@@ -16,7 +17,7 @@ const Navbar = ({ containerStyles, header, menuOpen }) => {
                 : "text-tertiary"
               : isActive === link
               ? "text-tertiary"
-              : "text-white"
+              : "text-secondary"
           }
         >
           <div className="">{link.charAt(0).toUpperCase() + link.slice(1)}</div>

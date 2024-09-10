@@ -1,6 +1,6 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { MdClose, MdMenu } from "react-icons/md";
 import { GiShoppingBag } from "react-icons/gi";
 import { LuUser2 } from "react-icons/lu";
@@ -13,8 +13,37 @@ const Header = () => {
   const [token, setToken] = useState(false);
   const [header, setHeader] = useState(false);
   const navigate = useNavigate();
+  // react hook to assess the current url
+  const location = useLocation(); 
+  
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen); 
+  }
+  const logout = () => {
+    localStorage.removeItem("token")
+    setToken(null);
+    navigate("/"); 
+  }
+  useEffect (()=> {
+    const handleScroll = () => {  
+      window.scrollY>35 ? setHeader(true) : setHeader(false);    
+    }
+    const checkUrl = () => {
+      const currentUrl = window.location.href
+      if (currentUrl !== "http://localhost:5173/") {
+        setHeader(true) 
+        
+      } else{
+       window.addEventListener("scroll",handleScroll) 
+      }
+    }
+    checkUrl()
+    return () => {
+      window.removeEventListener("scroll", handleScroll)
+    }
+  },[location])
   return (
-    <header className="fixed left-0 right-0 z-10 w-full transition-all duration-300 bg-white">
+    <header className={`${header ? "bg-white shadow-sm py-4": "bg-transparent py-5"} fixed left-0 right-0 z-10 w-full transition-all duration-300 bg-white`}>
       <div className="max-padd-container flexBetween">
         <Link to={"/"} className="bold-24">
           <h4>
@@ -33,9 +62,9 @@ const Header = () => {
           />
           <div className="flexBetween gap-x-2 xs:gap-x-8">
             {!menuOpen ? (
-              <MdMenu className="text-2xl cursor-pointer md:hidden" />
+              <MdMenu onClick={toggleMenu} className="text-2xl cursor-pointer md:hidden" />
             ) : (
-              <MdClose className="text-2xl cursor-pointer md:hidden" />
+              <MdClose onClick={toggleMenu} className="text-2xl cursor-pointer md:hidden" />
             )}
             <Link to={"/cart"} className="relative flex">
               <GiShoppingBag className="text-2xl" />
