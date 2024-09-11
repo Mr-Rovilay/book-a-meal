@@ -1,17 +1,19 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { MdClose, MdMenu } from "react-icons/md";
 import { GiShoppingBag } from "react-icons/gi";
 import { LuUser2 } from "react-icons/lu";
 import { FaCircleUser } from "react-icons/fa6";
 import { FiPackage } from "react-icons/fi";
 import { TbLogout } from "react-icons/tb";
+import { ShopContext } from "../context/ShopContext";
 
 const Header = ({setShowLogin}) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [token, setToken] = useState(false);
   const [header, setHeader] = useState(false);
+  const {getTotalCartItems} = useContext(ShopContext)
   const navigate = useNavigate();
   // react hook to assess the current url
   const location = useLocation(); 
@@ -68,8 +70,8 @@ const Header = ({setShowLogin}) => {
             )}
             <Link to={"/cart"} className="relative flex">
               <GiShoppingBag className="text-2xl" />
-              <span className="absolute text-sm bg-white text-tertiary -right-2.5 -top-2.5 flexCenter w-5 h-5 rounded-full shadow-md">
-                0
+              <span className="absolute text-sm bg-white text-red-500 -right-2.5 -top-2.5 flexCenter w-5 h-5 rounded-full shadow-md">
+           {   getTotalCartItems()}
               </span>
             </Link>
             {!token ? (
