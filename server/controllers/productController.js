@@ -1,4 +1,5 @@
 import Product from "../models/productModel.js";
+import fs from "fs"
 
 export const addProduct = async (req, res) => {
     if (!req.file) {
@@ -32,9 +33,21 @@ export const addProduct = async (req, res) => {
 export const ProductList = async (req, res) => {
     try {
         const products = await Product.find({});
-        res.json(products);
+        res.json({data:products});
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: "Server Error" });
     }   
+}
+
+export const removeProduct = async (req, res) => {  
+    try {
+        const product = await Product.findById(req.body.id);
+       fs.unlink(`upload/${product.image}`,()=>{})
+       await Product.findByIdAndDelete(req.body.id);
+       res.json({message:"Product removed successfully"})   
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Server Error" });
+    }
 }

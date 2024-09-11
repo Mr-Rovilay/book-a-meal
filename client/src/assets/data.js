@@ -82,43 +82,8 @@ export const categories = [
 ];
 
 export const all_products = [
-  // Curry Products
-  {
-    _id: "1",
-    name: "Spicy Chicken Curry",
-    image: food_1,
-    price: 20.0,
-    description:
-      "Enjoy our Spicy Chicken Curry, made with tender chicken pieces cooked in a flavorful blend of spices.",
-    category: "Curry",
-  },
-  {
-    _id: "2",
-    name: "Vegetarian Chickpea Curry",
-    image: food_2,
-    price: 20.0,
-    description:
-      "Our Vegetarian Chickpea Curry is a hearty dish made with tender chickpeas simmered in a rich tomato-based sauce.",
-    category: "Curry",
-  },
-  {
-    _id: "3",
-    name: "Beef Vindaloo",
-    image: food_3,
-    price: 30.0,
-    description:
-      "Experience the fiery taste of our Beef Vindaloo, a traditional Goan dish with a spicy and tangy sauce.",
-    category: "Curry",
-  },
-  {
-    _id: "4",
-    name: "Creamy Paneer Butter Masala",
-    image: food_4,
-    price: 20.0,
-    description:
-      "Our Creamy Paneer Butter Masala features soft paneer cubes cooked in a rich and creamy tomato gravy.",
-    category: "Curry",
-  },
+
+
   {
     _id: "5",
     name: "Lamb Rogan Josh",

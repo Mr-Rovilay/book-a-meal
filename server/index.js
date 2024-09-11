@@ -18,7 +18,7 @@ app.use(cors());
 
 
  app.use("/api/product", productRouter)
- app.use("images", express.static("uploads"))
+ app.use("/images", express.static("uploads"))
 
 app.get("/", (req,res)=> {
     res.send("api working")
