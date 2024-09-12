@@ -9,12 +9,15 @@ import MyOrders from "./pages/MyOrders";
 import Footer from "./components/Footer";
 import LoginPopup from "./components/LoginPopup";
 import { useState } from "react";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
   const [showLogin, setShowLogin] = useState(false);
   return (
     <div className="overflow-hidden text-[#404040]">
       <BrowserRouter>
+      <ToastContainer />
         <div className="bg-primary">
           {showLogin ? <LoginPopup setShowLogin={setShowLogin} /> : <></>}
           <Header setShowLogin={setShowLogin}/>

@@ -4,7 +4,7 @@ import { useContext } from "react";
 import { ShopContext } from "../context/ShopContext";
 
 const Item = ({ product }) => {
-  const { cartItems, addToCart, removeFromCart } = useContext(ShopContext);
+  const { cartItems, addToCart, removeFromCart, url } = useContext(ShopContext);
 
   // Get the quantity of the product in the cart
   const quantity = cartItems[product._id] || 0;
@@ -16,7 +16,7 @@ const Item = ({ product }) => {
         className="p-4 bg-white flexCenter ring-1 ring-slate-900/5 rounded-t-xl"
       >
         <img
-          src={product.image}
+          src={url+"/images/"+product.image}
           alt="productImg"
           height={222}
           width={222}

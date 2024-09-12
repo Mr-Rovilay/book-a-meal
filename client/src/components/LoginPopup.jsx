@@ -1,9 +1,14 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { FaXmark, FaEye, FaEyeSlash } from "react-icons/fa6";
+import { ShopContext } from "../context/ShopContext";
+import { toast } from "react-toastify";
+import axios from "axios";
 
 const LoginPopup = ({ setShowLogin }) => {
+  const { url, setToken } = useContext(ShopContext);
   const [state, setState] = useState("Sign Up");
   const [showPassword, setShowPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({ name: "", email: "", password: "" });
   const [errors, setErrors] = useState({});
 
@@ -33,20 +38,40 @@ const LoginPopup = ({ setShowLogin }) => {
     return formErrors;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const formErrors = validateForm();
     if (Object.keys(formErrors).length === 0) {
-      console.log(`${state} form submitted`, formData);
-      // Handle form submission logic here
+      setIsLoading(true);
+      setErrors({});
+      try {
+        const endpoint = state === "Login" ? "api/user/login" : "api/user/register";
+        const response = await axios.post(`${url}/${endpoint}`, formData);
+
+        if ((response.status === 200 || response.status === 201) && response.data.token) {
+          setToken(response.data.token);
+          localStorage.setItem("token", response.data.token);
+          toast.success(`${state} successful!`);
+          setShowLogin(false);
+        } else {
+          throw new Error("No token received");
+        }
+      } catch (error) {
+        const errorMessage = error.response?.data?.error || "An error occurred. Please try again.";
+        toast.error(errorMessage);
+        setErrors({ submit: errorMessage });
+      } finally {
+        setIsLoading(false);
+      }
     } else {
       setErrors(formErrors);
     }
   };
 
   return (
-    <div className="h-screen fixed w-full z-50 flexCenter bg-black bg-opacity-50">
+    <div className="h-screen fixed w-full z-50 flexCenter bg-black bg-opacity-50" onClick={() => setShowLogin(false)}>
       <form
+        onClick={(e) => e.stopPropagation()}
         onSubmit={handleSubmit}
         className="bg-white p-8 rounded-lg w-full max-w-[400px] shadow-lg"
       >
@@ -64,10 +89,7 @@ const LoginPopup = ({ setShowLogin }) => {
                 placeholder="Name"
                 value={formData.name}
                 onChange={handleInputChange}
-                className={`bg-gray-200 border p-2 pl-4 rounded-md outline-none w-full ${
-                  errors.name ? "border-red-500" : "border-gray-300"
-                }`}
-               
+                className={`bg-gray-200 border p-2 pl-4 rounded-md outline-none w-full ${errors.name ? "border-red-500" : "border-gray-300"}`}
               />
               {errors.name && <p className="text-red-500 text-sm">{errors.name}</p>}
             </div>
@@ -80,10 +102,7 @@ const LoginPopup = ({ setShowLogin }) => {
               placeholder="Email"
               value={formData.email}
               onChange={handleInputChange}
-              className={`bg-gray-200 border p-2 pl-4 rounded-md outline-none w-full ${
-                errors.email ? "border-red-500" : "border-gray-300"
-              }`}
-            
+              className={`bg-gray-200 border p-2 pl-4 rounded-md outline-none w-full ${errors.email ? "border-red-500" : "border-gray-300"}`}
             />
             {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
           </div>
@@ -95,48 +114,31 @@ const LoginPopup = ({ setShowLogin }) => {
               placeholder="Password"
               value={formData.password}
               onChange={handleInputChange}
-              className={`bg-gray-200 border p-2 pl-4 rounded-md outline-none w-full ${
-                errors.password ? "border-red-500" : "border-gray-300"
-              }`}
-            
+              className={`bg-gray-200 border p-2 pl-4 rounded-md outline-none w-full ${errors.password ? "border-red-500" : "border-gray-300"}`}
             />
-            <span
-              className="absolute right-3 top-2.5 cursor-pointer text-gray-500"
-              onClick={() => setShowPassword(!showPassword)}
-            >
+            <span className="absolute right-3 top-2.5 cursor-pointer text-gray-500" onClick={() => setShowPassword(!showPassword)}>
               {showPassword ? <FaEyeSlash /> : <FaEye />}
             </span>
-            {errors.password && (
-              <p className="text-red-500 text-sm">{errors.password}</p>
-            )}
+            {errors.password && <p className="text-red-500 text-sm">{errors.password}</p>}
           </div>
         </div>
 
-        <button
-          className="bg-secondary text-white p-2 rounded-md mt-4 w-full"
-          type="submit"
-        >
-          {state === "Sign Up" ? "Create account" : "Login"}
+        <button className={`bg-secondary text-white p-2 rounded-md mt-4 w-full ${isLoading ? 'opacity-50 cursor-not-allowed' : ''}`} type="submit" disabled={isLoading}>
+          {isLoading ? 'Processing...' : (state === "Sign Up" ? "Create account" : "Login")}
         </button>
 
         <div className="text-center text-sm text-gray-600 mt-4">
           {state === "Sign Up" ? (
             <p>
               Already have an account?{" "}
-              <span
-                onClick={() => setState("Login")}
-                className="text-secondary cursor-pointer"
-              >
+              <span onClick={() => { setState("Login"); setFormData({ name: "", email: "", password: "" }); }} className="text-secondary cursor-pointer">
                 Login
               </span>
             </p>
           ) : (
             <p>
               Don&apos;t have an account?{" "}
-              <span
-                onClick={() => setState("Sign Up")}
-                className="text-secondary cursor-pointer"
-              >
+              <span onClick={() => { setState("Sign Up"); setFormData({ name: "", email: "", password: "" }); }} className="text-secondary cursor-pointer">
                 Create account
               </span>
             </p>

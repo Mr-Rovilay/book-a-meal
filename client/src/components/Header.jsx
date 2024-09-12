@@ -11,9 +11,8 @@ import { ShopContext } from "../context/ShopContext";
 
 const Header = ({setShowLogin}) => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [token, setToken] = useState(false);
   const [header, setHeader] = useState(false);
-  const {getTotalCartItems} = useContext(ShopContext)
+  const {getTotalCartItems, token, setToken} = useContext(ShopContext)
   const navigate = useNavigate();
   // react hook to assess the current url
   const location = useLocation(); 
@@ -81,22 +80,22 @@ const Header = ({setShowLogin}) => {
               </button>
             ) : (
               <div className="relative group">
-                <FaCircleUser className="text-2xl" />
+                <FaCircleUser className="text-2xl cursor-pointer" />
                 <ul className="absolute right-0 flex-col hidden w-24 p-3 rounded shadow-sm bg-primary ring-1 ring-slate-900/15 group-hover:flex">
                   <li
                     className="cursor-pointer flexCenter gap-x-2"
                     onClick={() => navigate("/myorders")}
                   >
                     <FiPackage />
-                    <p>orders</p>
+                    <p>Orders</p>
                   </li>
                   <hr className="my-2" />
 
                   <li
                     className="cursor-pointer flexCenter gap-x-2"
-                    onClick={() => navigate("/myorders")}
+                    onClick={logout}
                   >
-                    <TbLogout className="text-[19px]" />
+                    <TbLogout className="" />
                     Logout
                   </li>
                 </ul>

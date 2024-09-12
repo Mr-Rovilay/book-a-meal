@@ -83,7 +83,42 @@ export const categories = [
 
 export const all_products = [
 
-
+  {
+    _id: "1",
+    name: "Lamb Rogan Josh",
+    image: food_1,
+    price: 30.0,
+    description:
+      "Try our Lamb Rogan Josh, a traditional Kashmiri dish with tender lamb in a fragrant curry sauce.",
+    category: "Curry",
+  },
+  {
+    _id: "2",
+    name: "Lamb Rogan Josh",
+    image: food_2,
+    price: 30.0,
+    description:
+      "Try our Lamb Rogan Josh, a traditional Kashmiri dish with tender lamb in a fragrant curry sauce.",
+    category: "Curry",
+  },
+  {
+    _id: "3",
+    name: "Lamb Rogan Josh",
+    image: food_3,
+    price: 30.0,
+    description:
+      "Try our Lamb Rogan Josh, a traditional Kashmiri dish with tender lamb in a fragrant curry sauce.",
+    category: "Curry",
+  },
+  {
+    _id: "4",
+    name: "Lamb Rogan Josh",
+    image: food_4,
+    price: 30.0,
+    description:
+      "Try our Lamb Rogan Josh, a traditional Kashmiri dish with tender lamb in a fragrant curry sauce.",
+    category: "Curry",
+  },
   {
     _id: "5",
     name: "Lamb Rogan Josh",

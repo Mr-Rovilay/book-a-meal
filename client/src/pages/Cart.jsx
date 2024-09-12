@@ -4,7 +4,7 @@ import { FaTrashAlt } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
-  const { all_products, cartItems, removeFromCart, getTotalCartItems, getTotalCartAmount } = useContext(ShopContext);
+  const { all_products, cartItems, removeFromCart, getTotalCartItems, getTotalCartAmount,url } = useContext(ShopContext);
   const navigate = useNavigate();
 
   const totalItems = getTotalCartItems();
@@ -33,7 +33,7 @@ const Cart = () => {
                     <tr key={product._id} className="p-6 text-left border-b border-slate-900/20 text-gray-30">
                       <td className="p-1">
                         <img
-                          src={product.image}
+                          src={url+"/images/"+product.image}
                           alt="productImg"
                           height={43}
                           width={43}
