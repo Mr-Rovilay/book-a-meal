@@ -5,10 +5,10 @@ import axios from "axios";
 export const ShopContext = createContext(null);
 
 const ShopContextProvider = (props) => {
-    const url = "http://localhost:4000"
+  const url = import.meta.env.VITE_BACKEND_URL;
   const [cartItems, setCartItems] = useState({});
-  const [all_products, setAll_products] = useState([])
-  const [token, setToken] = useState("")
+  const [all_products, setAll_products] = useState([]);
+  const [token, setToken] = useState("");
 
   // Add to cart
   const addToCart = async (itemId) => {
