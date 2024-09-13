@@ -69,13 +69,13 @@ const LoginPopup = ({ setShowLogin }) => {
   };
 
   return (
-    <div className="h-screen fixed w-full z-50 flexCenter bg-black bg-opacity-50" onClick={() => setShowLogin(false)}>
+    <div className="fixed z-50 w-full h-screen bg-black bg-opacity-50 flexCenter" onClick={() => setShowLogin(false)}>
       <form
         onClick={(e) => e.stopPropagation()}
         onSubmit={handleSubmit}
-        className="bg-white p-8 rounded-lg w-full max-w-[400px] shadow-lg"
+        className="bg-white p-8 m-3 rounded-lg w-full max-w-[400px] shadow-lg"
       >
-        <div className="flex justify-between items-center mb-4">
+        <div className="flex items-center justify-between mb-4">
           <h4 className="text-xl font-semibold">{state}</h4>
           <FaXmark onClick={() => setShowLogin(false)} className="cursor-pointer" />
         </div>
@@ -91,7 +91,7 @@ const LoginPopup = ({ setShowLogin }) => {
                 onChange={handleInputChange}
                 className={`bg-gray-200 border p-2 pl-4 rounded-md outline-none w-full ${errors.name ? "border-red-500" : "border-gray-300"}`}
               />
-              {errors.name && <p className="text-red-500 text-sm">{errors.name}</p>}
+              {errors.name && <p className="text-sm text-red-500">{errors.name}</p>}
             </div>
           )}
 
@@ -104,7 +104,7 @@ const LoginPopup = ({ setShowLogin }) => {
               onChange={handleInputChange}
               className={`bg-gray-200 border p-2 pl-4 rounded-md outline-none w-full ${errors.email ? "border-red-500" : "border-gray-300"}`}
             />
-            {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
+            {errors.email && <p className="text-sm text-red-500">{errors.email}</p>}
           </div>
 
           <div className="relative">
@@ -119,7 +119,7 @@ const LoginPopup = ({ setShowLogin }) => {
             <span className="absolute right-3 top-2.5 cursor-pointer text-gray-500" onClick={() => setShowPassword(!showPassword)}>
               {showPassword ? <FaEyeSlash /> : <FaEye />}
             </span>
-            {errors.password && <p className="text-red-500 text-sm">{errors.password}</p>}
+            {errors.password && <p className="text-sm text-red-500">{errors.password}</p>}
           </div>
         </div>
 
@@ -127,18 +127,18 @@ const LoginPopup = ({ setShowLogin }) => {
           {isLoading ? 'Processing...' : (state === "Sign Up" ? "Create account" : "Login")}
         </button>
 
-        <div className="text-center text-sm text-gray-600 mt-4">
+        <div className="mt-4 text-sm text-center text-gray-600">
           {state === "Sign Up" ? (
             <p>
               Already have an account?{" "}
-              <span onClick={() => { setState("Login"); setFormData({ name: "", email: "", password: "" }); }} className="text-secondary cursor-pointer">
+              <span onClick={() => { setState("Login"); setFormData({ name: "", email: "", password: "" }); }} className="cursor-pointer text-secondary">
                 Login
               </span>
             </p>
           ) : (
             <p>
               Don&apos;t have an account?{" "}
-              <span onClick={() => { setState("Sign Up"); setFormData({ name: "", email: "", password: "" }); }} className="text-secondary cursor-pointer">
+              <span onClick={() => { setState("Sign Up"); setFormData({ name: "", email: "", password: "" }); }} className="cursor-pointer text-secondary">
                 Create account
               </span>
             </p>
