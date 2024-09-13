@@ -8,7 +8,7 @@ import List from "./pages/List";
 import Orders from "./pages/Orders";
 
 const App = () => {
-  const url = import.meta.env.VITE_BACKEND_URL;
+  const url ="https://book-a-meal.onrender.com"
 
   return (
     <BrowserRouter>

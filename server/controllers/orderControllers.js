@@ -6,7 +6,7 @@ import Stripe from "stripe";
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 export const placeOrder = async (req, res) => {
-  const frontend_url = process.env.FRONTEND_URL || "http://localhost:5173"; // Ensure frontend URL is environment-configured
+  const frontend_url = process.env.FRONTEND_URL || "https://book-a-meal.onrender.com"; // Ensure frontend URL is environment-configured
 
   try {
     const { items, amount, address, userId } = req.body;

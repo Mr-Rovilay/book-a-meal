@@ -5,7 +5,7 @@ import axios from "axios";
 export const ShopContext = createContext(null);
 
 const ShopContextProvider = (props) => {
-  const url = import.meta.env.VITE_BACKEND_URL;
+  const url ="https://book-a-meal.onrender.com"
   const [cartItems, setCartItems] = useState({});
   const [all_products, setAll_products] = useState([]);
   const [token, setToken] = useState("");
