@@ -63,7 +63,7 @@ const MyOrders = () => {
                 key={i}
                 className="p-6 text-left border-b text-gray-50 border-slate-900/20 medium-14"
               >
-                <td className="p-1 sm:table-cell">
+                <td className="hidden p-1 sm:table-cell">
                   <FaBox className="text-2xl text-secondary" />
                 </td>
                 <td className="p-1">
